@@ -7,18 +7,31 @@ import { useEffect, useState } from 'react';
 import { MotionDiv } from '@/types/motion';
 
 export default function Header() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
+  const { scrollYProgress } = useScroll({
+    smooth: 0.5,
+    throttle: 0
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+
+    let timeoutId: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkMobile, 100);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const titleAnimation = {
@@ -27,9 +40,9 @@ export default function Header() {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: "easeOut",
-        delay: 0.5
+        delay: 0.3
       }
     }
   };
@@ -40,35 +53,31 @@ export default function Header() {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 1,
+        duration: 0.8,
         ease: "easeOut",
-        delay: 1.2
+        delay: 0.6
       }
     }
   };
 
   return (
-    <header className="relative h-screen w-full overflow-hidden">
-      {/* Lighter gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30 z-10" />
+    <header className="relative h-screen w-full overflow-hidden will-change-transform">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30 z-10 will-change-transform" />
       
-      {/* Background Image */}
       <MotionDiv 
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full will-change-transform"
         style={{ 
           y,
-          scale,
           backgroundImage: `url(${isMobile ? coupleCenterImage.src : coupleImage.src})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          filter: 'brightness(0.95)', // Brighter image
         }}
+        transformTemplate={({ y }) => `translateY(${y}px) translateZ(0)`}
       />
 
-      {/* Content Container */}
       <MotionDiv 
-        className="relative h-full w-full flex items-center justify-center px-4 z-20"
+        className="relative h-full w-full flex items-center justify-center px-4 z-20 will-change-transform"
         style={{ opacity }}
       >
         <MotionDiv 
@@ -76,7 +85,6 @@ export default function Header() {
           initial="hidden"
           animate="visible"
         >
-          {/* Decorative Line */}
           <MotionDiv
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -84,7 +92,6 @@ export default function Header() {
             className="w-24 h-[2px] bg-white mx-auto mb-10 shadow-glow"
           />
 
-          {/* Title with enhanced readability */}
           <MotionDiv
             variants={titleAnimation}
             className="mb-8"
@@ -97,7 +104,6 @@ export default function Header() {
             </h1>
           </MotionDiv>
 
-          {/* Subtitle with improved contrast */}
           <MotionDiv
             variants={subtitleAnimation}
             className="space-y-6"
@@ -114,7 +120,6 @@ export default function Header() {
             </p>
           </MotionDiv>
 
-          {/* Enhanced Decorative Line */}
           <MotionDiv
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -124,14 +129,13 @@ export default function Header() {
         </MotionDiv>
       </MotionDiv>
 
-      {/* Enhanced Scroll Indicator */}
       <MotionDiv
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 will-change-transform"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 1,
-          delay: 2,
+          duration: 0.8,
+          delay: 1.5,
           repeat: Infinity,
           repeatType: "reverse"
         }}
