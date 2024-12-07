@@ -42,25 +42,25 @@ export default function Header() {
           objectPosition: 'center'
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/10" />
+      <div className="absolute inset-0 bg-black/30" />
       <MotionDiv 
         className="relative h-full w-full flex items-center justify-center px-4 z-10"
         style={{ opacity }}
       >
         <MotionDiv 
-          className="bg-black/10 rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
+          className="bg-black/20 backdrop-blur-sm rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-xl"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-6xl lg:text-8xl font-script mb-4 text-white 
-            drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] 
-            [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]">
+            drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] 
+            [text-shadow:_3px_3px_6px_rgb(0_0_0_/_70%)]">
             Kenneth &amp; Jenna
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 tracking-wide font-light
-            drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]
-            [text-shadow:_1px_1px_2px_rgb(0_0_0_/_40%)]">
+          <p className="text-xl md:text-2xl text-white font-medium tracking-wide
+            drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]
+            [text-shadow:_2px_2px_4px_rgb(0_0_0_/_60%)]">
             We&apos;re getting married!
           </p>
         </MotionDiv>

@@ -20,12 +20,13 @@ export default function Hero() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: "-100px" }}
         transition={{ duration: 0.8 }}
+        className="max-w-4xl mx-auto px-4"
       >
-        <h2 className="text-5xl font-bold">
+        <h2 className="text-4xl md:text-5xl font-script text-forest-dark leading-relaxed">
           The Wedding of Kenneth &amp; Jenna
         </h2>
         <MotionP 
-          className="text-xl mt-4"
+          className="text-xl md:text-2xl mt-6 font-medium text-forest"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
@@ -34,7 +35,7 @@ export default function Hero() {
           Saturday, January 24, 2026
         </MotionP>
         <MotionP 
-          className="text-lg mt-4 text-gray-600"
+          className="text-lg md:text-xl mt-4 text-forest-light font-medium"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
