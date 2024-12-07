@@ -2,7 +2,7 @@
 
 import coupleImage from '../../../public/images/couple.png';
 import coupleCenterImage from '../../../public/images/couple_center.png';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { MotionDiv } from '@/types/motion';
 import Image from 'next/image';
@@ -14,7 +14,7 @@ export default function Header() {
     [0, 0.5],
     [0, 100],
     { 
-      ease: "easeOut"
+      ease: easeOut
     }
   );
   
@@ -22,7 +22,7 @@ export default function Header() {
     [0, 0.3], 
     [1, 0],
     {
-      ease: "easeOut"
+      ease: easeOut
     }
   );
   
