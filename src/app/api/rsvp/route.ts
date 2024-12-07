@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { saveRSVP } from '@/data/rsvp';
+import { saveRSVP } from '../../../data/rsvp';
 
 export async function POST(request: Request) {
   try {
