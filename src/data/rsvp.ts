@@ -26,17 +26,15 @@ export async function saveRSVP(data: Omit<RSVPEntry, 'id' | 'createdAt'>) {
     try {
       const fileContent = await fs.readFile(dataFilePath, 'utf-8');
       entries = JSON.parse(fileContent);
-    } catch (error) {
+    } catch {
       entries = [];
     }
 
     entries.push(entry);
-
     await fs.writeFile(dataFilePath, JSON.stringify(entries, null, 2));
-
     return entry;
-  } catch (error) {
-    console.error('Error saving RSVP:', error);
+  } catch {
+    console.error('Failed to save RSVP');
     throw new Error('Failed to save RSVP');
   }
 }
@@ -45,7 +43,7 @@ export async function getAllRSVPs(): Promise<RSVPEntry[]> {
   try {
     const fileContent = await fs.readFile(dataFilePath, 'utf-8');
     return JSON.parse(fileContent);
-  } catch (error) {
+  } catch {
     return [];
   }
 } 

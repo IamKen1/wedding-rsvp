@@ -6,13 +6,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        script: ['Dancing Script', 'cursive'],
+        sans: ['var(--font-poppins)', 'sans-serif'],
+        script: ['var(--font-dancing-script)', 'cursive'],
       },
       colors: {
-        primary: '#f59e0b', // Elegant gold
-        secondary: '#fff7e6', // Cream
-        accent: '#4a5568', // Grayish blue
+        primary: '#f59e0b',
+        secondary: '#fff7e6',
+        accent: '#4a5568',
       },
     },
   },

@@ -51,29 +51,11 @@ export default function RSVP() {
         numberOfGuests: 1,
         message: ""
       });
-    } catch (error) {
+    } catch (_) {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const validateForm = (data: FormData) => {
-    const errors: Partial<Record<keyof FormData, string>> = {};
-    
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      errors.email = 'Invalid email format';
-    }
-    
-    if (!/^\d{10,}$/.test(data.phone.replace(/\D/g, ''))) {
-      errors.phone = 'Invalid phone number';
-    }
-    
-    if (data.numberOfGuests < 1 || data.numberOfGuests > 5) {
-      errors.numberOfGuests = 'Guest count must be between 1 and 5';
-    }
-    
-    return errors;
   };
 
   return (
