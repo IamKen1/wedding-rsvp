@@ -3,11 +3,22 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Georgia', serif;
-  background-color: #fffaf0;
+  font-family: var(--font-cormorant), serif;
+  background-color: #F0F7F4;
   scroll-behavior: smooth;
+  font-size: 1.125rem;
+  color: #2F4F4F;
 }
 
 .font-script {
-  font-family: 'Dancing Script', cursive;
+  font-family: var(--font-great-vibes), cursive;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-great-vibes), cursive;
+  color: #2F4F4F;
+}
+
+.bg-secondary {
+  background-color: #F0F7F4;
 }

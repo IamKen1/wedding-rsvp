@@ -1,15 +1,16 @@
 import '../styles/globals.css';
-import { Dancing_Script, Poppins } from 'next/font/google';
+import { Great_Vibes, Cormorant_Garamond } from 'next/font/google';
 
-const dancingScript = Dancing_Script({
+const greatVibes = Great_Vibes({
+  weight: '400',
   subsets: ['latin'],
-  variable: '--font-dancing-script',
+  variable: '--font-great-vibes',
 });
 
-const poppins = Poppins({
-  weight: ['400', '600'],
+const cormorant = Cormorant_Garamond({
+  weight: ['300', '400', '500', '600'],
   subsets: ['latin'],
-  variable: '--font-poppins',
+  variable: '--font-cormorant',
 });
 
 export const metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${dancingScript.variable} ${poppins.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${greatVibes.variable} ${cormorant.variable}`}>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );
