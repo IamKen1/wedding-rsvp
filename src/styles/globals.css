@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #fffaf0;
+  scroll-behavior: smooth;
+}
+
+.font-script {
+  font-family: 'Dancing Script', cursive;
+}
