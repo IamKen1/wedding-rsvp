@@ -1,13 +1,15 @@
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 
-type MotionComponent<T extends keyof HTMLElementTagNameMap> = React.ComponentType<HTMLMotionProps<T>>;
+// Add type for HTML props
+type HTMLMotionProps<T extends keyof HTMLElementTagNameMap> = 
+  Omit<React.HTMLAttributes<HTMLElementTagNameMap[T]>, keyof MotionProps> & MotionProps;
 
 // Motion components with proper typing
-export const MotionDiv: MotionComponent<"div"> = motion.div;
-export const MotionSection: MotionComponent<"section"> = motion.section;
-export const MotionForm: MotionComponent<"form"> = motion.form;
-export const MotionInput: MotionComponent<"input"> = motion.input;
-export const MotionTextarea: MotionComponent<"textarea"> = motion.textarea;
-export const MotionSelect: MotionComponent<"select"> = motion.select;
-export const MotionP: MotionComponent<"p"> = motion.p;
-export const MotionButton: MotionComponent<"button"> = motion.button; 
+export const MotionDiv = motion.div as React.FC<HTMLMotionProps<"div">>;
+export const MotionSection = motion.section as React.FC<HTMLMotionProps<"section">>;
+export const MotionForm = motion.form as React.FC<HTMLMotionProps<"form">>;
+export const MotionInput = motion.input as React.FC<HTMLMotionProps<"input">>;
+export const MotionTextarea = motion.textarea as React.FC<HTMLMotionProps<"textarea">>;
+export const MotionSelect = motion.select as React.FC<HTMLMotionProps<"select">>;
+export const MotionP = motion.p as React.FC<HTMLMotionProps<"p">>;
+export const MotionButton = motion.button as React.FC<HTMLMotionProps<"button">>; 
