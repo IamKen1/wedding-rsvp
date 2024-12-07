@@ -14,13 +14,21 @@ export async function POST(request: Request) {
       );
     }
 
-    const savedEntry = await saveRSVP(body);
-    console.log('RSVP saved successfully:', savedEntry);
-    return NextResponse.json({ success: true, data: savedEntry });
+    try {
+      const savedEntry = await saveRSVP(body);
+      console.log('RSVP saved successfully:', savedEntry);
+      return NextResponse.json({ success: true, data: savedEntry });
+    } catch (error) {
+      console.error('Error saving RSVP:', error);
+      return NextResponse.json(
+        { error: 'Failed to save RSVP. Please try again.' },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error('RSVP submission error:', error);
     return NextResponse.json(
-      { error: 'Failed to submit RSVP' },
+      { error: 'Failed to process request' },
       { status: 500 }
     );
   }
