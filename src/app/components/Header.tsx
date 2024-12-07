@@ -72,7 +72,7 @@ export default function Header() {
         style={{ opacity }}
       >
         <MotionDiv 
-          className="text-center bg-black/10 backdrop-blur-[2px] rounded-xl p-8 md:p-12"
+          className="text-center bg-black/10  rounded-xl p-8 md:p-12"
           initial="hidden"
           animate="visible"
         >
