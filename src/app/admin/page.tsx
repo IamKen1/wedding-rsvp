@@ -41,8 +41,12 @@ export default function AdminPage() {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
 
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     } finally {
       setLoading(false);
     }

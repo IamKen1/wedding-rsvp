@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as XLSX from 'xlsx';
 import { getAllRSVPs } from '@/data/rsvp';
-import { headers } from 'next/headers';
 
-const ADMIN_PASSWORD = 'ilovejenna';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'ilovejenna';
 
 export async function POST(request: NextRequest) {
   try {

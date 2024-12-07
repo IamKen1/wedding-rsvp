@@ -1,6 +1,9 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { MotionSection, MotionDiv, MotionP } from '@/types/motion';
 
 export default function Hero() {
   const { scrollYProgress } = useScroll();
@@ -8,11 +11,11 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   return (
-    <motion.section 
+    <MotionSection 
       className="py-20 bg-white text-center relative"
       style={{ opacity, y }}
     >
-      <motion.div
+      <MotionDiv
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: "-100px" }}
@@ -21,7 +24,7 @@ export default function Hero() {
         <h2 className="text-5xl font-bold">
           The Wedding of Kenneth & Jenna
         </h2>
-        <motion.p 
+        <MotionP 
           className="text-xl mt-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -29,8 +32,8 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
         >
           Saturday, January 24, 2026
-        </motion.p>
-        <motion.p 
+        </MotionP>
+        <MotionP 
           className="text-lg mt-4 text-gray-600"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -38,9 +41,9 @@ export default function Hero() {
           transition={{ delay: 0.4, duration: 0.8 }}
         >
           We're thrilled to invite you to celebrate with us!
-        </motion.p>
-      </motion.div>
-    </motion.section>
+        </MotionP>
+      </MotionDiv>
+    </MotionSection>
   );
 }
   

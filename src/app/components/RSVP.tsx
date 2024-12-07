@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { MotionDiv, MotionForm, MotionInput, MotionTextarea, MotionSelect } from '@/types/motion';
 import { FaHeart, FaEnvelope, FaPhone, FaUsers, FaPen } from 'react-icons/fa';
 
 interface FormData {
@@ -76,7 +78,7 @@ export default function RSVP() {
 
   return (
     <div className="py-20 bg-secondary">
-      <motion.div
+      <MotionDiv
         className="max-w-4xl mx-auto px-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -89,34 +91,34 @@ export default function RSVP() {
         </div>
 
         {submitStatus === 'success' && (
-          <motion.div 
+          <MotionDiv 
             className="bg-green-50 border border-green-200 text-green-700 px-6 py-4 rounded-lg mb-8 text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <FaHeart className="inline-block mr-2 text-green-500" />
             Thank you for your RSVP! We look forward to celebrating with you.
-          </motion.div>
+          </MotionDiv>
         )}
 
         {submitStatus === 'error' && (
-          <motion.div 
+          <MotionDiv 
             className="bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-lg mb-8 text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             Something went wrong. Please try again.
-          </motion.div>
+          </MotionDiv>
         )}
 
-        <motion.form 
+        <MotionForm 
           onSubmit={handleSubmit} 
           className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8"
         >
           <div className="space-y-6">
             <div className="relative">
               <FaHeart className="absolute top-3 left-3 text-gray-400" />
-              <motion.input
+              <MotionInput
                 type="text"
                 placeholder="Your Name"
                 value={formData.name}
@@ -129,11 +131,11 @@ export default function RSVP() {
 
             <div className="relative">
               <FaEnvelope className="absolute top-3 left-3 text-gray-400" />
-              <motion.input
+              <MotionInput
                 type="email"
                 placeholder="Email Address"
                 value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
                 whileFocus={{ scale: 1.01 }}
@@ -142,19 +144,19 @@ export default function RSVP() {
 
             <div className="relative">
               <FaPhone className="absolute top-3 left-3 text-gray-400" />
-              <motion.input
+              <MotionInput
                 type="tel"
                 placeholder="Phone Number"
                 value={formData.phone}
-                onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 whileFocus={{ scale: 1.01 }}
               />
             </div>
 
-            <motion.select
+            <MotionSelect
               value={formData.willAttend}
-              onChange={(e) => setFormData(prev => ({ ...prev, willAttend: e.target.value }))}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData(prev => ({ ...prev, willAttend: e.target.value }))}
               className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               required
               whileFocus={{ scale: 1.01 }}
@@ -162,15 +164,15 @@ export default function RSVP() {
               <option value="">Will you attend?</option>
               <option value="yes">Yes, I will be there!</option>
               <option value="no">Sorry, I cannot attend</option>
-            </motion.select>
+            </MotionSelect>
 
             <div className="relative">
               <FaUsers className="absolute top-3 left-3 text-gray-400" />
-              <motion.input
+              <MotionInput
                 type="number"
                 placeholder="Number of Guests"
                 value={formData.numberOfGuests}
-                onChange={(e) => setFormData(prev => ({ ...prev, numberOfGuests: parseInt(e.target.value) }))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData(prev => ({ ...prev, numberOfGuests: parseInt(e.target.value) }))}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 min="1"
                 max="5"
@@ -180,17 +182,17 @@ export default function RSVP() {
 
             <div className="relative">
               <FaPen className="absolute top-3 left-3 text-gray-400" />
-              <motion.textarea
+              <MotionTextarea
                 placeholder="Message for the Couple (Optional)"
                 value={formData.message}
-                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 rows={4}
                 whileFocus={{ scale: 1.01 }}
               />
             </div>
 
-            <motion.button
+            <MotionDiv
               type="submit"
               className="w-full py-4 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-opacity-90 disabled:opacity-50 transition-colors duration-200"
               whileHover={{ scale: 1.02 }}
@@ -211,10 +213,10 @@ export default function RSVP() {
                   Send RSVP
                 </span>
               )}
-            </motion.button>
+            </MotionDiv>
           </div>
-        </motion.form>
-      </motion.div>
+        </MotionForm>
+      </MotionDiv>
     </div>
   );
 }
