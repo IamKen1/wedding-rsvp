@@ -44,3 +44,14 @@ next-env.d.ts
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Remove or comment out if it exists
+# public/data/rsvp-data.json
+
+# Don't ignore the data directory
+!public/data/
+public/data/*
+!public/data/rsvp-data.json
+
+# Track RSVP data
+!rsvp-data.json

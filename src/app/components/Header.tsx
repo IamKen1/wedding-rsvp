@@ -12,7 +12,7 @@ export default function Header() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
 
   return (
-    <header className="relative h-[100vh] w-full overflow-hidden bg-[#fffaf0]">
+    <header className="relative h-screen w-full overflow-hidden bg-[#fffaf0]">
       <MotionDiv 
         className="absolute inset-0 w-full h-full"
         style={{ 
@@ -22,20 +22,25 @@ export default function Header() {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
+          minHeight: '100vh',
+          minWidth: '100vw',
+          objectFit: 'cover',
+          objectPosition: 'center'
         }}
       />
+      <div className="absolute inset-0 bg-black bg-opacity-30" />
       <MotionDiv 
-        className="relative h-full w-full flex items-center justify-center px-4"
+        className="relative h-full w-full flex items-center justify-center px-4 z-10"
         style={{ opacity }}
       >
         <MotionDiv 
-          className="bg-black bg-opacity-30 rounded-lg text-white p-6 text-center backdrop-blur-sm w-full max-w-3xl mx-auto"
+          className="bg-black/30 rounded-lg text-white p-6 text-center backdrop-blur-sm w-full max-w-3xl mx-auto"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-script mb-4">Kenneth & Jenna</h1>
-          <p className="text-xl md:text-2xl">We're getting married!</p>
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-script mb-4">Kenneth &amp; Jenna</h1>
+          <p className="text-xl md:text-2xl">We&apos;re getting married!</p>
         </MotionDiv>
       </MotionDiv>
     </header>

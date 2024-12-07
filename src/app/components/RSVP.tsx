@@ -30,6 +30,7 @@ export default function RSVP() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
       const response = await fetch('/api/rsvp', {
@@ -40,7 +41,12 @@ export default function RSVP() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error('Failed to submit RSVP');
+      const data = await response.json();
+      console.log('RSVP response:', data);
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit RSVP');
+      }
       
       setSubmitStatus('success');
       setFormData({
@@ -51,7 +57,8 @@ export default function RSVP() {
         numberOfGuests: 1,
         message: ""
       });
-    } catch (_) {
+    } catch (error) {
+      console.error('RSVP error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -174,11 +181,9 @@ export default function RSVP() {
               />
             </div>
 
-            <MotionDiv
+            <button
               type="submit"
               className="w-full py-4 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-opacity-90 disabled:opacity-50 transition-colors duration-200"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -195,7 +200,7 @@ export default function RSVP() {
                   Send RSVP
                 </span>
               )}
-            </MotionDiv>
+            </button>
           </div>
         </MotionForm>
       </MotionDiv>
