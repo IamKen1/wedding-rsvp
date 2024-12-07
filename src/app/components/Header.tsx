@@ -42,13 +42,13 @@ export default function Header() {
           objectPosition: 'center'
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/10" />
       <MotionDiv 
         className="relative h-full w-full flex items-center justify-center px-4 z-10"
         style={{ opacity }}
       >
         <MotionDiv 
-          className="bg-black/10 backdrop-blur-sm rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
+          className="bg-black/10  rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
