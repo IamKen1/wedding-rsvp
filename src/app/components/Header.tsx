@@ -48,15 +48,19 @@ export default function Header() {
         style={{ opacity }}
       >
         <MotionDiv 
-          className="bg-black/10  rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
+          className="bg-black/10 rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-script mb-4 text-white drop-shadow-lg">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-script mb-4 text-white 
+            drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] 
+            [text-shadow:_2px_2px_4px_rgb(0_0_0_/_50%)]">
             Kenneth &amp; Jenna
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 tracking-wide font-light">
+          <p className="text-xl md:text-2xl text-white/90 tracking-wide font-light
+            drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]
+            [text-shadow:_1px_1px_2px_rgb(0_0_0_/_40%)]">
             We&apos;re getting married!
           </p>
         </MotionDiv>
