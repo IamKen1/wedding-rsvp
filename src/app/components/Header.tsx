@@ -5,15 +5,26 @@ import coupleCenterImage from '../../../public/images/couple_center.png';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { MotionDiv } from '@/types/motion';
+import Image from 'next/image';
 
 export default function Header() {
-  const { scrollYProgress } = useScroll({
-    smooth: 0.5,
-    throttle: 0
-  });
+  const { scrollYProgress } = useScroll();
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const y = useTransform(scrollYProgress, 
+    [0, 0.5],
+    [0, 100],
+    { 
+      ease: "easeOut"
+    }
+  );
+  
+  const opacity = useTransform(scrollYProgress, 
+    [0, 0.3], 
+    [1, 0],
+    {
+      ease: "easeOut"
+    }
+  );
   
   const [isMobile, setIsMobile] = useState(false);
 
@@ -66,15 +77,18 @@ export default function Header() {
       
       <MotionDiv 
         className="absolute inset-0 w-full h-full will-change-transform"
-        style={{ 
-          y,
-          backgroundImage: `url(${isMobile ? coupleCenterImage.src : coupleImage.src})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-        transformTemplate={({ y }) => `translateY(${y}px) translateZ(0)`}
-      />
+        style={{ y }}
+      >
+        <Image
+          src={isMobile ? coupleCenterImage : coupleImage}
+          alt="Kenneth and Jenna"
+          fill
+          priority
+          quality={75}
+          className="object-cover"
+          sizes="100vw"
+        />
+      </MotionDiv>
 
       <MotionDiv 
         className="relative h-full w-full flex items-center justify-center px-4 z-20 will-change-transform"
