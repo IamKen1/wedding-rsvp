@@ -137,7 +137,7 @@ export default function Header() {
         }}
       >
         <div className="w-6 h-10 border-2 border-white rounded-full p-2 
-          backdrop-blur-sm bg-black/10 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+           bg-black/10 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
           <div className="w-1.5 h-1.5 bg-white rounded-full mx-auto animate-bounce 
             shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
         </div>
