@@ -1,6 +1,5 @@
 "use client";
 
-import Image from 'next/image';
 import coupleImage from '../../../public/images/couple.png';
 import { motion, useScroll, useTransform } from 'framer-motion';
 

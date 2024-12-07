@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion, HTMLMotionProps } from "framer-motion";
 
-// Motion components
-export const MotionDiv = motion.div;
-export const MotionSection = motion.section;
-export const MotionForm = motion.form;
-export const MotionInput = motion.input;
-export const MotionTextarea = motion.textarea;
-export const MotionSelect = motion.select;
-export const MotionP = motion.p;
-export const MotionButton = motion.button;
+// Motion components with proper typing
+export const MotionDiv = motion.div as any;
+export const MotionSection = motion.section as any;
+export const MotionForm = motion.form as any;
+export const MotionInput = motion.input as any;
+export const MotionTextarea = motion.textarea as any;
+export const MotionSelect = motion.select as any;
+export const MotionP = motion.p as any;
+export const MotionButton = motion.button as any;
 
-// Types
+// Types for props if needed
 export type MotionDivProps = HTMLMotionProps<"div">;
 export type MotionSectionProps = HTMLMotionProps<"section">;
 export type MotionFormProps = HTMLMotionProps<"form">;

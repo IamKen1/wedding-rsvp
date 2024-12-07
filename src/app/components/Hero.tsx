@@ -22,7 +22,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
       >
         <h2 className="text-5xl font-bold">
-          The Wedding of Kenneth & Jenna
+          The Wedding of Kenneth &amp; Jenna
         </h2>
         <MotionP 
           className="text-xl mt-4"
@@ -40,7 +40,7 @@ export default function Hero() {
           viewport={{ once: false }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          We're thrilled to invite you to celebrate with us!
+          We&apos;re thrilled to invite you to celebrate with us!
         </MotionP>
       </MotionDiv>
     </MotionSection>
