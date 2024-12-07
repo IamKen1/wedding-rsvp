@@ -48,7 +48,7 @@ export default function Header() {
         style={{ opacity }}
       >
         <MotionDiv 
-          className="bg-black/30 backdrop-blur-sm rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
+          className="bg-black/10 backdrop-blur-sm rounded-lg p-8 text-center w-full max-w-3xl mx-auto shadow-lg"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
