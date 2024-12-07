@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as XLSX from 'xlsx';
-import { getAllRSVPs } from '../../../data/rsvp';
+import { getAllRSVPs } from '@/data/rsvp';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'ilovejenna';
 
