@@ -81,17 +81,36 @@ const entourageData: EntourageRole[] = [
 
 export default function Entourage() {
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
 
   return (
-    <MotionSection
-      className="py-24 bg-cream text-center"
-      style={{ opacity }}
-    >
+    <section className="py-24 bg-cream text-center">
       <MotionDiv
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: "-100px" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={containerVariants}
         className="max-w-4xl mx-auto px-4"
       >
         <h3 className="text-4xl md:text-5xl font-script text-forest-dark mb-16">
@@ -102,9 +121,10 @@ export default function Entourage() {
           {entourageData.map((group, index) => (
             <MotionDiv
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={itemVariants}
               transition={{ delay: index * 0.1 }}
               className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
@@ -125,6 +145,6 @@ export default function Entourage() {
           ))}
         </div>
       </MotionDiv>
-    </MotionSection>
+    </section>
   );
 } 

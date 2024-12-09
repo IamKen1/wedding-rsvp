@@ -67,9 +67,9 @@ export default function Navigation() {
   return (
     <>
       <MotionNav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500
           ${scrolled 
             ? (isDark ? 'bg-gradient-to-b from-mint-dark/40 to-mint-dark/30' : 'bg-mint-light/80') 
@@ -83,7 +83,7 @@ export default function Navigation() {
                   key={link.href}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.05 }}
                 >
                   <button
                     onClick={() => handleNavClick(link.href)}

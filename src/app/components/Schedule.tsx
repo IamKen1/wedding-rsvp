@@ -9,22 +9,24 @@ export default function Schedule() {
   const sectionOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   
   const listVariants = {
-    hidden: { y: 20 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
+      opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        when: "beforeChildren"
+        duration: 0.5,
+        staggerChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 20 },
+    hidden: { y: 20, opacity: 0 },
     visible: { 
       y: 0,
+      opacity: 1,
       transition: {
-        duration: 0.5
+        duration: 0.3
       }
     }
   };
@@ -37,7 +39,7 @@ export default function Schedule() {
       <MotionDiv
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         variants={listVariants}
         className="max-w-4xl mx-auto px-4"
       >
