@@ -1,45 +1,39 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { FaGift, FaTshirt } from 'react-icons/fa';
 import { MotionDiv, MotionSection } from '@/types/motion';
 
 export default function Schedule() {
   const { scrollYProgress } = useScroll();
-  const sectionOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   
   const listVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 20 },
     visible: {
       y: 0,
-      opacity: 1,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.1
+        duration: 0.3,
+        staggerChildren: 0.05
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 15 },
     visible: { 
       y: 0,
-      opacity: 1,
       transition: {
-        duration: 0.3
+        duration: 0.2
       }
     }
   };
 
   return (
-    <MotionSection 
-      className="py-24 bg-gradient-to-b from-sage-50 via-sage-100 to-sage-50 text-center"
-      style={{ opacity: sectionOpacity }}
-    >
+    <section className="py-24 bg-gradient-to-b from-sage-50 via-sage-100 to-sage-50 text-center">
       <MotionDiv
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "-10%" }}
         variants={listVariants}
         className="max-w-4xl mx-auto px-4"
       >
@@ -174,7 +168,7 @@ export default function Schedule() {
           </MotionDiv>
         </div>
       </MotionDiv>
-    </MotionSection>
+    </section>
   );
 }
   
