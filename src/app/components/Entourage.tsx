@@ -113,8 +113,11 @@ export default function Entourage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Replace the window.innerWidth check with isMobile state
-  const isVisible = (role: string) => activeCategory === role || !isMobile;
+  // Modified isVisible function to always show content on mobile
+  const isVisible = (role: string) => {
+    if (isMobile) return true;
+    return activeCategory === role || !isMobile;
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -163,10 +166,10 @@ export default function Entourage() {
               <div className="absolute -right-4 -top-4 w-24 h-24 bg-gradient-to-br from-mint/5 to-transparent 
                 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
               
-              {/* Card Header */}
+              {/* Card Header - Only make clickable on desktop */}
               <div 
-                className="flex items-center gap-4 mb-6 relative z-10 cursor-pointer"
-                onClick={() => setActiveCategory(activeCategory === group.role ? null : group.role)}
+                className={`flex items-center gap-4 mb-6 relative z-10 ${!isMobile ? 'cursor-pointer' : ''}`}
+                onClick={() => !isMobile && setActiveCategory(activeCategory === group.role ? null : group.role)}
               >
                 <div className="p-2.5 rounded-lg bg-sage-50 group-hover:bg-sage-100 
                   transition-colors duration-300 transform group-hover:rotate-12">
@@ -181,7 +184,7 @@ export default function Entourage() {
                 </div>
               </div>
 
-              {/* Names List */}
+              {/* Names List - Modified visibility logic */}
               <div className={`overflow-hidden transition-all duration-200 ease-in-out
                 ${isVisible(group.role) ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
               >
