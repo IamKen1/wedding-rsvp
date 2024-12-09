@@ -1,11 +1,12 @@
 "use client";
 
-import { motion, useScroll } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGift, FaTshirt } from 'react-icons/fa';
 import { MotionDiv, MotionSection } from '@/types/motion';
 
 export default function Schedule() {
   const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   
   const listVariants = {
     hidden: { opacity: 0 },

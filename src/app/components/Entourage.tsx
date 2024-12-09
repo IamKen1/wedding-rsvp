@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/types/motion';
 import { FaHeart, FaRing, FaUserTie, FaUserFriends } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
 
 interface EntourageRole {
   role: string;
   names: string[];
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
 }
 
 const entourageData: EntourageRole[] = [
@@ -94,6 +95,27 @@ const entourageData: EntourageRole[] = [
 ];
 
 export default function Entourage() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Replace the window.innerWidth check with isMobile state
+  const isVisible = (role: string) => activeCategory === role || !isMobile;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -141,8 +163,11 @@ export default function Entourage() {
               <div className="absolute -right-4 -top-4 w-24 h-24 bg-gradient-to-br from-mint/5 to-transparent 
                 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
               
-              {/* Card Header with enhanced animation */}
-              <div className="flex items-center gap-4 mb-6 relative z-10">
+              {/* Card Header */}
+              <div 
+                className="flex items-center gap-4 mb-6 relative z-10 cursor-pointer"
+                onClick={() => setActiveCategory(activeCategory === group.role ? null : group.role)}
+              >
                 <div className="p-2.5 rounded-lg bg-sage-50 group-hover:bg-sage-100 
                   transition-colors duration-300 transform group-hover:rotate-12">
                   {group.icon}
@@ -156,22 +181,26 @@ export default function Entourage() {
                 </div>
               </div>
 
-              {/* Names List with stagger animation */}
-              <ul className="space-y-3 relative z-10">
-                {group.names.map((name, nameIndex) => (
-                  <li
-                    key={nameIndex}
-                    className="text-base text-forest flex items-center gap-3 
-                      pl-4 relative before:absolute before:left-0 before:top-1/2 
-                      before:-translate-y-1/2 before:w-1.5 before:h-1.5 
-                      before:bg-mint before:rounded-full group-hover:before:bg-mint-dark
-                      before:transition-colors before:duration-300
-                      transform hover:translate-x-2 transition-transform duration-300"
-                  >
-                    {name}
-                  </li>
-                ))}
-              </ul>
+              {/* Names List */}
+              <div className={`overflow-hidden transition-all duration-200 ease-in-out
+                ${isVisible(group.role) ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+              >
+                <ul className="space-y-3 relative z-10">
+                  {group.names.map((name, nameIndex) => (
+                    <li
+                      key={nameIndex}
+                      className="text-base text-forest flex items-center gap-3 
+                        pl-4 relative before:absolute before:left-0 before:top-1/2 
+                        before:-translate-y-1/2 before:w-1.5 before:h-1.5 
+                        before:bg-mint before:rounded-full group-hover:before:bg-mint-dark
+                        before:transition-colors before:duration-300
+                        transform hover:translate-x-2 transition-transform duration-300"
+                    >
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Decorative Corner */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br 
