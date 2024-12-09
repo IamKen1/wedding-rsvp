@@ -104,7 +104,7 @@ export default function Header() {
         style={{ y: contentY, opacity }}
       >
         <MotionDiv 
-          className="text-center p-8 md:p-12 backdrop-blur-[2px] bg-black/5 rounded-xl"
+          className="text-center p-8 md:p-12  bg-black/5 rounded-xl"
           initial="hidden"
           animate="visible"
           style={{ scale: titleScale }}
