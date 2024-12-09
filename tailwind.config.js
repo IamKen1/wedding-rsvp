@@ -10,27 +10,33 @@ module.exports = {
         script: ['var(--font-great-vibes)', 'cursive'],
       },
       colors: {
+        // Fresh and playful green palette
         sage: {
-          50: '#F8FAF8',
-          100: '#E8F1EA',
-          200: '#D1E2D5',
-          300: '#B3CDB8',
-          400: '#8FB398',
-          500: '#6B996F',
-          600: '#4D7550',
-          700: '#365438',
-          800: '#233623',
-          900: '#121B12',
+          50: '#F0F7F4',
+          100: '#E1EFE6',
+          200: '#C2DFC9',
+          300: '#A3CFAC',
+          400: '#84BF8E',
+          500: '#65AF71',
+          600: '#4C8D57',
+          700: '#386B41',
+          800: '#24482B',
+          900: '#102415',
         },
-        forest: {
-          light: '#7DA87F',
-          DEFAULT: '#2C5530',
-          dark: '#1A331E',
+        mint: {
+          light: '#B4E5C9',
+          DEFAULT: '#7FCFA1',
+          dark: '#4BA679',
         },
-        cream: {
-          light: '#FFFDF8',
-          DEFAULT: '#FFF9F0',
-          dark: '#F5EDE0',
+        leaf: {
+          light: '#98D6A9',
+          DEFAULT: '#5CB57E',
+          dark: '#3D8B5F',
+        },
+        olive: {
+          light: '#C9D6A3',
+          DEFAULT: '#A8B878',
+          dark: '#7A8A4D',
         }
       },
       backgroundImage: {
