@@ -143,3 +143,11 @@ html {
   opacity: 0;
   transition: all 0.3s ease-in;
 }
+
+@layer utilities {
+  .transition-max-height {
+    transition-property: max-height, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+}
