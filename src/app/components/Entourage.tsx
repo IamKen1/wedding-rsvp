@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { MotionSection, MotionDiv } from '@/types/motion';
+import { motion } from 'framer-motion';
+import { MotionDiv } from '@/types/motion';
 
 interface EntourageRole {
   role: string;
@@ -80,26 +80,25 @@ const entourageData: EntourageRole[] = [
 ];
 
 export default function Entourage() {
-  const { scrollYProgress } = useScroll();
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.3,
-        staggerChildren: 0.1
+        duration: 0.2,
+        when: "beforeChildren",
+        staggerChildren: 0.05
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.3
+        duration: 0.2
       }
     }
   };
@@ -109,7 +108,7 @@ export default function Entourage() {
       <MotionDiv
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={containerVariants}
         className="max-w-4xl mx-auto px-4"
       >
@@ -121,12 +120,8 @@ export default function Entourage() {
           {entourageData.map((group, index) => (
             <MotionDiv
               key={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
               variants={itemVariants}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <h4 className="text-2xl font-script text-forest-dark mb-4">
                 {group.role}
