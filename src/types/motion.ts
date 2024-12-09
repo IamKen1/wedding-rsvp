@@ -12,6 +12,7 @@ type SelectMotionProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, key
 // Motion components with proper typing
 export const MotionDiv = motion.div as React.FC<HTMLMotionProps<"div">>;
 export const MotionSection = motion.section as React.FC<HTMLMotionProps<"section">>;
+export const MotionNav = motion.nav as React.FC<HTMLMotionProps<"nav">>;
 export const MotionForm = motion.form as React.FC<HTMLMotionProps<"form">>;
 export const MotionP = motion.p as React.FC<HTMLMotionProps<"p">>;
 export const MotionButton = motion.button as React.FC<HTMLMotionProps<"button">>;

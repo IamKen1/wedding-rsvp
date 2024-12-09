@@ -1,16 +1,14 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { IoMenuOutline, IoCloseOutline } from 'react-icons/io5';
-import { MotionDiv } from '@/types/motion';
+import { MotionDiv, MotionNav } from '@/types/motion';
 
 interface SectionInfo {
   section: Element | null;
   distance: number;
 }
-
-const MotionNav = motion.nav;
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +28,6 @@ export default function Navigation() {
         const viewportHeight = window.innerHeight;
         const viewportCenter = viewportHeight / 2;
         
-        // Find which section is most visible in the viewport
         const visibleSection = sections.reduce<SectionInfo>((prev, curr) => {
           if (!curr) return prev;
           const rect = curr.getBoundingClientRect();
@@ -69,7 +66,6 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Desktop Navigation */}
       <MotionNav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -81,10 +77,9 @@ export default function Navigation() {
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-center items-center h-16">
-            {/* Desktop Links */}
             <div className="hidden md:flex items-center justify-center space-x-12">
               {navLinks.map((link, index) => (
-                <motion.div
+                <MotionDiv
                   key={link.href}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -104,11 +99,10 @@ export default function Navigation() {
                       transition-all duration-300 group-hover:w-full opacity-80`} 
                     />
                   </button>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`md:hidden p-2 rounded-full transition-colors duration-300
@@ -121,7 +115,6 @@ export default function Navigation() {
         </div>
       </MotionNav>
 
-      {/* Mobile Navigation Overlay */}
       <AnimatePresence>
         {isOpen && (
           <MotionDiv
