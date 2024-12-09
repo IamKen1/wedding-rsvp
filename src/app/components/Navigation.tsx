@@ -10,6 +10,8 @@ interface SectionInfo {
   distance: number;
 }
 
+const MotionNav = motion.nav;
+
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -68,7 +70,7 @@ export default function Navigation() {
   return (
     <>
       {/* Desktop Navigation */}
-      <motion.nav
+      <MotionNav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -117,7 +119,7 @@ export default function Navigation() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </MotionNav>
 
       {/* Mobile Navigation Overlay */}
       <AnimatePresence>
