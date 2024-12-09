@@ -103,40 +103,43 @@ export default function Entourage() {
       setIsMobile(window.innerWidth < 768);
     };
     
-    // Initial check
     handleResize();
-    
-    // Add event listener
     window.addEventListener('resize', handleResize);
-    
-    // Cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Modified isVisible function to always show content on mobile
-  const isVisible = (role: string) => {
-    if (isMobile) return true;
-    return activeCategory === role || !isMobile;
-  };
-
+  // Simplified variants for better performance
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.4 }
+      transition: { duration: 0.3 }
+    }
+  };
+
+  // Optimized card variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
     }
   };
 
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Decorative Background */}
+      {/* Optimized background with reduced opacity animations */}
       <div className="absolute inset-0 bg-gradient-to-br from-cream via-sage-50 to-cream opacity-50" />
       <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
 
       <MotionDiv
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
         className="max-w-6xl mx-auto px-4 relative z-10"
       >
@@ -152,64 +155,62 @@ export default function Entourage() {
           </div>
         </div>
 
-        {/* Entourage Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Optimized Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {entourageData.map((group, index) => (
-            <div
+            <MotionDiv
               key={index}
+              variants={cardVariants}
               className="group bg-white/80 backdrop-blur-sm rounded-xl p-6 
-                shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_25px_rgba(0,0,0,0.06)] 
-                transition-all duration-300 border border-mint/10 relative overflow-hidden
-                hover:border-mint/30 transform hover:-translate-y-1"
+                shadow-[0_4px_20px_rgba(0,0,0,0.03)] 
+                border border-mint/10 relative overflow-hidden
+                md:hover:shadow-[0_4px_25px_rgba(0,0,0,0.06)]
+                md:hover:border-mint/30 md:hover:-translate-y-1
+                transition-all duration-300 will-change-transform"
             >
-              {/* Decorative floating elements */}
-              <div className="absolute -right-4 -top-4 w-24 h-24 bg-gradient-to-br from-mint/5 to-transparent 
-                rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
+              {/* Simplified decorative element for better performance */}
+              <div className="absolute -right-4 -top-4 w-24 h-24 
+                bg-gradient-to-br from-mint/5 to-transparent rounded-full 
+                blur-xl opacity-60 hidden md:block" />
               
-              {/* Card Header - Only make clickable on desktop */}
-              <div 
-                className={`flex items-center gap-4 mb-6 relative z-10 ${!isMobile ? 'cursor-pointer' : ''}`}
-                onClick={() => !isMobile && setActiveCategory(activeCategory === group.role ? null : group.role)}
-              >
-                <div className="p-2.5 rounded-lg bg-sage-50 group-hover:bg-sage-100 
-                  transition-colors duration-300 transform group-hover:rotate-12">
+              {/* Card Header */}
+              <div className="flex items-center gap-4 mb-6 relative z-10">
+                <div className="p-2.5 rounded-lg bg-sage-50 
+                  transition-colors duration-300 md:group-hover:bg-sage-100">
                   {group.icon}
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-2xl font-script text-forest-dark group-hover:text-forest">
+                  <h4 className="text-2xl font-script text-forest-dark 
+                    transition-colors duration-300 md:group-hover:text-forest">
                     {group.role}
                   </h4>
-                  <div className="h-[2px] w-0 group-hover:w-full mt-1 bg-gradient-to-r 
-                    from-mint/30 to-transparent transition-all duration-500" />
+                  <div className="h-[2px] w-full mt-1 bg-gradient-to-r 
+                    from-mint/30 to-transparent" />
                 </div>
               </div>
 
-              {/* Names List - Modified visibility logic */}
-              <div className={`overflow-hidden transition-all duration-200 ease-in-out
-                ${isVisible(group.role) ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
-              >
-                <ul className="space-y-3 relative z-10">
-                  {group.names.map((name, nameIndex) => (
-                    <li
-                      key={nameIndex}
-                      className="text-base text-forest flex items-center gap-3 
-                        pl-4 relative before:absolute before:left-0 before:top-1/2 
-                        before:-translate-y-1/2 before:w-1.5 before:h-1.5 
-                        before:bg-mint before:rounded-full group-hover:before:bg-mint-dark
-                        before:transition-colors before:duration-300
-                        transform hover:translate-x-2 transition-transform duration-300"
-                    >
-                      {name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* Names List - Always visible on mobile */}
+              <ul className="space-y-3 relative z-10">
+                {group.names.map((name, nameIndex) => (
+                  <li
+                    key={nameIndex}
+                    className="text-base text-forest flex items-center gap-3 
+                      pl-4 relative before:absolute before:left-0 before:top-1/2 
+                      before:-translate-y-1/2 before:w-1.5 before:h-1.5 
+                      before:bg-mint before:rounded-full
+                      before:transition-colors before:duration-300
+                      md:hover:translate-x-2 transition-transform duration-300"
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
 
-              {/* Decorative Corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br 
-                from-mint/5 to-transparent rounded-bl-[100px] group-hover:w-24 
-                group-hover:h-24 transition-all duration-300" />
-            </div>
+              {/* Simplified decorative corner */}
+              <div className="absolute top-0 right-0 w-20 h-20 
+                bg-gradient-to-br from-mint/5 to-transparent 
+                rounded-bl-[100px] hidden md:block" />
+            </MotionDiv>
           ))}
         </div>
 
