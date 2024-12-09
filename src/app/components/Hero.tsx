@@ -1,7 +1,8 @@
 "use client";
 
 import { useScroll, useTransform } from 'framer-motion';
-import { MotionSection, MotionDiv, MotionP } from '@/types/motion';
+import { MotionSection, MotionDiv } from '@/types/motion';
+
 
 export default function Hero() {
   const { scrollYProgress } = useScroll();
@@ -10,73 +11,69 @@ export default function Hero() {
 
   return (
     <MotionSection 
-      className="py-32 bg-gradient-to-b from-sage-50 to-white text-center relative overflow-hidden circuit-bg"
+      className="min-h-screen w-full bg-gradient-to-b from-forest to-sage-50 text-center relative overflow-hidden flex items-center"
       style={{ opacity, y }}
     >
-      {/* Tech-inspired background elements */}
+      {/* Subtle tech background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-radial from-mint/10 via-transparent to-transparent" />
-        <div className="absolute inset-0 opacity-30">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-mint/50 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `pulse ${2 + Math.random() * 2}s infinite`
-              }}
-            />
-          ))}
-        </div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="absolute inset-0 bg-gradient-radial from-mint/5 via-transparent to-transparent" />
       </div>
 
       <MotionDiv
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: "-100px" }}
+        viewport={{ once: false }}
         transition={{ duration: 0.8 }}
-        className="max-w-4xl mx-auto px-4 relative z-10"
+        className="w-full max-w-6xl mx-auto px-2 relative z-10"
       >
-        <div className="tech-card p-8 rounded-lg scan-line">
-          <h2 className="text-4xl md:text-6xl font-script text-forest-dark glow-text leading-relaxed mb-8">
-            The Wedding Celebration
-          </h2>
+        {/* Main Content Container */}
+        <div className="bg-white/80 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-mint/20">
+      
 
-          <MotionDiv 
-            className="space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            <p className="text-2xl md:text-3xl font-script text-mint-dark">
-              Kenneth &amp; Jenna
-            </p>
-            <div className="tech-border inline-block px-6 py-2 rounded">
-              <p className="text-xl md:text-2xl font-medium text-forest-dark">
-                Saturday, January 24, 2026
+          {/* Title Section */}
+          <div className="space-y-6 mb-12">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-script text-forest">
+              The Wedding Celebration
+            </h2>
+            <div className="h-px w-40 mx-auto bg-gradient-to-r from-transparent via-mint to-transparent" />
+          </div>
+
+          {/* Names and Date */}
+          <div className="space-y-8">
+            <div className="inline-block">
+              <p className="text-3xl md:text-4xl lg:text-5xl font-script text-forest-dark 
+                bg-gradient-to-r from-forest/5 to-mint/5 px-8 py-3 rounded-lg border border-mint/20">
+                Kenneth &amp; Jenna
               </p>
             </div>
-            <p className="text-lg md:text-xl text-forest font-medium max-w-2xl mx-auto">
-              Join us as we celebrate our love and commitment in the presence of our beloved family and friends.
-            </p>
-          </MotionDiv>
-        </div>
 
-        {/* Tech-inspired decorative elements */}
-        <div className="mt-16 flex justify-center items-center gap-4">
-          <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-mint/30 to-transparent" />
-          <div className="flex gap-2">
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className="w-2 h-2 rounded-full bg-mint/50 animate-pulse"
-                style={{ animationDelay: `${i * 0.2}s` }}
-              />
-            ))}
+            <div className="space-y-4">
+              <p className="text-xl md:text-2xl lg:text-3xl text-forest-dark font-medium">
+                Saturday, January 24, 2026
+              </p>
+              <p className="text-lg md:text-xl text-forest-dark/80 max-w-2xl mx-auto">
+                Join us as we celebrate our love and commitment in the presence of our beloved family and friends.
+              </p>
+            </div>
           </div>
-          <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-mint/30 to-transparent" />
+
+          {/* Decorative Footer */}
+          <div className="mt-12 flex items-center justify-center gap-4">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-mint to-transparent" />
+            <div className="flex space-x-1">
+              {[...Array(3)].map((_, i) => (
+                <div 
+                  key={i}
+                  className="w-1.5 h-1.5 bg-mint rounded-full"
+                  style={{
+                    animation: `pulse 2s ${i * 0.3}s infinite`
+                  }}
+                />
+              ))}
+            </div>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-mint to-transparent" />
+          </div>
         </div>
       </MotionDiv>
     </MotionSection>
