@@ -5,6 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IoMenuOutline, IoCloseOutline } from 'react-icons/io5';
 import { MotionDiv } from '@/types/motion';
 
+interface SectionInfo {
+  section: Element | null;
+  distance: number;
+}
+
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -19,12 +24,12 @@ export default function Navigation() {
         document.querySelector(`#${id}`)
       );
 
-      if (sections.every(section => section)) {
+      if (sections.every(section => section !== null)) {
         const viewportHeight = window.innerHeight;
         const viewportCenter = viewportHeight / 2;
         
         // Find which section is most visible in the viewport
-        const visibleSection = sections.reduce((prev, curr) => {
+        const visibleSection = sections.reduce<SectionInfo>((prev, curr) => {
           if (!curr) return prev;
           const rect = curr.getBoundingClientRect();
           const distanceFromCenter = Math.abs(rect.top + rect.height / 2 - viewportCenter);
@@ -33,7 +38,9 @@ export default function Navigation() {
             : prev;
         }, { section: null, distance: Infinity });
 
-        setIsDark(['top', 'rsvp'].includes(visibleSection.section?.id || ''));
+        if (visibleSection.section) {
+          setIsDark(['top', 'rsvp'].includes(visibleSection.section.id));
+        }
       }
     };
 
