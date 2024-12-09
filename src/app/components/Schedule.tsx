@@ -8,40 +8,80 @@ export default function Schedule() {
   const { scrollYProgress } = useScroll();
   
   const listVariants = {
-    hidden: { y: 20 },
+    hidden: { opacity: 0 },
     visible: {
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: 0.3,
-        staggerChildren: 0.05
+        duration: 0.5,
+        staggerChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 15 },
+    hidden: { x: -20, opacity: 0 },
     visible: { 
-      y: 0,
+      x: 0,
+      opacity: 1,
       transition: {
-        duration: 0.2
+        duration: 0.3
       }
     }
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-sage-50 via-sage-100 to-sage-50 text-center">
+    <section className="py-24 relative overflow-hidden">
+      {/* Decorative Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-sage-50 via-white to-sage-50" />
+      <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
+      
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(6)].map((_, i) => (
+          <MotionDiv
+            key={i}
+            initial={{ y: 0 }}
+            animate={{ 
+              y: [0, -20, 0],
+              x: [0, 10, 0]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: "easeInOut"
+            }}
+            className="absolute w-16 h-16 opacity-10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle, rgba(180,229,201,0.4) 0%, rgba(180,229,201,0) 70%)`
+            }}
+          />
+        ))}
+      </div>
+
       <MotionDiv
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
         variants={listVariants}
-        className="max-w-4xl mx-auto px-4"
+        className="max-w-4xl mx-auto px-4 relative z-10"
       >
-        <h3 className="text-4xl md:text-5xl font-script text-forest-dark mb-16">
-          Wedding Schedule
-        </h3>
+        {/* Title with animated underline */}
+        <div className="text-center mb-16 relative">
+          <h3 className="text-4xl md:text-5xl font-script text-forest-dark mb-4">
+            Wedding Schedule
+          </h3>
+          <MotionDiv
+            initial={{ width: "0%" }}
+            whileInView={{ width: "100%" }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-mint to-transparent max-w-[200px] w-full"
+          />
+        </div>
 
-        {/* Timeline */}
+        {/* Timeline with enhanced animations */}
         <div className="relative text-lg md:text-xl space-y-0 font-medium mb-20 max-w-xl mx-auto">
           {/* Vertical line */}
           <div className="absolute left-[21px] top-4 bottom-4 w-[2px] bg-mint"></div>
@@ -92,14 +132,22 @@ export default function Schedule() {
           ))}
         </div>
 
-        {/* Info Cards */}
+        {/* Info Cards with hover effects */}
         <div className="mt-16 space-y-8">
-          {/* Gift Information */}
+          {/* Gift Information Card */}
           <MotionDiv 
-            className="bg-white shadow-lg p-8 rounded-lg max-w-2xl mx-auto 
-              transform hover:scale-[1.02] transition-transform duration-300"
+            className="bg-white/80 backdrop-blur-sm shadow-lg p-8 rounded-2xl max-w-2xl mx-auto 
+              transform hover:scale-[1.02] transition-all duration-300
+              border border-mint/10 hover:border-mint/30
+              relative overflow-hidden group"
             variants={itemVariants}
           >
+            {/* Decorative corner gradients */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-mint/5 to-transparent 
+              rounded-bl-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-mint/5 to-transparent 
+              rounded-tr-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
+            
             <FaGift className="text-mint-dark text-3xl mx-auto mb-4" />
             <h4 className="text-2xl font-script text-forest-dark mb-4">Gift Information</h4>
             <p className="text-lg text-forest-dark leading-relaxed">
@@ -108,12 +156,20 @@ export default function Schedule() {
             </p>
           </MotionDiv>
 
-          {/* Attire */}
+          {/* Attire Card with similar enhancements */}
           <MotionDiv 
-            className="bg-white shadow-lg p-8 rounded-lg max-w-3xl mx-auto 
-              transform hover:scale-[1.02] transition-transform duration-300"
+            className="bg-white/80 backdrop-blur-sm shadow-lg p-8 rounded-2xl max-w-3xl mx-auto 
+              transform hover:scale-[1.02] transition-all duration-300
+              border border-mint/10 hover:border-mint/30
+              relative overflow-hidden group"
             variants={itemVariants}
           >
+            {/* Decorative corner gradients */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-mint/5 to-transparent 
+              rounded-bl-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-mint/5 to-transparent 
+              rounded-tr-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
+            
             <FaTshirt className="text-mint-dark text-3xl mx-auto mb-4" />
             <h4 className="text-2xl font-script text-forest-dark mb-4">Attire</h4>
             <p className="text-lg text-forest-dark font-medium mb-6">Formal / Semi-formal Attire</p>
