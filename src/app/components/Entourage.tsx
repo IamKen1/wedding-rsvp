@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/types/motion';
-import { useState } from 'react';
 
 interface EntourageRole {
   role: string;
@@ -81,14 +80,12 @@ const entourageData: EntourageRole[] = [
 ];
 
 export default function Entourage() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
-  // Simpler fade-in animation for the container
+  // Single fade-in animation for the entire section
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.4 }
     }
   };
 
@@ -97,55 +94,51 @@ export default function Entourage() {
       <MotionDiv
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
-        className="max-w-4xl mx-auto px-4"
+        className="max-w-5xl mx-auto px-4"
       >
-        <h3 className="text-4xl md:text-5xl font-script text-forest-dark mb-12 text-center">
+        <h3 className="text-4xl md:text-5xl font-script text-forest-dark mb-16 text-center">
           Our Wedding Entourage
         </h3>
 
-        {/* Mobile Accordion / Desktop Grid */}
-        <div className="space-y-4 md:grid md:grid-cols-2 md:gap-6 md:space-y-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {entourageData.map((group, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-sm overflow-hidden"
+              className="bg-white rounded-lg p-6 shadow-md transform-gpu hover:shadow-lg 
+                transition-shadow duration-300 border border-mint/10"
             >
-              <button
-                onClick={() => setActiveCategory(activeCategory === group.role ? null : group.role)}
-                className="w-full p-4 text-left bg-white hover:bg-sage-50 transition-colors duration-200 md:hover:bg-white"
-              >
-                <h4 className="text-xl font-script text-forest-dark">
+              <div className="flex items-center gap-3 mb-4">
+                <h4 className="text-2xl font-script text-forest-dark">
                   {group.role}
                 </h4>
-              </button>
-
-              <div 
-                className={`overflow-hidden transition-all duration-200 ease-in-out
-                  ${activeCategory === group.role || window.innerWidth >= 768 
-                    ? 'max-h-[500px] opacity-100' 
-                    : 'max-h-0 opacity-0'}`}
-              >
-                <ul className="p-4 pt-0 space-y-2 bg-white">
-                  {group.names.map((name, nameIndex) => (
-                    <li
-                      key={nameIndex}
-                      className="text-base text-forest pl-4 border-l-2 border-mint/20"
-                    >
-                      {name}
-                    </li>
-                  ))}
-                </ul>
+                <div className="h-[1px] flex-grow bg-mint/20"></div>
               </div>
+
+              <ul className="space-y-3">
+                {group.names.map((name, nameIndex) => (
+                  <li
+                    key={nameIndex}
+                    className="text-base text-forest flex items-center gap-3 
+                      pl-4 relative before:absolute before:left-0 before:top-1/2 
+                      before:-translate-y-1/2 before:w-2 before:h-2 before:bg-mint/30 
+                      before:rounded-full"
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-        {/* Mobile Helper Text */}
-        <p className="mt-6 text-sm text-forest-dark/60 text-center md:hidden">
-          Tap on a category to view members
-        </p>
+        {/* Optional decorative elements */}
+        <div className="mt-16 flex justify-center gap-3">
+          <div className="w-2 h-2 rounded-full bg-mint/30"></div>
+          <div className="w-2 h-2 rounded-full bg-mint/30"></div>
+          <div className="w-2 h-2 rounded-full bg-mint/30"></div>
+        </div>
       </MotionDiv>
     </section>
   );
