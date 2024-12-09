@@ -3,10 +3,12 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGift, FaTshirt } from 'react-icons/fa';
 import { MotionDiv, MotionSection } from '@/types/motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function Schedule() {
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const isMobile = useIsMobile();
+  const opacity = useTransform(scrollYProgress, [0.2, 0.4], isMobile ? [1, 1] : [0, 1]);
   
   const listVariants = {
     hidden: { opacity: 0 },
@@ -66,7 +68,7 @@ export default function Schedule() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
-        variants={listVariants}
+        variants={isMobile ? {} : listVariants}
         className="max-w-4xl mx-auto px-4 relative z-10"
       >
         {/* Title with animated underline */}

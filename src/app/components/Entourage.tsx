@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/types/motion';
 import { FaHeart, FaRing, FaUserTie, FaUserFriends } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface EntourageRole {
   role: string;
@@ -95,18 +96,8 @@ const entourageData: EntourageRole[] = [
 ];
 
 export default function Entourage() {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   // Simplified variants for better performance
   const containerVariants = {
@@ -140,7 +131,7 @@ export default function Entourage() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        variants={containerVariants}
+        variants={isMobile ? {} : containerVariants}
         className="max-w-6xl mx-auto px-4 relative z-10"
       >
         {/* Section Header */}

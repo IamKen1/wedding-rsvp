@@ -2,17 +2,20 @@
 
 import { useScroll, useTransform } from 'framer-motion';
 import { MotionSection, MotionDiv } from '@/types/motion';
-
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function Hero() {
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  
+  // Only apply scroll transforms if not mobile
+  const y = useTransform(scrollYProgress, [0, 0.5], isMobile ? [0, 0] : [50, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], isMobile ? [1, 1] : [0, 1]);
 
   return (
     <MotionSection 
       className="min-h-screen w-full bg-gradient-to-b from-forest to-sage-50 text-center relative overflow-hidden flex items-center"
-      style={{ opacity, y }}
+      style={isMobile ? {} : { opacity, y }}
     >
       {/* Subtle tech background */}
       <div className="absolute inset-0">
@@ -21,8 +24,8 @@ export default function Hero() {
       </div>
 
       <MotionDiv
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={isMobile ? false : { opacity: 0, y: 50 }}
+        whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: false }}
         transition={{ duration: 0.8 }}
         className="w-full max-w-6xl mx-auto px-2 relative z-10"

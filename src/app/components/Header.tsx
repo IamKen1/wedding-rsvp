@@ -3,31 +3,20 @@
 import coupleImage from '../../../public/images/couple.png';
 import coupleCenterImage from '../../../public/images/couple_center.png';
 import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { MotionDiv } from '@/types/motion';
 import Image from 'next/image';
 
 export default function Header() {
   const { scrollYProgress } = useScroll();
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
 
   // Reduced parallax effect for mobile
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 50 : 150]);
-  const middleY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 30 : 100]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 20 : 50]);
-  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, isMobile ? 0.98 : 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      const isMobileDevice = window.innerWidth < 768;
-      setIsMobile(isMobileDevice);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 150]);
+  const middleY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 100]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 50]);
+  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, isMobile ? 1 : 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, isMobile ? 1 : 0]);
 
   // Animation variants
   const titleVariants = {
