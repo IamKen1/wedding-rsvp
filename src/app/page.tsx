@@ -8,19 +8,19 @@ import Footer from './components/Footer';
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="relative bg-white">
       <Navigation />
       <div id="top">
         <Header />
       </div>
       <Hero />
-      <div id="schedule">
+      <div id="schedule" className="relative z-10">
         <Schedule />
       </div>
-      <div id="entourage">
+      <div id="entourage" className="relative z-10">
         <Entourage />
       </div>
-      <div id="rsvp">
+      <div id="rsvp" className="relative z-10">
         <RSVP />
       </div>
       <Footer />

@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/types/motion';
 import { FaHeart, FaRing, FaUserTie, FaUserFriends } from 'react-icons/fa';
-import React, { useState } from 'react';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { useState, useEffect } from 'react';
 
 interface EntourageRole {
   role: string;
@@ -96,8 +95,18 @@ const entourageData: EntourageRole[] = [
 ];
 
 export default function Entourage() {
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Simplified variants for better performance
   const containerVariants = {
@@ -124,14 +133,14 @@ export default function Entourage() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Optimized background with reduced opacity animations */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cream via-sage-50 to-cream opacity-50" />
+      <div className="absolute inset-0 bg-white" />
       <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
 
       <MotionDiv
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        variants={isMobile ? {} : containerVariants}
+        variants={containerVariants}
         className="max-w-6xl mx-auto px-4 relative z-10"
       >
         {/* Section Header */}

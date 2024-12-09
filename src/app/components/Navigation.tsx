@@ -70,7 +70,7 @@ export default function Navigation() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500
+        className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-500
           ${scrolled 
             ? (isDark ? 'bg-gradient-to-b from-mint-dark/40 to-mint-dark/30' : 'bg-mint-light/80') 
             : ''}`}

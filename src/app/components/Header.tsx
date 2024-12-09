@@ -3,13 +3,23 @@
 import coupleImage from '../../../public/images/couple.png';
 import coupleCenterImage from '../../../public/images/couple_center.png';
 import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { useState, useEffect } from 'react';
 import { MotionDiv } from '@/types/motion';
 import Image from 'next/image';
 
 export default function Header() {
   const { scrollYProgress } = useScroll();
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Reduced parallax effect for mobile
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 150]);

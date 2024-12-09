@@ -3,12 +3,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGift, FaTshirt } from 'react-icons/fa';
 import { MotionDiv, MotionSection } from '@/types/motion';
-import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function Schedule() {
   const { scrollYProgress } = useScroll();
-  const isMobile = useIsMobile();
-  const opacity = useTransform(scrollYProgress, [0.2, 0.4], isMobile ? [1, 1] : [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   
   const listVariants = {
     hidden: { opacity: 0 },
@@ -35,7 +33,7 @@ export default function Schedule() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Decorative Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-sage-50 via-white to-sage-50" />
+      <div className="absolute inset-0 bg-white" />
       <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
       
       {/* Floating Elements */}
@@ -68,7 +66,7 @@ export default function Schedule() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
-        variants={isMobile ? {} : listVariants}
+        variants={listVariants}
         className="max-w-4xl mx-auto px-4 relative z-10"
       >
         {/* Title with animated underline */}

@@ -2,7 +2,7 @@
 
 export default function RSVP() {
   return (
-    <div className="py-20 bg-secondary">
+    <div className="py-20 bg-white relative z-20">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <h3 className="text-5xl font-script text-primary mb-4">Will You Join Us?</h3>
