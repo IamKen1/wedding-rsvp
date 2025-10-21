@@ -214,10 +214,17 @@ export default function RSVP() {
               We'll be in touch with more details as the date approaches.
             </p>
 
-            <div className="flex justify-center gap-2">
+            <div className="flex justify-center gap-2 mb-6">
               <FaHeart className="text-blush-400 text-lg animate-pulse" />
               <FaHeart className="text-mint-400 text-xl animate-pulse" style={{ animationDelay: '0.5s' }} />
               <FaHeart className="text-sage-400 text-lg animate-pulse" style={{ animationDelay: '1s' }} />
+            </div>
+            
+            {/* Wedding Hashtag */}
+            <div className="pt-4 border-t border-mint-200">
+              <p className="text-lg font-serif text-mint-600 tracking-wider">
+                Share your photos with #TheJenuineKennection
+              </p>
             </div>
           </div>
         </MotionDiv>
@@ -387,6 +394,15 @@ export default function RSVP() {
                 We would be honored to have you celebrate with us on our special day. 
                 Please let us know if you'll be able to attend!
               </p>
+              
+              {/* Wedding Hashtag */}
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-mint-300"></div>
+                <p className="text-2xl md:text-3xl font-serif text-mint-600 tracking-wider">
+                  #TheJenuineKennection
+                </p>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-mint-300"></div>
+              </div>
             </>
           )}
         </div>
