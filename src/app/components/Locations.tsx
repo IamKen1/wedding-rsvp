@@ -49,14 +49,16 @@ export default function Locations() {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch('/api/admin/locations', {
-          next: { revalidate: 60 }
+        const response = await fetch('/api/locations', {
+          cache: 'no-store'
         });
         
         if (response.ok) {
           const data = await response.json();
+          console.log('Locations data fetched:', data);
           setLocations(data);
         } else {
+          console.error('Failed to load locations, status:', response.status);
           setError('Failed to load locations');
         }
       } catch (error) {
