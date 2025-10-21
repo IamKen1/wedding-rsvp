@@ -1,24 +1,33 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import * as XLSX from 'xlsx';
 import { getAllRSVPs } from '@/data/rsvp';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'ilovejenna';
-
-export async function POST(request: NextRequest) {
+export async function GET() {
   try {
-    const { password } = await request.json();
-
-    if (password !== ADMIN_PASSWORD) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
-
+    // For now, skip authentication for development
+    // In production, you might want to implement proper authentication
+    
     const rsvps = await getAllRSVPs();
 
+    // If no RSVPs, create sample data for the Excel
+    const data = rsvps.length > 0 ? rsvps : [
+      {
+        id: "sample-1",
+        name: "Sample Guest",
+        willAttend: "yes",
+        email: "sample@example.com",
+        phone: "+1-555-0123",
+        numberOfGuests: 2,
+        dietaryRequirements: "No restrictions",
+        songRequest: "Your Song",
+        message: "Looking forward to celebrating!",
+        invitationId: "sample-invitation",
+        createdAt: new Date().toISOString()
+      }
+    ];
+
     const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.json_to_sheet(rsvps);
+    const ws = XLSX.utils.json_to_sheet(data);
 
     XLSX.utils.book_append_sheet(wb, ws, 'RSVPs');
 

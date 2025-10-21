@@ -1,229 +1,539 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { FaGift, FaTshirt } from 'react-icons/fa';
-import { MotionDiv, MotionSection } from '@/types/motion';
+import { useScroll, useTransform } from 'framer-motion';
+import { MotionDiv } from '@/types/motion';
+import { useState, useEffect } from 'react';
+import SkeletonLoader from './SkeletonLoader';
+import { 
+  FaChurch, 
+  FaGlassCheers, 
+  FaUtensils, 
+  FaClock, 
+  FaMapMarkerAlt,
+  FaHeart,
+  FaGift,
+  FaTshirt,
+  FaCalendarAlt,
+  FaMusic,
+  FaCameraRetro,
+  FaInfoCircle
+} from 'react-icons/fa';
+
+interface WeddingEvent {
+  id: number;
+  eventName: string;
+  eventTime: string;
+  location: string;
+  description: string;
+  icon: string;
+  color: string;
+  sortOrder: number;
+}
+
+interface WeddingAttire {
+  id: number;
+  category: string;
+  title: string;
+  description: string;
+  colorScheme: string;
+  dressCode: string;
+  guidelines: string;
+  photos?: string[];
+  sortOrder: number;
+}
+
+// Helper function to format time from 24-hour to 12-hour format
+const formatTime = (time: string): string => {
+  if (!time) return '';
+  
+  // Remove seconds if present (e.g., "13:00:00" -> "13:00")
+  const timeParts = time.split(':');
+  if (timeParts.length < 2) return time;
+  
+  let hours = parseInt(timeParts[0]);
+  const minutes = timeParts[1];
+  
+  // Determine AM/PM
+  const period = hours >= 12 ? 'PM' : 'AM';
+  
+  // Convert to 12-hour format
+  hours = hours % 12 || 12; // Convert 0 to 12 for midnight
+  
+  return `${hours}:${minutes} ${period}`;
+};
 
 export default function Schedule() {
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'gifts'>('schedule');
+  const [scheduleEvents, setScheduleEvents] = useState<WeddingEvent[]>([]);
+  const [attireGuidelines, setAttireGuidelines] = useState<WeddingAttire[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Helper function to convert hex colors to readable names
+  const getColorName = (hexColor: string): string => {
+    const colorMap: { [key: string]: string } = {
+      '#8dbfae': 'Sage Green',
+      '#10B981': 'Mint Green',
+      '#34D399': 'Emerald Green',
+      '#6EE7B7': 'Light Green',
+      '#A7F3D0': 'Pale Green',
+      '#F0FDF4': 'Very Light Green',
+      '#EC4899': 'Pink',
+      '#F472B6': 'Light Pink',
+      '#FBBF24': 'Gold',
+      '#F59E0B': 'Amber',
+      '#EF4444': 'Red',
+      '#DC2626': 'Dark Red',
+      '#3B82F6': 'Blue',
+      '#1D4ED8': 'Dark Blue',
+      '#8B5CF6': 'Purple',
+      '#A855F7': 'Violet',
+      '#6B7280': 'Gray',
+      '#374151': 'Dark Gray',
+      '#FFFFFF': 'White',
+      '#000000': 'Black'
+    };
+
+    // Try exact match first
+    if (colorMap[hexColor.toUpperCase()]) {
+      return colorMap[hexColor.toUpperCase()];
+    }
+
+    // If no exact match, try to categorize by color ranges
+    const hex = hexColor.replace('#', '').toLowerCase();
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+
+    // Simple color categorization
+    if (r > 200 && g > 200 && b > 200) return 'Light Color';
+    if (r < 50 && g < 50 && b < 50) return 'Dark Color';
+    if (g > r && g > b) return 'Green Tone';
+    if (r > g && r > b) return 'Red/Pink Tone';
+    if (b > r && b > g) return 'Blue Tone';
+    if (r > 150 && g > 100 && b < 100) return 'Warm Tone';
+    
+    return hexColor; // Fallback to hex if can't categorize
+  };
+
+  // Fetch dynamic data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setError(null);
+
+        // Parallel fetch for better performance
+        const [eventsResponse, attireResponse] = await Promise.all([
+          fetch('/api/admin/schedule', { next: { revalidate: 60 } }),
+          fetch('/api/admin/attire', { next: { revalidate: 60 } })
+        ]);
+        
+        if (eventsResponse.ok) {
+          const events = await eventsResponse.json();
+          setScheduleEvents(events.sort((a: WeddingEvent, b: WeddingEvent) => a.sortOrder - b.sortOrder));
+        } else {
+          setError(`Failed to load events`);
+        }
+
+        if (attireResponse.ok) {
+          const attire = await attireResponse.json();
+          setAttireGuidelines(attire.sort((a: WeddingAttire, b: WeddingAttire) => a.sortOrder - b.sortOrder));
+        }
+      } catch (err) {
+        console.error('Error fetching schedule data:', err);
+        setError('Failed to load schedule information');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   
-  const listVariants = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.1
+        duration: 0.6,
+        staggerChildren: 0.15
       }
     }
   };
 
-  const itemVariants = {
-    hidden: { x: -20, opacity: 0 },
+  const cardVariants = {
+    hidden: { y: 30, opacity: 0, scale: 0.95 },
     visible: { 
-      x: 0,
+      y: 0,
       opacity: 1,
+      scale: 1,
       transition: {
-        duration: 0.3
+        duration: 0.6,
+        ease: "easeOut"
       }
     }
+  };
+
+  // Helper function to get icon component
+  const getIconComponent = (iconName: string) => {
+    // Handle both emoji and component names
+    switch (iconName) {
+      case 'FaChurch':
+      case '⛪':
+      case '🏛️':
+        return FaChurch;
+      case 'FaGlassCheers':
+      case '🥂':
+      case '🍾':
+        return FaGlassCheers;
+      case 'FaUtensils':
+      case '🍽️':
+      case '🥘':
+        return FaUtensils;
+      case 'FaHeart':
+      case '❤️':
+      case '💕':
+        return FaHeart;
+      case 'FaMusic':
+      case '🎵':
+      case '🎶':
+        return FaMusic;
+      case 'FaCameraRetro':
+      case '📷':
+      case '📸':
+        return FaCameraRetro;
+      case '📅':
+      case '🗓️':
+        return FaCalendarAlt;
+      default: 
+        return FaHeart;
+    }
+  };
+
+  // Helper function to get gradient classes from hex color
+  const getGradientClass = (hexColor: string) => {
+    // Map common hex colors to Tailwind gradient classes
+    const colorMap: { [key: string]: string } = {
+      '#10B981': 'from-emerald-500 to-mint-600',
+      '#3B82F6': 'from-blue-500 to-indigo-600', 
+      '#8B5CF6': 'from-violet-500 to-purple-600',
+      '#EC4899': 'from-pink-500 to-rose-600',
+      '#F59E0B': 'from-amber-500 to-orange-600',
+      '#6366F1': 'from-indigo-500 to-blue-600'
+    };
+    
+    return colorMap[hexColor] || 'from-mint-500 to-sage-600';
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Decorative Background */}
-      <div className="absolute inset-0 bg-white" />
-      <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-5" />
-      
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <MotionDiv
-            key={i}
-            initial={{ y: 0 }}
-            animate={{ 
-              y: [0, -20, 0],
-              x: [0, 10, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              delay: i * 0.5,
-              ease: "easeInOut"
-            }}
-            className="absolute w-16 h-16 opacity-10"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              background: `radial-gradient(circle, rgba(180,229,201,0.4) 0%, rgba(180,229,201,0) 70%)`
-            }}
-          />
-        ))}
+    <section className="py-16 relative overflow-hidden bg-gradient-soft from-sage-50/50 via-cream-50/30 to-mint-50/50">
+      {/* Reduced Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-radial from-mint-100/15 via-transparent to-sage-100/15" />
+        
+        {/* Smaller animated background elements */}
+        <div className="absolute top-10 left-10 w-24 h-24 bg-mint-200/15 rounded-full blur-xl animate-float" />
+        <div className="absolute top-40 right-20 w-20 h-20 bg-blush-200/20 rounded-full blur-lg animate-float" 
+             style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 left-1/3 w-16 h-16 bg-sage-300/25 rounded-full blur-lg animate-float" 
+             style={{ animationDelay: '4s' }} />
       </div>
 
       <MotionDiv
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10%" }}
-        variants={listVariants}
-        className="max-w-4xl mx-auto px-4 relative z-10"
+        variants={containerVariants}
+        className="max-w-[1200px] mx-auto px-6 relative z-10"
       >
-        {/* Title with animated underline */}
-        <div className="text-center mb-16 relative">
-          <h3 className="text-4xl md:text-5xl font-script text-forest-dark mb-4">
-            Wedding Schedule
+        {/* Compact Title Section */}
+        <MotionDiv
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <h3 className="text-3xl md:text-4xl font-display text-forest-700 mb-4 font-light tracking-wide">
+            Our Special Day
           </h3>
+          <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-sans">
+            Join us for a celebration of love, joy, and new beginnings
+          </p>
+          
+          {/* Navigation Tabs */}
+          <div className="flex justify-center gap-4 mb-8">
+            {[
+              { id: 'schedule' as const, label: 'Schedule', icon: FaCalendarAlt },
+              { id: 'attire' as const, label: 'Attire', icon: FaTshirt },
+              { id: 'gifts' as const, label: 'Gifts', icon: FaGift }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 cursor-pointer font-sans ${
+                  activeTab === tab.id
+                    ? 'bg-mint-500 text-white shadow-lg'
+                    : 'bg-white/80 text-forest-700 hover:bg-mint-100'
+                }`}
+              >
+                <tab.icon className="text-sm" />
+                <span className="font-semibold">{tab.label}</span>
+              </button>
+            ))}
+          </div>
+        </MotionDiv>
+
+        {/* Content based on active tab */}
+        {activeTab === 'schedule' && (
           <MotionDiv
-            initial={{ width: "0%" }}
-            whileInView={{ width: "100%" }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-mint to-transparent max-w-[200px] w-full"
-          />
-        </div>
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {loading ? (
+              <div className="grid md:grid-cols-3 gap-8">
+                <SkeletonLoader type="card" count={3} />
+              </div>
+            ) : error ? (
+              <div className="text-center py-16">
+                <FaInfoCircle className="text-red-500 text-4xl mx-auto mb-4" />
+                <p className="text-red-600 text-lg mb-2 font-sans font-semibold">Error loading schedule</p>
+                <p className="text-forest-600 font-sans">{error}</p>
+              </div>
+            ) : scheduleEvents.length > 0 ? (
+              <div className="grid md:grid-cols-3 gap-8 mb-16">
+                {scheduleEvents.map((event, index) => {
+              const IconComponent = getIconComponent(event.icon);
+              const gradientClass = getGradientClass(event.color);
+              return (
+                <div
+                  key={event.id}
+                  className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                  onMouseEnter={() => setHoveredEvent(index)}
+                  onMouseLeave={() => setHoveredEvent(null)}
+                >
+                  <div className={`relative p-8 rounded-3xl bg-white/90 backdrop-blur-sm 
+                    shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50
+                    ${hoveredEvent === index ? 'scale-105 -translate-y-2' : ''}`}
+                  >
+                    {/* Background gradient */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} 
+                      opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`} />
+                    
+                    {/* Time badge */}
+                    <div className="absolute -top-4 left-8">
+                      <div className={`bg-gradient-to-r ${gradientClass} text-white px-4 py-2 
+                        rounded-full text-sm font-bold shadow-lg flex items-center gap-2`}>
+                        <FaClock className="text-xs" />
+                        {formatTime(event.eventTime)}
+                      </div>
+                    </div>
 
-        {/* Timeline with enhanced animations */}
-        <div className="relative text-lg md:text-xl space-y-0 font-medium mb-20 max-w-xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-[21px] top-4 bottom-4 w-[2px] bg-mint"></div>
+                    {/* Icon */}
+                    <div className="flex justify-center mb-6 mt-4">
+                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${gradientClass} 
+                        flex items-center justify-center shadow-lg group-hover:scale-110 
+                        transition-transform duration-300`}>
+                        <IconComponent className="text-white text-2xl" />
+                      </div>
+                    </div>
 
-          {[
-            {
-              time: "3:00 PM",
-              event: "Ceremony",
-              location: "Manila Cathedral"
-            },
-            {
-              time: "5:00 PM",
-              event: "Reception",
-              location: "Ibayo Events Place"
-            },
-            {
-              time: "7:00 PM",
-              event: "Dinner and Games",
-              location: ""
-            }
-          ].map((item, index) => (
-            <MotionDiv 
-              key={index}
-              variants={itemVariants}
-              className="relative pl-16 py-6 text-left flex flex-col group"
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full 
-                bg-white border-4 border-mint shadow-md group-hover:scale-110 
-                group-hover:border-mint-dark transition-all duration-300"></div>
+                    {/* Content */}
+                    <div className="text-center">
+                      <h4 className="text-xl font-bold font-sans text-forest-700 mb-2">
+                        {event.eventName}
+                      </h4>
+                      <p className="text-forest-500 mb-3 text-sm leading-relaxed font-sans">
+                        {event.description || 'Wedding celebration event'}
+                      </p>
+                      {event.location && (
+                        <div className="flex items-center justify-center gap-2 text-mint-600">
+                          <FaMapMarkerAlt className="text-xs" />
+                          <span className="text-sm font-medium font-sans">{event.location}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Decorative elements */}
+                    <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 
+                      transition-opacity duration-300">
+                      <FaHeart className="text-blush-400 animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+                </div>
+            ) : (
+              <div className="text-center py-16">
+                <FaCalendarAlt className="text-forest-400 text-4xl mx-auto mb-4" />
+                <p className="text-forest-600 text-lg font-sans">No events scheduled at this time.</p>
+              </div>
+            )}
+          </MotionDiv>
+        )}
+
+        {/* Attire Tab */}
+        {activeTab === 'attire' && (
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-[1000px] mx-auto"
+          >
+            <div className="bg-white/90 backdrop-blur-sm shadow-xl p-8 md:p-12 rounded-3xl 
+              border border-mint-200/50 relative overflow-hidden">
               
-              {/* Content */}
-              <div className="transform group-hover:translate-x-2 transition-transform duration-300
-                bg-white p-4 rounded-lg shadow-md">
-                <div className="text-mint-dark font-semibold text-xl mb-1">
-                  {item.time}
-                </div>
-                <div className="text-forest-dark text-lg">
-                  {item.event}
-                  {item.location && (
-                    <span className="text-forest-dark text-base block mt-1">
-                      at {item.location}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </MotionDiv>
-          ))}
-        </div>
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-mint-100/30 to-transparent 
+                rounded-bl-[100px]" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-sage-100/30 to-transparent 
+                rounded-tr-[100px]" />
 
-        {/* Info Cards with hover effects */}
-        <div className="mt-16 space-y-8">
-          {/* Gift Information Card */}
-          <MotionDiv 
-            className="bg-white/80 backdrop-blur-sm shadow-lg p-8 rounded-2xl max-w-2xl mx-auto 
-              transform hover:scale-[1.02] transition-all duration-300
-              border border-mint/10 hover:border-mint/30
-              relative overflow-hidden group"
-            variants={itemVariants}
-          >
-            {/* Decorative corner gradients */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-mint/5 to-transparent 
-              rounded-bl-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-mint/5 to-transparent 
-              rounded-tr-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
-            
-            <FaGift className="text-mint-dark text-3xl mx-auto mb-4" />
-            <h4 className="text-2xl font-script text-forest-dark mb-4">Gift Information</h4>
-            <p className="text-lg text-forest-dark leading-relaxed">
-              Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, 
-              monetary gifts are greatly appreciated as we begin our new life together.
-            </p>
-          </MotionDiv>
-
-          {/* Attire Card with similar enhancements */}
-          <MotionDiv 
-            className="bg-white/80 backdrop-blur-sm shadow-lg p-8 rounded-2xl max-w-3xl mx-auto 
-              transform hover:scale-[1.02] transition-all duration-300
-              border border-mint/10 hover:border-mint/30
-              relative overflow-hidden group"
-            variants={itemVariants}
-          >
-            {/* Decorative corner gradients */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-mint/5 to-transparent 
-              rounded-bl-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-mint/5 to-transparent 
-              rounded-tr-[100px] group-hover:w-40 group-hover:h-40 transition-all duration-300" />
-            
-            <FaTshirt className="text-mint-dark text-3xl mx-auto mb-4" />
-            <h4 className="text-2xl font-script text-forest-dark mb-4">Attire</h4>
-            <p className="text-lg text-forest-dark font-medium mb-6">Formal / Semi-formal Attire</p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Ladies Section */}
-              <div className="bg-sage-50 p-4 rounded-lg border border-mint">
-                <h5 className="font-medium text-forest-dark text-lg mb-2">Ladies</h5>
-                <p className="text-sm text-forest-dark mb-3">Cocktail dresses or formal evening wear</p>
-                <div className="flex flex-wrap gap-2 items-center">
-                  <span className="text-xs text-forest-dark">Colors:</span>
-                  <div className="flex gap-2">
-                    {['#8B4513', '#556B2F', '#8FBC8F', '#B8860B'].map((color, i) => (
-                      <div 
-                        key={i}
-                        className="w-6 h-6 rounded-full ring-1 ring-offset-1 ring-mint 
-                          transform hover:scale-110 transition-transform duration-200 cursor-help"
-                        style={{ backgroundColor: color }}
-                        title={['Earth tones', 'Olive', 'Sage', 'Gold'][i]}
-                      />
-                    ))}
-                  </div>
-                </div>
+              <div className="text-center mb-8">
+                <FaTshirt className="text-mint-500 text-4xl mx-auto mb-4" />
+                <h4 className="text-3xl font-bold font-sans text-forest-700 mb-4">Dress Code</h4>
+                <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p>
               </div>
 
-              {/* Gentlemen Section */}
-              <div className="bg-sage-50 p-4 rounded-lg border border-mint">
-                <h5 className="font-medium text-forest-dark text-lg mb-2">Gentlemen</h5>
-                <p className="text-sm text-forest-dark mb-3">Suit and tie or Barong Tagalog</p>
-                <div className="flex flex-wrap gap-2 items-center">
-                  <span className="text-xs text-forest-dark">Colors:</span>
-                  <div className="flex gap-2">
-                    <div className="w-6 h-6 rounded-full bg-[#F5F5F5] ring-1 ring-offset-1 
-                      ring-mint border border-gray-200" title="White (Barong)"></div>
-                    <div className="w-6 h-6 rounded-full bg-[#2F4F4F] ring-1 ring-offset-1 
-                      ring-mint" title="Dark Green"></div>
-                    <div className="w-6 h-6 rounded-full bg-[#696969] ring-1 ring-offset-1 
-                      ring-mint" title="Charcoal"></div>
-                    <div className="w-6 h-6 rounded-full bg-[#000000] ring-1 ring-offset-1 
-                      ring-mint" title="Black"></div>
-                  </div>
+              {loading ? (
+                <div className="grid md:grid-cols-2 gap-8">
+                  <SkeletonLoader type="card" count={2} />
                 </div>
+              ) : attireGuidelines.length > 0 ? (
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  {attireGuidelines.map((attire, index) => (
+                    <div key={attire.id} className={`bg-gradient-to-br p-6 rounded-2xl border-2 shadow-lg
+                      ${index % 2 === 0 
+                        ? 'from-blush-50 to-mint-50 border-blush-200/50' 
+                        : 'from-sage-50 to-mint-50 border-sage-200/50'}`}>
+                      <h5 className="font-bold font-sans text-forest-700 text-xl mb-4 text-center">{attire.title}</h5>
+                      <p className="text-forest-600 mb-4 text-center font-sans">{attire.description}</p>
+                      
+                      <div className="space-y-4">
+                        {attire.dressCode && (
+                          <div className="text-center">
+                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-2">Dress Code:</span>
+                            <p className="text-forest-700 font-medium font-sans">{attire.dressCode}</p>
+                          </div>
+                        )}
+                        
+                        {attire.colorScheme && (
+                          <div className="text-center">
+                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-2">Color Scheme:</span>
+                            <div className="flex items-center justify-center gap-3">
+                              <div 
+                                className="w-6 h-6 rounded-full border-2 border-gray-300 shadow-sm" 
+                                style={{ backgroundColor: attire.colorScheme }}
+                                title={attire.colorScheme}
+                              />
+                              <p className="text-forest-700 font-sans capitalize">
+                                {getColorName(attire.colorScheme)}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {attire.guidelines && (
+                          <div className="text-center">
+                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-2">Guidelines:</span>
+                            <p className="text-forest-600 text-sm font-sans leading-relaxed">{attire.guidelines}</p>
+                          </div>
+                        )}
+
+                        {attire.photos && attire.photos.length > 0 && (
+                          <div className="text-center">
+                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-3">Reference Photos:</span>
+                            <div className="grid grid-cols-2 gap-3">
+                              {attire.photos.slice(0, 4).map((photo, photoIndex) => (
+                                <div key={photoIndex} className="aspect-square rounded-lg overflow-hidden border-2 border-white shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                                  <img 
+                                    src={photo} 
+                                    alt={`${attire.title} reference ${photoIndex + 1}`}
+                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                                    onClick={() => window.open(photo, '_blank')}
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                            {attire.photos.length > 4 && (
+                              <p className="text-xs text-forest-500 font-sans mt-2">
+                                +{attire.photos.length - 4} more photo{attire.photos.length - 4 > 1 ? 's' : ''} (click any photo to view all)
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-forest-600 font-sans">No attire guidelines available at this time.</p>
+                </div>
+              )}
+
+              {/* Important Notes */}
+              <div className="bg-gradient-to-r from-red-50 to-blush-50 p-4 rounded-xl 
+                border-l-4 border-red-400 shadow-inner">
+                <p className="text-red-700 text-center font-sans">
+                  <span className="font-bold">Please Note:</span> White and ivory are reserved for the bride
+                </p>
               </div>
             </div>
+          </MotionDiv>
+        )}
 
-            {/* Please Avoid Section */}
-            <div className="mt-6 bg-red-50 p-3 rounded-lg border border-red-200">
-              <p className="text-sm text-red-700">
-                <span className="font-medium">Please Note:</span> White is reserved for the bride
-              </p>
+        {/* Gifts Tab */}
+        {activeTab === 'gifts' && (
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-[900px] mx-auto"
+          >
+            <div className="bg-white/90 backdrop-blur-sm shadow-xl p-8 md:p-12 rounded-3xl 
+              border border-mint-200/50 relative overflow-hidden text-center">
+              
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-mint-100/20 to-transparent 
+                rounded-bl-[100px]" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blush-100/20 to-transparent 
+                rounded-tr-[100px]" />
+
+              <FaGift className="text-mint-500 text-5xl mx-auto mb-6" />
+              <h4 className="text-3xl font-bold font-sans text-forest-700 mb-6">Gift Information</h4>
+              
+                <div className="space-y-6 text-lg text-forest-600 leading-relaxed font-sans">
+                <p className="text-xl font-semibold text-forest-700">
+                  Your presence is the greatest gift of all! 
+                </p>
+                <p>
+                  However, if you wish to honor us with a gift, monetary contributions are greatly appreciated 
+                  as we begin our new journey together.
+                </p>
+                
+                <div className="bg-gradient-to-r from-sage-50 to-mint-50 p-6 rounded-xl 
+                  border border-mint-200 shadow-inner">
+                  <p className="text-forest-600 font-medium">
+                    Your love, laughter, and presence as we exchange vows is all we truly need to make our day perfect.
+                  </p>
+                </div>
+              </div>              {/* Decorative hearts */}
+              <div className="flex justify-center gap-4 mt-8">
+                {[...Array(3)].map((_, i) => (
+                  <FaHeart 
+                    key={i} 
+                    className="text-blush-400 text-lg animate-pulse" 
+                    style={{ animationDelay: `${i * 0.5}s` }}
+                  />
+                ))}
+              </div>
             </div>
           </MotionDiv>
-        </div>
+        )}
       </MotionDiv>
     </section>
   );

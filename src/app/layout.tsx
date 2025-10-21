@@ -1,21 +1,14 @@
 import '../styles/globals.css';
-import { Great_Vibes, Cormorant_Garamond } from 'next/font/google';
-
-const greatVibes = Great_Vibes({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-great-vibes',
-});
-
-const cormorant = Cormorant_Garamond({
-  weight: ['300', '400', '500', '600'],
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-});
 
 export const metadata = {
   title: 'Kenneth & Jenna Wedding',
   description: 'RSVP to our wedding celebration!',
+  keywords: 'wedding, rsvp, Kenneth, Jenna, invitation',
+  openGraph: {
+    title: 'Kenneth & Jenna Wedding',
+    description: 'RSVP to our wedding celebration!',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${greatVibes.variable} ${cormorant.variable}`}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to Google Fonts for better performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for API calls */}
+        <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_BASE_URL || ''} />
+      </head>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

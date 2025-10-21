@@ -2,7 +2,7 @@
 
 import coupleImage from '../../../public/images/couple.png';
 import coupleCenterImage from '../../../public/images/couple_center.png';
-import { motion, useScroll, useTransform, easeOut } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { MotionDiv } from '@/types/motion';
 import Image from 'next/image';
@@ -21,54 +21,24 @@ export default function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Reduced parallax effect for mobile
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 150]);
-  const middleY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 100]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 50]);
-  const titleScale = useTransform(scrollYProgress, [0, 0.5], [1, isMobile ? 1 : 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, isMobile ? 1 : 0]);
+  // Subtle parallax effect
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : 100]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, isMobile ? 0 : -30]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.7]);
 
-  // Animation variants
-  const titleVariants = {
-    hidden: { y: 20, opacity: 0 },
+  // Animation variants for elegant entrance
+  const fadeInUp = {
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-        delay: 0.2
-      }
-    }
-  };
-
-  const subtitleVariants = {
-    hidden: { y: 15, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-        delay: 0.4
-      }
-    }
-  };
-
-  const lineVariants = {
-    hidden: { scaleX: 0 },
-    visible: {
-      scaleX: 1,
-      transition: {
-        duration: 0.8,
-        delay: 0.1
-      }
+      transition: { duration: 0.8, ease: "easeOut" }
     }
   };
 
   return (
     <header className="relative h-screen w-full overflow-hidden">
-      {/* Background Layer */}
+      {/* Background Image Layer with Parallax */}
       <MotionDiv 
         className="absolute inset-0 w-full h-full"
         style={{ y: backgroundY }}
@@ -78,93 +48,122 @@ export default function Header() {
           alt="Kenneth and Jenna"
           fill
           priority
-          quality={100}
-          className="object-cover scale-110"
+          quality={95}
+          className="object-cover"
           sizes="100vw"
           style={{
             objectPosition: 'center center',
-            filter: 'brightness(0.9) contrast(1.1)',
           }}
         />
       </MotionDiv>
 
-      {/* Overlay Layer */}
-      <MotionDiv 
-        className="absolute inset-0 z-10"
-        style={{ y: middleY }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40" />
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-mint-dark/10 to-transparent opacity-60" />
-      </MotionDiv>
+      {/* Sophisticated Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10" />
+      
+      {/* Elegant Bottom Fade */}
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/40 to-transparent z-10" />
 
-      {/* Content Layer */}
+      {/* Main Content - Centered Elegantly */}
       <MotionDiv 
-        className="relative h-full w-full flex items-center justify-center px-4 z-20"
+        className="relative h-full w-full flex items-center justify-center px-6 z-20"
         style={{ y: contentY, opacity }}
       >
         <MotionDiv 
-          className="text-center p-8 md:p-12  bg-black/5 rounded-xl"
+          className="text-center max-w-4xl mx-auto"
           initial="hidden"
           animate="visible"
-          style={{ scale: titleScale }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2
+              }
+            }
+          }}
         >
+          {/* Elegant Top Line */}
           <MotionDiv
-            variants={lineVariants}
-            className="w-24 h-[2px] bg-white mx-auto mb-10 shadow-[0_0_15px_rgba(255,255,255,0.5)]"
-          />
-
-          <MotionDiv
-            variants={titleVariants}
+            variants={fadeInUp}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-script text-white 
-              drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] 
-              [text-shadow:_2px_2px_4px_rgb(0_0_0_/_70%),_-1px_-1px_2px_rgb(0_0_0_/_60%),_0_0_20px_rgba(255,255,255,0.3)]
-              leading-tight tracking-wider">
-              Kenneth &amp; Jenna
+            <div className="w-16 h-[1px] bg-white/60 mx-auto mb-6" />
+            <p className="text-white/90 text-sm md:text-base font-sans tracking-[0.3em] uppercase font-light">
+              Together with their families
+            </p>
+          </MotionDiv>
+
+          {/* Names - Elegant and Readable */}
+          <MotionDiv
+            variants={fadeInUp}
+            className="mb-8"
+          >
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display text-white font-light
+              tracking-tight leading-tight mb-4
+              [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
+              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-light">&</span> Jenna
             </h1>
           </MotionDiv>
 
+          {/* Elegant Separator */}
           <MotionDiv
-            variants={subtitleVariants}
-            className="space-y-6"
+            variants={fadeInUp}
+            className="mb-8 flex items-center justify-center gap-4"
           >
-            <p className="text-2xl md:text-3xl text-white font-medium tracking-wide
-              drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
-              [text-shadow:_1px_1px_3px_rgb(0_0_0_/_70%),_0_0_15px_rgba(255,255,255,0.2)]">
-              We&apos;re getting married!
-            </p>
-            <p className="text-xl md:text-2xl text-white font-medium tracking-wider
-              drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]
-              [text-shadow:_1px_1px_2px_rgb(0_0_0_/_60%)]">
-              January 24, 2026
+            <div className="w-12 h-[1px] bg-white/40" />
+            <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
+            <div className="w-12 h-[1px] bg-white/40" />
+          </MotionDiv>
+
+          {/* Wedding Invitation Text */}
+          <MotionDiv
+            variants={fadeInUp}
+            className="mb-6"
+          >
+            <p className="text-2xl md:text-3xl lg:text-4xl font-display text-white/95 font-light tracking-wide
+              [text-shadow:_0_2px_15px_rgba(0,0,0,0.4)]">
+              Request the honor of your presence
             </p>
           </MotionDiv>
 
+          {/* Date and Location */}
           <MotionDiv
-            variants={lineVariants}
-            className="w-24 h-[2px] bg-white mx-auto mt-10 shadow-[0_0_15px_rgba(255,255,255,0.5)]"
-          />
+            variants={fadeInUp}
+            className="space-y-3"
+          >
+            <p className="text-xl md:text-2xl text-white/95 font-serif font-medium tracking-wide
+              [text-shadow:_0_1px_10px_rgba(0,0,0,0.4)]">
+              Saturday, January 24, 2026
+            </p>
+            <p className="text-base md:text-lg text-white/80 font-sans tracking-wider
+              [text-shadow:_0_1px_8px_rgba(0,0,0,0.4)]">
+              A celebration of love and commitment
+            </p>
+          </MotionDiv>
+
+          {/* Bottom Decorative Line */}
+          <MotionDiv
+            variants={fadeInUp}
+            className="mt-12"
+          >
+            <div className="w-16 h-[1px] bg-white/60 mx-auto" />
+          </MotionDiv>
         </MotionDiv>
       </MotionDiv>
 
-      {/* Scroll Indicator */}
+      {/* Subtle Scroll Indicator */}
       <MotionDiv
-        className={`absolute ${isMobile ? 'bottom-6' : 'bottom-8'} left-1/2 -translate-x-1/2 z-30`}
-        initial={{ opacity: 0, y: -20 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30"
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 0.8,
+          duration: 1,
           delay: 1.5,
           repeat: Infinity,
           repeatType: "reverse"
         }}
       >
-        <div className={`w-6 h-10 border-2 border-white rounded-full p-2 
-          bg-black/10 shadow-[0_0_15px_rgba(255,255,255,0.4)]
-          ${isMobile ? 'scale-90' : ''}`}>
-          <div className="w-1.5 h-1.5 bg-white rounded-full mx-auto animate-bounce 
-            shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+        <div className="flex flex-col items-center gap-2">
+          <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/60 to-transparent" />
+          <p className="text-white/60 text-xs font-sans tracking-widest uppercase">Scroll</p>
         </div>
       </MotionDiv>
     </header>
