@@ -65,21 +65,21 @@ export async function initializeDatabase() {
     // Ensure other optional columns allow NULL values
     try {
       await sql`ALTER TABLE rsvps ALTER COLUMN dietary_requirements DROP NOT NULL`;
-    } catch (e) {
+    } catch {
       // Ignore error if constraint doesn't exist
       console.log('Dietary requirements column already allows NULL or constraint does not exist');
     }
 
     try {
       await sql`ALTER TABLE rsvps ALTER COLUMN song_request DROP NOT NULL`;
-    } catch (e) {
+    } catch {
       // Ignore error if constraint doesn't exist
       console.log('Song request column already allows NULL or constraint does not exist');
     }
 
     try {
       await sql`ALTER TABLE rsvps ALTER COLUMN invitation_code DROP NOT NULL`;
-    } catch (e) {
+    } catch {
       // Ignore error if constraint doesn't exist
       console.log('Invitation code column already allows NULL or constraint does not exist');
     }

@@ -46,7 +46,15 @@ export default function AddInvitationModal({
       setErrors({});
       setIsSubmitting(false);
     } else if (isOpen && !initialData) {
-      resetForm();
+      const defaultData = initialData || {
+        name: '',
+        email: '',
+        allocatedSeats: 1,
+        notes: ''
+      };
+      setFormData(defaultData);
+      setErrors({});
+      setIsSubmitting(false);
     }
   }, [isOpen, initialData]);
 

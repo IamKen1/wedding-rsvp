@@ -2,7 +2,6 @@
 
 import { useScroll, useTransform } from 'framer-motion';
 import { MotionSection, MotionDiv } from '@/types/motion';
-import { useState, useEffect } from 'react';
 
 export default function Hero() {
   const { scrollYProgress } = useScroll();

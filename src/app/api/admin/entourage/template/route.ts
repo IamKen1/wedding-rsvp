@@ -56,17 +56,8 @@ export async function GET() {
       { wch: 12 }  // sortOrder
     ];
 
-    // Add instructions as a note
-    const instructions = 
-      'Instructions:\n' +
-      '1. Fill in the entourage member details\n' +
-      '2. "category" must be: parents, sponsors, or other\n' +
-      '3. For PARENTS: "side" must be "bride" or "groom"\n' +
-      '4. For SPONSORS: "side" must be "male" or "female"\n' +
-      '5. For OTHER: "side" can be "bride", "groom", "male", "female", or "both" (no separation)\n' +
-      '6. "sortOrder" determines display order within each category\n' +
-      '7. "description" is optional\n' +
-      '8. Save and upload this file';
+    // Instructions are implicitly defined by the sample data and column names
+    // Users can refer to documentation or tooltip hints in the admin UI
     
     // Add worksheet to workbook
     XLSX.utils.book_append_sheet(wb, ws, 'Wedding Entourage');

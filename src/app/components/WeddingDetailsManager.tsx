@@ -115,6 +115,7 @@ export default function WeddingDetailsManager() {
   // Load all data in parallel on mount
   useEffect(() => {
     loadAllData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Load specific category data when switching tabs (only if not already loaded)
@@ -122,6 +123,7 @@ export default function WeddingDetailsManager() {
     if (!dataLoaded[activeCategory]) {
       loadCategoryData(activeCategory);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory]);
 
   const loadAllData = async () => {
@@ -236,7 +238,8 @@ export default function WeddingDetailsManager() {
       } else {
         throw new Error('Delete failed');
       }
-    } catch (error) {
+    } catch (deleteError) {
+      console.error('Delete error:', deleteError);
       setNotification({
         isVisible: true,
         message: `Failed to delete ${activeCategory} item`,

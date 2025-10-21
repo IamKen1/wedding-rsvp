@@ -136,7 +136,21 @@ export default function Locations() {
             </div>
           ) : locations.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {locations.map((location, index) => (
+              {locations.map((location) => {
+                const cardVariants = {
+                  hidden: { y: 30, opacity: 0, scale: 0.95 },
+                  visible: { 
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    transition: {
+                      duration: 0.6,
+                      ease: "easeOut"
+                    }
+                  }
+                };
+                
+                return (
                 <MotionDiv
                   key={location.id}
                   variants={cardVariants}
@@ -231,7 +245,8 @@ export default function Locations() {
                     )}
                   </div>
                 </MotionDiv>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-12">

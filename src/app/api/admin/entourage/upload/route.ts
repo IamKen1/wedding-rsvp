@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Validate side based on category
-      let side = row.side;
+      const side = row.side;
       if (category === 'parents') {
         if (side !== 'bride' && side !== 'groom') {
           errors.push(`Row ${rowNum}: For parents, side must be "bride" or "groom"`);

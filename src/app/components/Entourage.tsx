@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { MotionDiv } from '@/types/motion';
-import { FaHeart, FaRing, FaUserTie, FaUserFriends } from 'react-icons/fa';
+import { FaHeart, FaUserTie, FaUserFriends } from 'react-icons/fa';
 import SkeletonLoader from './SkeletonLoader';
 
 interface EntourageMember {

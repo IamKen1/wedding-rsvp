@@ -1,6 +1,5 @@
 "use client";
 
-import { useScroll, useTransform } from 'framer-motion';
 import { MotionDiv } from '@/types/motion';
 import { useState, useEffect } from 'react';
 import SkeletonLoader from './SkeletonLoader';
@@ -63,7 +62,6 @@ const formatTime = (time: string): string => {
 };
 
 export default function Schedule() {
-  const { scrollYProgress } = useScroll();
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'gifts'>('schedule');
   const [scheduleEvents, setScheduleEvents] = useState<WeddingEvent[]>([]);
@@ -163,20 +161,6 @@ export default function Schedule() {
     }
   };
 
-  const cardVariants = {
-    hidden: { y: 30, opacity: 0, scale: 0.95 },
-    visible: { 
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  // Helper function to get icon component
   const getIconComponent = (iconName: string) => {
     // Handle both emoji and component names
     switch (iconName) {

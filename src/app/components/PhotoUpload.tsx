@@ -28,7 +28,6 @@ export default function PhotoUpload({
   maxPhotos = 5,
   acceptedTypes = ['image/jpeg', 'image/png', 'image/webp'],
   maxSizeMB = 5,
-  placeholder = "Click to upload photos or drag and drop",
   isRequired = false
 }: PhotoUploadProps) {
   const [dragOver, setDragOver] = useState(false);
