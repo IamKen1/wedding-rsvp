@@ -156,46 +156,46 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-[1400px] mx-auto px-6 py-6">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 sm:py-6">
         {/* Header with Tabs */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold font-sans text-gray-900 mb-4">Wedding Admin Dashboard</h1>
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold font-sans text-gray-900 mb-4">Wedding Admin Dashboard</h1>
           
-          {/* Tab Navigation */}
-          <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
+          {/* Tab Navigation - Mobile Responsive */}
+          <div className="border-b border-gray-200 overflow-x-auto">
+            <nav className="-mb-px flex space-x-4 sm:space-x-8 min-w-max">
               <button
                 onClick={() => setActiveTab(TabType.INVITATIONS)}
-                className={`py-2 px-1 border-b-2 font-semibold text-base font-sans cursor-pointer transition-all duration-200 ${
+                className={`py-2 px-2 sm:px-1 border-b-2 font-semibold text-sm sm:text-base font-sans cursor-pointer transition-all duration-200 whitespace-nowrap ${
                   isInvitationsTab
                     ? 'border-mint-500 text-mint-600'
                     : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
                 }`}
               >
-                <FaUsers className="inline mr-2" />
-                Manage Invitations
+                <FaUsers className="inline mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Manage </span>Invitations
               </button>
               <button
                 onClick={() => setActiveTab(TabType.RSVPS)}
-                className={`py-2 px-1 border-b-2 font-semibold text-base font-sans cursor-pointer transition-all duration-200 ${
+                className={`py-2 px-2 sm:px-1 border-b-2 font-semibold text-sm sm:text-base font-sans cursor-pointer transition-all duration-200 whitespace-nowrap ${
                   activeTab === TabType.RSVPS
                     ? 'border-mint-500 text-mint-600'
                     : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
                 }`}
               >
-                <FaEnvelope className="inline mr-2" />
-                View RSVPs ({rsvps.length})
+                <FaEnvelope className="inline mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">View </span>RSVPs ({rsvps.length})
               </button>
               <button
                 onClick={() => setActiveTab(TabType.WEDDING_DETAILS)}
-                className={`py-2 px-1 border-b-2 font-semibold text-base font-sans cursor-pointer transition-all duration-200 ${
+                className={`py-2 px-2 sm:px-1 border-b-2 font-semibold text-sm sm:text-base font-sans cursor-pointer transition-all duration-200 whitespace-nowrap ${
                   activeTab === TabType.WEDDING_DETAILS
                     ? 'border-mint-500 text-mint-600'
                     : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
                 }`}
               >
-                <FaCogs className="inline mr-2" />
-                Wedding Details
+                <FaCogs className="inline mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Wedding </span>Details
               </button>
             </nav>
           </div>
@@ -223,22 +223,22 @@ export default function AdminPage() {
             </div>
 
         {/* Action Buttons */}
-        <div className="mb-4 flex flex-wrap gap-3">
+        <div className="mb-4 flex flex-col sm:flex-row flex-wrap gap-3">
           <button
             onClick={handleDownload}
             disabled={downloadingExcel || clearingData}
             className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 
                      disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-                     transition-all duration-200 flex items-center gap-2 font-sans text-sm font-medium"
+                     transition-all duration-200 flex items-center justify-center gap-2 font-sans text-sm font-medium"
           >
             {downloadingExcel ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Generating Excel...
+                <span>Generating Excel...</span>
               </>
             ) : (
               <>
-                📊 Download Excel Report
+                <span>📊 Download Excel Report</span>
               </>
             )}
           </button>
@@ -248,16 +248,16 @@ export default function AdminPage() {
             disabled={downloadingExcel || clearingData || rsvps.length === 0}
             className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 
                      disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-                     transition-all duration-200 flex items-center gap-2 font-sans text-sm font-medium"
+                     transition-all duration-200 flex items-center justify-center gap-2 font-sans text-sm font-medium"
           >
             {clearingData ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Clearing Data...
+                <span>Clearing Data...</span>
               </>
             ) : (
               <>
-                🗑️ Clear All RSVP Data
+                <span>🗑️ Clear All RSVP Data</span>
               </>
             )}
           </button>
@@ -276,87 +276,157 @@ export default function AdminPage() {
               <div className="font-sans">RSVPs will appear here once guests start responding</div>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Name
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Invitation ID
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Attendance
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Guests
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Contact
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Message
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
-                      Date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {rsvps.map((rsvp) => (
-                    <tr key={rsvp.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <div className="font-medium font-sans text-base text-gray-900">{rsvp.name}</div>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
-                          {rsvp.invitationId || 'N/A'}
-                        </code>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <span className={`inline-flex px-2 py-1 text-sm font-semibold font-sans rounded-full ${
-                          rsvp.willAttend === 'yes' 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-red-100 text-red-800'
-                        }`}>
-                          {rsvp.willAttend === 'yes' ? 'Attending' : 'Not Attending'}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap text-base font-sans text-gray-900">
-                        {rsvp.numberOfGuests}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="text-sm font-sans text-gray-900">{rsvp.email}</div>
-                        {rsvp.phone && <div className="text-sm font-sans text-gray-600">{rsvp.phone}</div>}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="max-w-xs">
-                          {rsvp.dietaryRequirements && (
-                            <div className="text-sm font-sans text-gray-900 mb-1">
-                              <strong>Dietary:</strong> {rsvp.dietaryRequirements}
-                            </div>
-                          )}
-                          {rsvp.songRequest && (
-                            <div className="text-sm font-sans text-gray-900 mb-1">
-                              <strong>Song:</strong> {rsvp.songRequest}
-                            </div>
-                          )}
-                          {rsvp.message && (
-                            <div className="text-sm font-sans text-gray-600">
-                              <strong>Message:</strong> {rsvp.message}
-                            </div>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap text-sm font-sans text-gray-600">
-                        {new Date(rsvp.createdAt).toLocaleDateString()}
-                      </td>
+            <>
+              {/* Desktop Table View - Hidden on Mobile */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Name
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Invitation ID
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Attendance
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Guests
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Contact
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Message
+                      </th>
+                      <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                        Date
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {rsvps.map((rsvp) => (
+                      <tr key={rsvp.id} className="hover:bg-gray-50">
+                        <td className="px-4 py-3 whitespace-nowrap">
+                          <div className="font-medium font-sans text-base text-gray-900">{rsvp.name}</div>
+                        </td>
+                        <td className="px-4 py-3 whitespace-nowrap">
+                          <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
+                            {rsvp.invitationId || 'N/A'}
+                          </code>
+                        </td>
+                        <td className="px-4 py-3 whitespace-nowrap">
+                          <span className={`inline-flex px-2 py-1 text-sm font-semibold font-sans rounded-full ${
+                            rsvp.willAttend === 'yes' 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-red-100 text-red-800'
+                          }`}>
+                            {rsvp.willAttend === 'yes' ? 'Attending' : 'Not Attending'}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 whitespace-nowrap text-base font-sans text-gray-900">
+                          {rsvp.numberOfGuests}
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="text-sm font-sans text-gray-900">{rsvp.email}</div>
+                          {rsvp.phone && <div className="text-sm font-sans text-gray-600">{rsvp.phone}</div>}
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="max-w-xs">
+                            {rsvp.dietaryRequirements && (
+                              <div className="text-sm font-sans text-gray-900 mb-1">
+                                <strong>Dietary:</strong> {rsvp.dietaryRequirements}
+                              </div>
+                            )}
+                            {rsvp.songRequest && (
+                              <div className="text-sm font-sans text-gray-900 mb-1">
+                                <strong>Song:</strong> {rsvp.songRequest}
+                              </div>
+                            )}
+                            {rsvp.message && (
+                              <div className="text-sm font-sans text-gray-600">
+                                <strong>Message:</strong> {rsvp.message}
+                              </div>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 whitespace-nowrap text-sm font-sans text-gray-600">
+                          {new Date(rsvp.createdAt).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card View - Visible on Mobile Only */}
+              <div className="md:hidden divide-y divide-gray-200">
+                {rsvps.map((rsvp) => (
+                  <div key={rsvp.id} className="p-4 hover:bg-gray-50">
+                    {/* Name and Status */}
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="font-medium font-sans text-base text-gray-900">{rsvp.name}</div>
+                      <span className={`inline-flex px-2 py-1 text-xs font-semibold font-sans rounded-full ${
+                        rsvp.willAttend === 'yes' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {rsvp.willAttend === 'yes' ? 'Attending' : 'Not Attending'}
+                      </span>
+                    </div>
+
+                    {/* Invitation ID */}
+                    {rsvp.invitationId && (
+                      <div className="mb-2">
+                        <span className="text-xs font-sans text-gray-500">Invitation ID: </span>
+                        <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
+                          {rsvp.invitationId}
+                        </code>
+                      </div>
+                    )}
+
+                    {/* Guests Count */}
+                    <div className="mb-2">
+                      <span className="text-xs font-sans text-gray-500">Guests: </span>
+                      <span className="text-sm font-sans text-gray-900">{rsvp.numberOfGuests}</span>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div className="mb-2">
+                      <div className="text-sm font-sans text-gray-900">{rsvp.email}</div>
+                      {rsvp.phone && <div className="text-sm font-sans text-gray-600">{rsvp.phone}</div>}
+                    </div>
+
+                    {/* Additional Info */}
+                    {(rsvp.dietaryRequirements || rsvp.songRequest || rsvp.message) && (
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        {rsvp.dietaryRequirements && (
+                          <div className="text-sm font-sans text-gray-900 mb-1">
+                            <strong>Dietary:</strong> {rsvp.dietaryRequirements}
+                          </div>
+                        )}
+                        {rsvp.songRequest && (
+                          <div className="text-sm font-sans text-gray-900 mb-1">
+                            <strong>Song:</strong> {rsvp.songRequest}
+                          </div>
+                        )}
+                        {rsvp.message && (
+                          <div className="text-sm font-sans text-gray-600">
+                            <strong>Message:</strong> {rsvp.message}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Date */}
+                    <div className="mt-2 text-xs font-sans text-gray-500">
+                      {new Date(rsvp.createdAt).toLocaleDateString()}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           )}
         </div>
           </>
