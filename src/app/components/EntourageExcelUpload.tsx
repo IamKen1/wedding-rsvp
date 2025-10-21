@@ -116,158 +116,130 @@ export default function EntourageExcelUpload({ onEntourageUploaded, isVisible, o
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-rose-500 to-purple-500 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-2xl font-serif font-semibold text-white">
-            Mass Upload Entourage
-          </h2>
-          <button
-            onClick={handleCancel}
-            className="text-white hover:bg-white/20 p-2 rounded-lg transition-colors"
-          >
-            <FaTimes />
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-140px)]">
-          {/* Instructions */}
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-            <h3 className="text-lg font-serif font-semibold text-blue-900 mb-2">
-              📋 How to Use
-            </h3>
-            <ol className="list-decimal list-inside space-y-2 text-blue-800 font-sans text-sm">
-              <li>Download the Excel template below</li>
-              <li>Fill in your wedding entourage details (already pre-filled with your data)</li>
-              <li>Make sure "side" is either "bride" or "groom"</li>
-              <li>Save the file and upload it here</li>
-              <li>Review the results and confirm</li>
-            </ol>
+    <div className="fixed inset-0 z-50 overflow-y-auto">
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+        onClick={handleCancel}
+      />
+      
+      {/* Modal */}
+      <div className="flex items-center justify-center min-h-screen p-4">
+        <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-mint-500 to-sage-500 px-6 py-4">
+            <h2 className="text-xl font-bold text-white flex items-center gap-3">
+              <FaUpload />
+              Upload Wedding Entourage
+            </h2>
           </div>
 
-          {/* Download Template Button */}
-          <div className="flex justify-center">
-            <button
-              onClick={handleTemplateDownload}
-              className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-mint-500 to-sage-500 
-                text-white rounded-xl font-sans font-medium shadow-lg hover:shadow-xl 
-                hover:scale-105 transition-all duration-300"
-            >
-              <FaDownload className="text-lg" />
-              Download Excel Template
-            </button>
-          </div>
+          <div className="p-6 max-h-[calc(90vh-200px)] overflow-y-auto">
+            {/* Instructions */}
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-3 text-gray-800">How to use:</h3>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                <li>Download the Excel template below</li>
+                <li>Fill in your entourage details (name, role, category, side, description, sortOrder)</li>
+                <li>Category: "parents", "sponsors", or "other"</li>
+                <li>Side: "bride"/"groom" for parents, "male"/"female" for sponsors, "both" for others</li>
+                <li>Upload the completed Excel file</li>
+              </ol>
+            </div>
 
-          {/* Upload Section */}
-          <div className="border-2 border-dashed border-mint-300 rounded-xl p-8 text-center hover:border-mint-500 transition-colors">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".xlsx,.xls"
-              onChange={handleFileUpload}
-              className="hidden"
-              id="entourage-excel-upload"
-            />
-            <label
-              htmlFor="entourage-excel-upload"
-              className="cursor-pointer flex flex-col items-center gap-4"
-            >
-              <div className="w-16 h-16 bg-mint-100 rounded-full flex items-center justify-center">
-                {isUploading ? (
-                  <FaSpinner className="text-3xl text-mint-600 animate-spin" />
-                ) : (
-                  <FaUpload className="text-3xl text-mint-600" />
-                )}
-              </div>
-              <div>
-                <p className="text-lg font-serif font-medium text-forest-800 mb-1">
-                  {isUploading ? 'Uploading...' : 'Click to Upload Excel File'}
-                </p>
-                <p className="text-sm text-forest-600 font-sans">
-                  Accepts .xlsx and .xls files
-                </p>
-              </div>
-            </label>
-          </div>
+            {/* Template Download */}
+            <div className="mb-6">
+              <button
+                onClick={handleTemplateDownload}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
+              >
+                <FaDownload />
+                Download Excel Template
+              </button>
+            </div>
 
-          {/* Upload Result */}
-          {uploadResult && (
-            <div className={`rounded-xl p-6 ${
-              uploadResult.success 
-                ? 'bg-green-50 border border-green-200' 
-                : 'bg-red-50 border border-red-200'
-            }`}>
-              <div className="flex items-start gap-3">
-                <div className={`flex-shrink-0 ${
-                  uploadResult.success ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  {uploadResult.success ? (
-                    <FaCheckCircle className="text-2xl" />
-                  ) : (
-                    <FaExclamationTriangle className="text-2xl" />
-                  )}
+            {/* File Upload */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Upload Excel File
+              </label>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".xlsx,.xls"
+                onChange={handleFileUpload}
+                disabled={isUploading}
+                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-mint-50 file:text-mint-700 hover:file:bg-mint-100 disabled:opacity-50"
+              />
+              {isUploading && (
+                <div className="flex items-center gap-2 mt-2 text-blue-600">
+                  <FaSpinner className="animate-spin" />
+                  <span className="text-sm">Processing file...</span>
                 </div>
-                <div className="flex-1">
-                  <h4 className={`font-serif font-semibold text-lg mb-2 ${
-                    uploadResult.success ? 'text-green-900' : 'text-red-900'
-                  }`}>
-                    {uploadResult.success ? 'Upload Successful!' : 'Upload Failed'}
-                  </h4>
-                  <p className={`font-sans mb-3 ${
-                    uploadResult.success ? 'text-green-800' : 'text-red-800'
-                  }`}>
-                    {uploadResult.message || 
-                      `Processed ${uploadResult.insertedCount} of ${uploadResult.totalProcessed} entries`}
-                  </p>
-                  
-                  {uploadResult.errors && uploadResult.errors.length > 0 && (
-                    <div className="mt-3">
-                      <p className="font-sans font-medium text-red-900 mb-2">Errors:</p>
-                      <ul className="list-disc list-inside space-y-1 text-sm text-red-800 max-h-40 overflow-y-auto">
-                        {uploadResult.errors.map((error, index) => (
-                          <li key={index}>{error}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+              )}
+            </div>
+
+            {/* Upload Errors */}
+            {uploadErrors.length > 0 && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-start gap-2">
+                  <FaExclamationTriangle className="text-red-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-red-800 mb-2">Upload Errors:</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-red-700">
+                      {uploadErrors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {uploadErrors.length > 0 && !uploadResult && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-              <h4 className="font-serif font-semibold text-red-900 mb-2">Errors:</h4>
-              <ul className="list-disc list-inside space-y-1 text-sm text-red-800">
-                {uploadErrors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+            {/* Upload Results */}
+            {uploadResult && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-start gap-2">
+                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold text-green-800 mb-2">Upload Successful!</h4>
+                    <p className="text-sm text-green-700">
+                      Successfully processed {uploadResult.totalProcessed} entourage member(s).
+                      {uploadResult.insertedCount > 0 && ` Inserted ${uploadResult.insertedCount} new member(s).`}
+                    </p>
+                    {uploadResult.errors && uploadResult.errors.length > 0 && (
+                      <div className="mt-3">
+                        <p className="font-medium text-red-800 mb-1">Some errors occurred:</p>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-red-700">
+                          {uploadResult.errors.map((error, index) => (
+                            <li key={index}>{error}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
 
-        {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex justify-end gap-3">
-          <button
-            onClick={handleCancel}
-            className="px-6 py-2 border-2 border-gray-300 text-gray-700 rounded-xl 
-              font-sans font-medium hover:bg-gray-100 transition-colors"
-          >
-            Close
-          </button>
-          {uploadResult?.success && (
+          {/* Footer */}
+          <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
             <button
-              onClick={handleConfirmUpload}
-              className="px-6 py-2 bg-gradient-to-r from-mint-500 to-sage-500 text-white 
-                rounded-xl font-sans font-medium shadow-lg hover:shadow-xl hover:scale-105 
-                transition-all duration-300"
+              onClick={handleCancel}
+              className="px-4 py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors"
             >
-              Done
+              Close
             </button>
-          )}
+            {uploadResult?.success && (
+              <button
+                onClick={handleConfirmUpload}
+                className="px-4 py-2 bg-mint-500 text-white rounded-lg hover:bg-mint-600 transition-colors font-medium"
+              >
+                Confirm
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
