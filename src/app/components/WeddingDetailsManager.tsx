@@ -548,24 +548,26 @@ export default function WeddingDetailsManager() {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
-        {categories.map((category) => {
-          const IconComponent = category.icon;
-          return (
-            <button
-              key={category.key}
-              onClick={() => setActiveCategory(category.key as DetailCategory)}
-              className={`flex-1 py-2 px-4 rounded-md font-sans text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-                activeCategory === category.key
-                  ? 'bg-white text-forest-700 shadow'
-                  : 'text-gray-600 hover:text-forest-600'
-              }`}
-            >
-              <IconComponent className={activeCategory === category.key ? `text-${category.color}-500` : ''} />
-              {category.label}
-            </button>
-          );
-        })}
+      <div className="overflow-x-auto mb-6 bg-gray-100 p-1 rounded-lg">
+        <div className="flex space-x-1 min-w-max">
+          {categories.map((category) => {
+            const IconComponent = category.icon;
+            return (
+              <button
+                key={category.key}
+                onClick={() => setActiveCategory(category.key as DetailCategory)}
+                className={`py-2 px-2 sm:px-4 rounded-md font-sans text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap ${
+                  activeCategory === category.key
+                    ? 'bg-white text-forest-700 shadow'
+                    : 'text-gray-600 hover:text-forest-600'
+                }`}
+              >
+                <IconComponent className={activeCategory === category.key ? `text-${category.color}-500` : ''} />
+                {category.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Data Display */}
