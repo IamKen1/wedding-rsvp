@@ -64,6 +64,7 @@ export default function Entourage() {
       case 'bride':
         return <FaHeart className="text-2xl text-white" />;
       case 'groom':
+        return <FaHeart className="text-2xl text-white" />;
       case 'male':
         return <FaUserTie className="text-2xl text-white" />;
       case 'female':
