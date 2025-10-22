@@ -52,7 +52,7 @@ export default function Header() {
           className="object-cover"
           sizes="100vw"
           style={{
-            objectPosition: 'center center',
+            objectPosition: isMobile ? 'center center' : '65% center',
           }}
         />
       </MotionDiv>
@@ -86,7 +86,7 @@ export default function Header() {
             className="mb-8"
           >
             <div className="w-16 h-[1px] bg-white/60 mx-auto mb-6" />
-            <p className="text-white/90 text-sm md:text-base font-sans tracking-[0.3em] uppercase font-light">
+            <p className="text-white/90 text-2xl md:text-3xl lg:text-4xl font-great-vibes tracking-wider font-normal">
               Together with their families
             </p>
           </MotionDiv>
@@ -96,10 +96,10 @@ export default function Header() {
             variants={fadeInUp}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display text-white font-light
-              tracking-tight leading-tight mb-4
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-great-vibes text-white font-normal
+              tracking-wide leading-tight mb-4
               [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
-              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-light">&</span> Jenna
+              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-normal">&</span> Jenna
             </h1>
           </MotionDiv>
 
@@ -169,3 +169,4 @@ export default function Header() {
     </header>
   );
 }
+

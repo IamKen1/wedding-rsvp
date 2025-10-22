@@ -14,15 +14,18 @@
   --glow-shadow: 0 0 20px rgba(123, 207, 161, 0.3);
   
   /* Professional Wedding Typography - Sophisticated & Readable */
+  --font-great-vibes: 'Great Vibes', cursive;   /* Custom Great Vibes font for special headers */
   --font-display: 'Cormorant Garamond', serif;  /* Elegant display font for big titles */
   --font-serif: 'Lora', serif;                  /* Readable serif for headers & names */
   --font-sans: 'Montserrat', sans-serif;        /* Modern sans-serif for body & forms */
   
-  /* Refined color palette */
-  --text-primary: #2C3E3E;
-  --text-secondary: #5A6F6F;
-  --accent-sage: #7BA67D;
-  --accent-gold: #B8956A;
+  /* Warm Beige/Tan Color Palette - Based on color motif */
+  --text-primary: #4A3C2E;
+  --text-secondary: #6B5D4F;
+  --accent-tan: #C9A87C;
+  --accent-beige: #E6D5BE;
+  --accent-cream: #F5EEE6;
+  --accent-brown: #8B6F47;
 }
 
 /* Base Typography - Professional & Clean */
@@ -37,6 +40,12 @@ body {
 }
 
 /* Font Family Classes - Professional Hierarchy */
+.font-great-vibes {
+  font-family: var(--font-great-vibes), cursive;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 .font-display {
   font-family: var(--font-display);
   font-weight: 400;

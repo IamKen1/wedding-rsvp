@@ -1,4 +1,12 @@
 import '../styles/globals.css';
+import localFont from 'next/font/local';
+
+// Load custom Great Vibes font for headers
+const greatVibes = localFont({
+  src: './fonts/GreatVibes-Regular.ttf',
+  variable: '--font-great-vibes',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Kenneth & Jenna Wedding',
@@ -17,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={greatVibes.variable}>
       <head>
         {/* Preconnect to Google Fonts for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +33,7 @@ export default function RootLayout({
         {/* DNS prefetch for API calls */}
         <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_BASE_URL || ''} />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning className={greatVibes.variable}>{children}</body>
     </html>
   );
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { IoMenuOutline, IoCloseOutline } from 'react-icons/io5';
+import { FaHome, FaHeart, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import { MotionDiv, MotionNav } from '@/types/motion';
 
 interface SectionInfo {
@@ -64,11 +65,10 @@ export default function Navigation() {
   };
 
   const navLinks = [
-    { href: "#top", label: "Home", icon: "🏡" },
-    { href: "#schedule", label: "Schedule", icon: "📅" },
-    { href: "#entourage", label: "Entourage", icon: "👥" },
-    { href: "#locations", label: "Locations", icon: "📍" },
-    { href: "#rsvp", label: "RSVP", icon: "💌" },
+    { href: "#top", label: "Home", icon: FaHome },
+    { href: "#rsvp", label: "RSVP", icon: FaHeart },
+    { href: "#schedule", label: "Event Details", icon: FaCalendarAlt },
+    { href: "#locations", label: "Locations", icon: FaMapMarkerAlt },
   ];
 
   return (
@@ -133,7 +133,7 @@ export default function Navigation() {
                               : 'text-forest-600 hover:text-mint-600 hover:bg-mint-50'))
                         } font-semibold text-sm tracking-wide flex items-center gap-2 font-sans`}
                     >
-                      <span className="text-xs">{link.icon}</span>
+                      <link.icon className="text-sm" />
                       {link.label}
                       
                       {/* Active indicator */}

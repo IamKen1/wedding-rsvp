@@ -82,8 +82,8 @@ export default function AddInvitationModal({
       newErrors.email = 'Please enter a valid email address';
     }
 
-    if (formData.allocatedSeats < 1 || formData.allocatedSeats > 10) {
-      newErrors.allocatedSeats = 'Allocated seats must be between 1 and 10';
+    if (formData.allocatedSeats < 1) {
+      newErrors.allocatedSeats = 'Please enter at least 1 seat';
     }
 
     setErrors(newErrors);
@@ -212,7 +212,6 @@ export default function AddInvitationModal({
                 <input
                   type="number"
                   min="1"
-                  max="10"
                   value={formData.allocatedSeats}
                   onChange={(e) => setFormData(prev => ({ 
                     ...prev, 
@@ -223,9 +222,11 @@ export default function AddInvitationModal({
                       ? 'border-red-400 bg-red-50' 
                       : 'border-gray-200 focus:border-mint-400 bg-white'
                   } focus:outline-none focus:ring-2 focus:ring-mint-200`}
+                  placeholder="Enter number of seats"
                   disabled={isSubmitting}
                 />
                 {errors.allocatedSeats && <p className="text-red-500 text-sm mt-1">{errors.allocatedSeats}</p>}
+                <p className="text-xs text-gray-500 mt-1">Enter the number of seats allocated for this guest/family</p>
             </div>
 
             {/* Notes */}

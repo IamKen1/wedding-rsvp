@@ -61,11 +61,23 @@ const formatTime = (time: string): string => {
   return `${hours}:${minutes} ${period}`;
 };
 
+interface EntourageMember {
+  id: number;
+  name: string;
+  role: string;
+  side: 'bride' | 'groom' | 'male' | 'female' | 'both';
+  category: 'parents' | 'sponsors' | 'other';
+  description: string | null;
+  imageUrl: string | null;
+  sortOrder: number;
+}
+
 export default function Schedule() {
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'gifts'>('schedule');
+  const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'entourage' | 'gifts'>('schedule');
   const [scheduleEvents, setScheduleEvents] = useState<WeddingEvent[]>([]);
   const [attireGuidelines, setAttireGuidelines] = useState<WeddingAttire[]>([]);
+  const [entourageData, setEntourageData] = useState<EntourageMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -123,9 +135,10 @@ export default function Schedule() {
         setError(null);
 
         // Parallel fetch for better performance
-        const [eventsResponse, attireResponse] = await Promise.all([
+        const [eventsResponse, attireResponse, entourageResponse] = await Promise.all([
           fetch('/api/admin/schedule', { next: { revalidate: 60 } }),
-          fetch('/api/admin/attire', { next: { revalidate: 60 } })
+          fetch('/api/admin/attire', { next: { revalidate: 60 } }),
+          fetch('/api/admin/entourage', { next: { revalidate: 60 } })
         ]);
         
         if (eventsResponse.ok) {
@@ -138,6 +151,11 @@ export default function Schedule() {
         if (attireResponse.ok) {
           const attire = await attireResponse.json();
           setAttireGuidelines(attire.sort((a: WeddingAttire, b: WeddingAttire) => a.sortOrder - b.sortOrder));
+        }
+
+        if (entourageResponse.ok) {
+          const entourage = await entourageResponse.json();
+          setEntourageData(entourage.sort((a: EntourageMember, b: EntourageMember) => a.sortOrder - b.sortOrder));
         }
       } catch (err) {
         console.error('Error fetching schedule data:', err);
@@ -247,19 +265,20 @@ export default function Schedule() {
           </p>
           
           {/* Navigation Tabs */}
-          <div className="flex justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             {[
               { id: 'schedule' as const, label: 'Schedule', icon: FaCalendarAlt },
               { id: 'attire' as const, label: 'Attire', icon: FaTshirt },
+              { id: 'entourage' as const, label: 'Entourage', icon: FaHeart },
               { id: 'gifts' as const, label: 'Gifts', icon: FaGift }
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 cursor-pointer font-sans ${
+                className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all duration-300 cursor-pointer font-sans text-sm md:text-base ${
                   activeTab === tab.id
-                    ? 'bg-mint-500 text-white shadow-lg'
-                    : 'bg-white/80 text-forest-700 hover:bg-mint-100'
+                    ? 'bg-mint-500 text-white shadow-lg transform scale-105'
+                    : 'bg-white/80 text-forest-700 hover:bg-mint-100 hover:shadow-md'
                 }`}
               >
                 <tab.icon className="text-sm" />
@@ -467,6 +486,125 @@ export default function Schedule() {
                 </p>
               </div>
             </div>
+          </MotionDiv>
+        )}
+
+        {/* Entourage Tab */}
+        {activeTab === 'entourage' && (
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-[1100px] mx-auto"
+          >
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <SkeletonLoader type="card" count={6} />
+              </div>
+            ) : error ? (
+              <div className="text-center py-16">
+                <FaHeart className="text-red-500 text-4xl mx-auto mb-4" />
+                <p className="text-red-600 text-lg mb-2 font-sans">Error loading entourage</p>
+                <p className="text-gray-600">{error}</p>
+              </div>
+            ) : entourageData.length === 0 ? (
+              <div className="text-center py-16">
+                <FaHeart className="text-gray-400 text-4xl mx-auto mb-4" />
+                <p className="text-gray-500 text-lg font-sans">No entourage members added yet</p>
+              </div>
+            ) : (
+              <div className="space-y-12">
+                {/* Group entourage members */}
+                {(() => {
+                  const parents = entourageData.filter(m => m.category === 'parents');
+                  const brideParents = parents.filter(m => m.side === 'bride');
+                  const groomParents = parents.filter(m => m.side === 'groom');
+                  const sponsors = entourageData.filter(m => m.category === 'sponsors');
+                  const others = entourageData.filter(m => m.category === 'other');
+
+                  return (
+                    <>
+                      {/* Parents Section */}
+                      {parents.length > 0 && (
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-rose-200/50">
+                          <h4 className="text-2xl font-bold font-sans text-center text-rose-700 mb-6">Parents</h4>
+                          <div className="grid md:grid-cols-2 gap-6">
+                            {brideParents.length > 0 && (
+                              <div>
+                                <h5 className="text-lg font-semibold text-rose-600 text-center mb-4 font-sans">Bride&apos;s Parents</h5>
+                                <div className="space-y-4">
+                                  {brideParents.map(member => (
+                                    <div key={member.id} className="bg-gradient-to-br from-rose-50 to-pink-50 p-4 rounded-xl border border-rose-200 shadow-sm hover:shadow-md transition-all">
+                                      <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
+                                      <p className="text-sm text-rose-600 text-center font-medium font-sans">{member.role}</p>
+                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                            {groomParents.length > 0 && (
+                              <div>
+                                <h5 className="text-lg font-semibold text-purple-600 text-center mb-4 font-sans">Groom&apos;s Parents</h5>
+                                <div className="space-y-4">
+                                  {groomParents.map(member => (
+                                    <div key={member.id} className="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-xl border border-purple-200 shadow-sm hover:shadow-md transition-all">
+                                      <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
+                                      <p className="text-sm text-purple-600 text-center font-medium font-sans">{member.role}</p>
+                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Sponsors Section */}
+                      {sponsors.length > 0 && (
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-mint-200/50">
+                          <h4 className="text-2xl font-bold font-sans text-center text-mint-700 mb-6">Principal Sponsors</h4>
+                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {sponsors.map(member => {
+                              const isNinong = member.side === 'male';
+                              return (
+                                <div 
+                                  key={member.id} 
+                                  className={`bg-gradient-to-br ${isNinong ? 'from-blue-50 to-cyan-50 border-blue-200' : 'from-pink-50 to-rose-50 border-pink-200'} p-4 rounded-xl border shadow-sm hover:shadow-md transition-all`}
+                                >
+                                  <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
+                                  <p className={`text-sm ${isNinong ? 'text-blue-600' : 'text-pink-600'} text-center font-medium font-sans`}>
+                                    {member.role}
+                                  </p>
+                                  {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Other Members Section */}
+                      {others.length > 0 && (
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-sage-200/50">
+                          <h4 className="text-2xl font-bold font-sans text-center text-sage-700 mb-6">Wedding Party</h4>
+                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {others.map(member => (
+                              <div key={member.id} className="bg-gradient-to-br from-sage-50 to-mint-50 p-4 rounded-xl border border-sage-200 shadow-sm hover:shadow-md transition-all">
+                                <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
+                                <p className="text-sm text-sage-600 text-center font-medium font-sans">{member.role}</p>
+                                {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
+              </div>
+            )}
           </MotionDiv>
         )}
 
