@@ -488,42 +488,42 @@ export default function RSVP() {
               </p>
               
               {/* Countdown Timer */}
-              <div className="bg-gradient-to-r from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] rounded-2xl p-6 mb-6 max-w-2xl mx-auto border-2 border-[#C9A87C]/50 shadow-lg">
+              <div className="bg-gradient-to-r from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] rounded-2xl p-4 md:p-6 mb-6 max-w-2xl mx-auto border-2 border-[#C9A87C]/50 shadow-lg">
                 <div className="flex items-center justify-center gap-2 mb-3">
-                  <FaClock className="text-[#8B6F47] text-xl" />
-                  <p className="text-base text-[#4A3C2E] font-semibold font-sans">
+                  <FaClock className="text-[#8B6F47] text-lg md:text-xl" />
+                  <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-sans">
                     RSVP Deadline: December 24, 2025
                   </p>
                 </div>
                 
-                <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-2xl md:text-3xl font-bold text-[#8B6F47] font-sans">
+                <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-md mx-auto">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
                       {timeLeft.days}
                     </div>
-                    <div className="text-xs text-[#6B5D4F] font-sans mt-1">Days</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Days</div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-2xl md:text-3xl font-bold text-[#8B6F47] font-sans">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
                       {timeLeft.hours}
                     </div>
-                    <div className="text-xs text-[#6B5D4F] font-sans mt-1">Hours</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Hours</div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-2xl md:text-3xl font-bold text-[#8B6F47] font-sans">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
                       {timeLeft.minutes}
                     </div>
-                    <div className="text-xs text-[#6B5D4F] font-sans mt-1">Minutes</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Minutes</div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-2xl md:text-3xl font-bold text-[#8B6F47] font-sans">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
                       {timeLeft.seconds}
                     </div>
-                    <div className="text-xs text-[#6B5D4F] font-sans mt-1">Seconds</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Seconds</div>
                   </div>
                 </div>
                 
-                <p className="text-xs text-[#6B5D4F] mt-3 font-sans text-center">
+                <p className="text-[10px] md:text-xs text-[#6B5D4F] mt-3 font-sans text-center">
                   Please submit your RSVP before the deadline to secure your seat!
                 </p>
               </div>
