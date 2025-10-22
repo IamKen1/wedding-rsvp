@@ -49,14 +49,19 @@ export default function Locations() {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
+        console.log('Fetching locations from /api/locations...');
         const response = await fetch('/api/locations', {
           cache: 'no-store'
         });
         
+        console.log('Response status:', response.status, 'OK:', response.ok);
+        
         if (response.ok) {
           const data = await response.json();
           console.log('Locations data fetched:', data);
+          console.log('Number of locations:', data.length);
           setLocations(data);
+          setError(null);
         } else {
           console.error('Failed to load locations, status:', response.status);
           setError('Failed to load locations');
@@ -65,6 +70,7 @@ export default function Locations() {
         console.error('Error fetching locations:', error);
         setError('Error loading locations');
       } finally {
+        console.log('Setting loading to false');
         setLoading(false);
       }
     };
@@ -94,6 +100,9 @@ export default function Locations() {
       }
     }
   };
+
+  // Debug logging
+  console.log('Locations Component Render - Loading:', loading, 'Error:', error, 'Locations:', locations.length);
 
   return (
     <MotionSection id="locations" className="relative py-20 bg-gradient-to-b from-cream-50 via-sage-50 to-mint-50 overflow-hidden">
