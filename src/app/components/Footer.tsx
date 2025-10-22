@@ -44,7 +44,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center justify-center md:justify-start gap-3">
                 <FaClock className="text-mint-400 text-lg" />
-                <span className="text-gray-200 font-sans">3:00 PM Onwards</span>
+                <span className="text-gray-200 font-sans">1:00 PM Onwards</span>
               </div>
             </div>
           </MotionDiv>
@@ -63,7 +63,7 @@ export default function Footer() {
                   <FaPhone className="text-mint-400" />
                   <span className="font-medium text-mint-300">Kenneth</span>
                 </div>
-                <p className="text-gray-200 text-sm">0929-133-8412</p>
+                {/* <p className="text-gray-200 text-sm">0929-133-8412</p> */}
               </div>
               
               <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-blush-400/20">
@@ -71,7 +71,7 @@ export default function Footer() {
                   <FaPhone className="text-blush-400" />
                   <span className="font-medium text-blush-300">Jenna</span>
                 </div>
-                <p className="text-gray-200 text-sm">0912-345-6789</p>
+                {/* <p className="text-gray-200 text-sm">0912-345-6789</p> */}
               </div>
             </div>
           </MotionDiv>
