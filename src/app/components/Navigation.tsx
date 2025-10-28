@@ -91,7 +91,7 @@ export default function Navigation() {
               transition={{ duration: 0.5 }}
               className="flex items-center"
             >
-              <span className={`text-2xl font-great-vibes transition-colors duration-300 text-gray-800`}>
+              <span className={`text-xl font-great-vibes transition-colors duration-300 text-gray-800`}>
                 K & J
               </span>
             </MotionDiv>
@@ -170,7 +170,7 @@ export default function Navigation() {
                 >
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="px-6 py-4 text-white text-2xl font-semibold tracking-wider cursor-pointer font-sans
+                    className="px-6 py-4 text-white text-xl font-semibold tracking-wider cursor-pointer font-sans
                       hover:text-mint-light transition-colors duration-300 relative group"
                   >
                     {link.label}
