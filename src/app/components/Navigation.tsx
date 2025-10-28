@@ -79,10 +79,8 @@ export default function Navigation() {
         transition={{ duration: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-500
           ${scrolled 
-            ? (isDark 
-              ? 'bg-gradient-to-b from-forest-800/95 to-forest-700/90 backdrop-blur-lg shadow-xl' 
-              : 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-mint-200/50') 
-            : ''}`}
+            ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100'
+            : 'bg-white/40 backdrop-blur-md'}`}
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
@@ -93,11 +91,7 @@ export default function Navigation() {
               transition={{ duration: 0.5 }}
               className="flex items-center"
             >
-              <span className={`text-2xl font-great-vibes transition-colors duration-300 ${
-                scrolled 
-                  ? (isDark ? 'text-white' : 'text-forest-700')
-                  : (isDark ? 'text-white' : 'text-forest-700')
-              }`}>
+              <span className={`text-2xl font-great-vibes transition-colors duration-300 text-gray-800`}>
                 K & J
               </span>
             </MotionDiv>
@@ -116,21 +110,9 @@ export default function Navigation() {
                     <button
                       onClick={() => handleNavClick(link.href)}
                       className={`relative px-4 py-2 rounded-full transition-all duration-300 group cursor-pointer
-                        ${scrolled 
-                          ? (isDark 
-                            ? (isActive 
-                              ? 'text-mint-300 bg-mint-500/20' 
-                              : 'text-white hover:text-mint-200 hover:bg-white/10')
-                            : (isActive 
-                              ? 'text-mint-600 bg-mint-100' 
-                              : 'text-forest-600 hover:text-mint-600 hover:bg-mint-50'))
-                          : (isDark 
-                            ? (isActive 
-                              ? 'text-mint-300 bg-mint-500/20' 
-                              : 'text-white hover:text-mint-200 hover:bg-white/10')
-                            : (isActive 
-                              ? 'text-mint-600 bg-mint-100' 
-                              : 'text-forest-600 hover:text-mint-600 hover:bg-mint-50'))
+                        ${isActive 
+                          ? 'text-gray-800 bg-[#F5EEE6]' 
+                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
                         } font-semibold text-sm tracking-wide flex items-center gap-2 font-sans`}
                     >
                       <link.icon className="text-sm" />
@@ -142,7 +124,7 @@ export default function Navigation() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 
-                            bg-mint-400 rounded-full"
+                            bg-[#C9A87C] rounded-full"
                         />
                       )}
                     </button>
@@ -154,15 +136,7 @@ export default function Navigation() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`md:hidden p-2 rounded-full transition-all duration-300 cursor-pointer ${
-                scrolled 
-                  ? (isDark 
-                    ? 'text-white hover:bg-white/10' 
-                    : 'text-forest-600 hover:bg-mint-50')
-                  : (isDark 
-                    ? 'text-white hover:bg-white/10' 
-                    : 'text-forest-600 hover:bg-mint-50')
-              }`}
+              className="md:hidden p-2 rounded-full transition-all duration-300 cursor-pointer text-gray-800 hover:bg-gray-100"
               aria-label="Toggle menu"
             >
               <MotionDiv
@@ -183,7 +157,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-gradient-to-b from-mint-dark/95 to-leaf-dark/95 z-[90] md:hidden"
+            className="fixed inset-0 bg-white z-[90] md:hidden"
           >
             <div className="flex flex-col items-center justify-center h-full">
               {navLinks.map((link, index) => (

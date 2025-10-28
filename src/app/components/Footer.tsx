@@ -44,7 +44,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center justify-center md:justify-start gap-3">
                 <FaClock className="text-mint-400 text-lg" />
-                <span className="text-gray-200 font-sans">1:00 PM Onwards</span>
+                <span className="text-gray-200 font-sans">1:30 PM Onwards</span>
               </div>
             </div>
           </MotionDiv>

@@ -9,7 +9,7 @@ import SkeletonLoader from './components/SkeletonLoader';
 
 // Loading fallbacks for each section
 const ScheduleFallback = () => (
-  <div className="py-16 bg-gradient-soft from-sage-50/50 via-cream-50/30 to-mint-50/50">
+  <div className="py-16 bg-white">
     <div className="max-w-[1200px] mx-auto px-6">
       <div className="text-center mb-10">
         <div className="h-12 bg-gray-200 rounded w-64 mx-auto mb-4 animate-pulse"></div>
@@ -23,7 +23,7 @@ const ScheduleFallback = () => (
 );
 
 const EntourageFallback = () => (
-  <div className="py-16 bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
+  <div className="py-16 bg-white">
     <div className="max-w-[1200px] mx-auto px-6">
       <div className="text-center mb-12">
         <div className="h-12 bg-gray-200 rounded w-64 mx-auto mb-4 animate-pulse"></div>
@@ -37,7 +37,7 @@ const EntourageFallback = () => (
 );
 
 const LocationsFallback = () => (
-  <div className="py-20 bg-gradient-to-b from-cream-50 via-sage-50 to-mint-50">
+  <div className="py-20 bg-white">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
         <div className="h-14 bg-gray-200 rounded w-72 mx-auto mb-4 animate-pulse"></div>
@@ -52,9 +52,9 @@ const LocationsFallback = () => (
 );
 
 const RSVPFallback = () => (
-  <div className="py-16 bg-gradient-soft from-sage-50 via-mint-50 to-blush-50">
+  <div className="py-16 bg-white">
     <div className="max-w-[800px] mx-auto px-6">
-      <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-mint-200/50">
+      <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
         <SkeletonLoader type="form" count={1} />
       </div>
     </div>
@@ -63,7 +63,7 @@ const RSVPFallback = () => (
 
 export default function HomePage() {
   return (
-    <main className="relative bg-gradient-soft from-cream-50 via-sage-50 to-mint-50">
+    <main className="relative bg-white">
       <Navigation />
       <div id="top">
         <Header />

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Import Professional Wedding Fonts - Elegant & Timeless */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 :root {
   --scroll-behavior: smooth !important;
@@ -15,8 +15,7 @@
   
   /* Professional Wedding Typography - Sophisticated & Readable */
   --font-great-vibes: 'Great Vibes', cursive;   /* Custom Great Vibes font for special headers */
-  --font-display: 'Cormorant Garamond', serif;  /* Elegant display font for big titles */
-  --font-serif: 'Lora', serif;                  /* Readable serif for headers & names */
+  --font-display: 'Montserrat', sans-serif;     /* Modern sans-serif for big titles */
   --font-sans: 'Montserrat', sans-serif;        /* Modern sans-serif for body & forms */
   
   /* Warm Beige/Tan Color Palette - Based on color motif */
@@ -50,11 +49,6 @@ body {
   font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.02em;
-}
-
-.font-serif {
-  font-family: var(--font-serif);
-  font-weight: 500;
 }
 
 .font-sans {

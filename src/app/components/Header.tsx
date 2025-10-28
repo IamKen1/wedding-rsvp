@@ -57,11 +57,11 @@ export default function Header() {
         />
       </MotionDiv>
 
-      {/* Sophisticated Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10" />
+      {/* Subtle Gradient Overlay - Much lighter */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30 z-10" />
       
-      {/* Elegant Bottom Fade */}
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/40 to-transparent z-10" />
+      {/* Very subtle bottom fade */}
+      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white/60 to-transparent z-10" />
 
       {/* Main Content - Centered Elegantly */}
       <MotionDiv 

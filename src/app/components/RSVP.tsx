@@ -426,18 +426,18 @@ export default function RSVP() {
   }
 
   return (
-    <section id="rsvp" className="py-20 bg-gradient-to-br from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] relative overflow-hidden">
-      {/* Enhanced Hero-style background */}
+    <section id="rsvp" className="py-20 bg-white relative overflow-hidden border-t border-gray-100">
+      {/* Subtle background elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-radial from-[#E6D5BE]/40 via-transparent to-[#C9A87C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F5EEE6]/10 to-white" />
         
-        {/* More prominent floating elements with warm tones */}
-        <div className="absolute top-10 left-10 w-40 h-40 bg-[#C9A87C]/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute top-1/4 right-10 w-36 h-36 bg-[#D4B896]/25 rounded-full blur-3xl animate-float" 
+        {/* Very subtle floating elements */}
+        <div className="absolute top-10 left-10 w-40 h-40 bg-[#F5EEE6]/15 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/4 right-10 w-36 h-36 bg-[#E6D5BE]/12 rounded-full blur-3xl animate-float" 
              style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 left-1/4 w-44 h-44 bg-[#E6D5BE]/25 rounded-full blur-3xl animate-float" 
+        <div className="absolute bottom-20 left-1/4 w-44 h-44 bg-[#F5EEE6]/15 rounded-full blur-3xl animate-float" 
              style={{ animationDelay: '4s' }} />
-        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-[#C9A87C]/20 rounded-full blur-3xl animate-float" 
+        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-[#E6D5BE]/10 rounded-full blur-3xl animate-float" 
              style={{ animationDelay: '1s' }} />
       </div>
 
@@ -451,8 +451,8 @@ export default function RSVP() {
         <div className="text-center mb-10">
           {isLoadingGuest && invitationId ? (
             <div className="flex flex-col items-center">
-              <FaSpinner className="animate-spin text-2xl text-[#8B6F47] mb-4" />
-              <p className="text-[#6B5D4F] text-sm">Loading your invitation details...</p>
+              <FaSpinner className="animate-spin text-2xl text-[#C9A87C] mb-4" />
+              <p className="text-gray-600 text-sm">Loading your invitation details...</p>
             </div>
           ) : guestError ? (
             <div className="bg-red-50 border-2 border-red-300 rounded-xl p-5 mb-6">
@@ -462,17 +462,17 @@ export default function RSVP() {
               </p>
             </div>
           ) : guestInfo ? (
-            <div className="bg-[#F5EEE6] border-2 border-[#C9A87C]/40 rounded-xl p-6 mb-6">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-great-vibes text-[#4A3C2E] mb-4 font-medium tracking-tight">
+            <div className="bg-[#F5EEE6]/40 border-2 border-[#E6D5BE]/50 rounded-xl p-6 mb-6">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-great-vibes text-gray-800 mb-4 font-medium tracking-tight">
                 Hello, {guestInfo.name}! 💕
               </h3>
-              <p className="text-lg md:text-xl text-[#6B5D4F] mb-3 font-sans">
+              <p className="text-lg md:text-xl text-gray-700 mb-3 font-sans">
                 We're so excited to celebrate with you!
               </p>
-              <p className="text-[#8B6F47] font-semibold font-sans text-base md:text-lg">
+              <p className="text-gray-600 font-semibold font-sans text-base md:text-lg">
                 Your invitation includes {guestInfo.allocatedSeats} seat{guestInfo.allocatedSeats > 1 ? 's' : ''}
                 {guestInfo.notes && (
-                  <span className="text-[#6B5D4F] font-normal"> • {guestInfo.notes}</span>
+                  <span className="text-gray-600 font-normal"> • {guestInfo.notes}</span>
                 )}
               </p>
             </div>
