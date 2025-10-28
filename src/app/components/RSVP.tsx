@@ -257,7 +257,7 @@ export default function RSVP() {
             
             {/* Wedding Hashtag */}
             <div className="pt-4 border-t border-[#C9A87C]/30">
-              <p className="text-base font-serif text-[#8B6F47] tracking-wider">
+              <p className="text-base font-sans text-[#8B6F47] tracking-wider">
                 Share your photos with #TheJenuineKennection
               </p>
             </div>
@@ -466,7 +466,7 @@ export default function RSVP() {
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-great-vibes text-[#4A3C2E] mb-4 font-medium tracking-tight">
                 Hello, {guestInfo.name}! 💕
               </h3>
-              <p className="text-lg md:text-xl text-[#6B5D4F] mb-3 font-serif">
+              <p className="text-lg md:text-xl text-[#6B5D4F] mb-3 font-sans">
                 We're so excited to celebrate with you!
               </p>
               <p className="text-[#8B6F47] font-semibold font-sans text-base md:text-lg">
@@ -483,7 +483,7 @@ export default function RSVP() {
               <h3 className="text-3xl md:text-4xl font-great-vibes text-[#4A3C2E] mb-4 font-semibold tracking-tight">
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
-              <p className="text-base md:text-lg text-[#6B5D4F] max-w-2xl mx-auto leading-relaxed font-serif mb-4">
+              <p className="text-base md:text-lg text-[#6B5D4F] max-w-2xl mx-auto leading-relaxed font-sans mb-4">
                 We would be honored to have you celebrate with us on our special day
               </p>
               
@@ -531,7 +531,7 @@ export default function RSVP() {
               {/* Wedding Hashtag */}
               <div className="mt-6 flex items-center justify-center gap-3">
                 <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A87C]"></div>
-                <p className="text-xl md:text-2xl font-serif text-[#8B6F47] tracking-wider">
+                <p className="text-xl md:text-2xl font-sans text-[#8B6F47] tracking-wider">
                   #TheJenuineKennection
                 </p>
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#C9A87C]"></div>

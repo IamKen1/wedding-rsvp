@@ -340,7 +340,7 @@ export default function WeddingDetailsManager() {
         {/* Parents Section */}
         {(brideParents.length > 0 || groomParents.length > 0) && (
           <div>
-            <h2 className="text-2xl font-serif text-forest-700 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-sans text-forest-700 mb-4 flex items-center gap-2">
               👨‍👩‍👧‍👦 Parents
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -371,7 +371,7 @@ export default function WeddingDetailsManager() {
         {/* Sponsors Section */}
         {(maleSponsors.length > 0 || femaleSponsors.length > 0) && (
           <div>
-            <h2 className="text-2xl font-serif text-forest-700 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-sans text-forest-700 mb-4 flex items-center gap-2">
               🎩👗 Principal Sponsors
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -402,7 +402,7 @@ export default function WeddingDetailsManager() {
         {/* Other Entourage - No Separation */}
         {otherMembers.length > 0 && (
           <div>
-            <h2 className="text-2xl font-serif text-forest-700 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-sans text-forest-700 mb-4 flex items-center gap-2">
               💍 Wedding Entourage
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -528,7 +528,7 @@ export default function WeddingDetailsManager() {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold font-serif text-forest-700">Wedding Details Management</h2>
+        <h2 className="text-2xl font-bold font-sans text-forest-700">Wedding Details Management</h2>
         <div className="flex gap-2">
           {activeCategory === 'entourage' && (
             <button

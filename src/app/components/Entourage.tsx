@@ -153,14 +153,14 @@ export default function Entourage() {
             {/* Parents Section - Separated by Bride/Groom */}
             {(brideParents.length > 0 || groomParents.length > 0) && (
               <div className="space-y-12">
-                <h3 className="text-3xl font-serif text-forest-700 text-center mb-8 font-semibold tracking-wide">
+                <h3 className="text-3xl font-sans text-forest-700 text-center mb-8 font-semibold tracking-wide">
                   Parents
                 </h3>
                 
                 {/* Bride's Parents */}
                 {brideParents.length > 0 && (
                   <div>
-                    <h4 className="text-xl font-serif text-rose-600 text-center mb-6 font-medium">
+                    <h4 className="text-xl font-sans text-rose-600 text-center mb-6 font-medium">
                       Bride's Parents
                     </h4>
                     <MotionDiv
@@ -193,7 +193,7 @@ export default function Entourage() {
                                 </div>
                               </div>
                               <div className="pt-8 text-center relative z-10">
-                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-serif">{member.name}</h5>
+                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-sans">{member.name}</h5>
                                 <p className={`text-sm ${colors.text} font-medium mb-3 tracking-wide uppercase`}>{member.role}</p>
                                 {member.description && (
                                   <p className="text-sm text-gray-600 leading-relaxed">{member.description}</p>
@@ -210,7 +210,7 @@ export default function Entourage() {
                 {/* Groom's Parents */}
                 {groomParents.length > 0 && (
                   <div>
-                    <h4 className="text-xl font-serif text-purple-600 text-center mb-6 font-medium">
+                    <h4 className="text-xl font-sans text-purple-600 text-center mb-6 font-medium">
                       Groom's Parents
                     </h4>
                     <MotionDiv
@@ -243,7 +243,7 @@ export default function Entourage() {
                                 </div>
                               </div>
                               <div className="pt-8 text-center relative z-10">
-                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-serif">{member.name}</h5>
+                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-sans">{member.name}</h5>
                                 <p className={`text-sm ${colors.text} font-medium mb-3 tracking-wide uppercase`}>{member.role}</p>
                                 {member.description && (
                                   <p className="text-sm text-gray-600 leading-relaxed">{member.description}</p>
@@ -262,14 +262,14 @@ export default function Entourage() {
             {/* Sponsors Section - Separated by Male/Female */}
             {(maleSponsors.length > 0 || femaleSponsors.length > 0) && (
               <div className="space-y-12">
-                <h3 className="text-3xl font-serif text-forest-700 text-center mb-8 font-semibold tracking-wide">
+                <h3 className="text-3xl font-sans text-forest-700 text-center mb-8 font-semibold tracking-wide">
                   Principal Sponsors
                 </h3>
                 
                 {/* Male Sponsors */}
                 {maleSponsors.length > 0 && (
                   <div>
-                    <h4 className="text-xl font-serif text-purple-600 text-center mb-6 font-medium">
+                    <h4 className="text-xl font-sans text-purple-600 text-center mb-6 font-medium">
                       Male Sponsors
                     </h4>
                     <MotionDiv
@@ -302,7 +302,7 @@ export default function Entourage() {
                                 </div>
                               </div>
                               <div className="pt-8 text-center relative z-10">
-                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-serif">{member.name}</h5>
+                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-sans">{member.name}</h5>
                                 <p className={`text-sm ${colors.text} font-medium mb-3 tracking-wide uppercase`}>{member.role}</p>
                                 {member.description && (
                                   <p className="text-sm text-gray-600 leading-relaxed">{member.description}</p>
@@ -319,7 +319,7 @@ export default function Entourage() {
                 {/* Female Sponsors */}
                 {femaleSponsors.length > 0 && (
                   <div>
-                    <h4 className="text-xl font-serif text-rose-600 text-center mb-6 font-medium">
+                    <h4 className="text-xl font-sans text-rose-600 text-center mb-6 font-medium">
                       Female Sponsors
                     </h4>
                     <MotionDiv
@@ -352,7 +352,7 @@ export default function Entourage() {
                                 </div>
                               </div>
                               <div className="pt-8 text-center relative z-10">
-                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-serif">{member.name}</h5>
+                                <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-sans">{member.name}</h5>
                                 <p className={`text-sm ${colors.text} font-medium mb-3 tracking-wide uppercase`}>{member.role}</p>
                                 {member.description && (
                                   <p className="text-sm text-gray-600 leading-relaxed">{member.description}</p>
@@ -371,7 +371,7 @@ export default function Entourage() {
             {/* Rest of Entourage - No Separation */}
             {otherMembers.length > 0 && (
               <div>
-                <h3 className="text-3xl font-serif text-forest-700 text-center mb-8 font-semibold tracking-wide">
+                <h3 className="text-3xl font-sans text-forest-700 text-center mb-8 font-semibold tracking-wide">
                   Wedding Entourage
                 </h3>
                 <MotionDiv
@@ -404,7 +404,7 @@ export default function Entourage() {
                             </div>
                           </div>
                           <div className="pt-8 text-center relative z-10">
-                            <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-serif">{member.name}</h5>
+                            <h5 className="text-2xl font-semibold text-gray-800 mb-2 font-sans">{member.name}</h5>
                             <p className={`text-sm ${colors.text} font-medium mb-3 tracking-wide uppercase`}>{member.role}</p>
                             {member.description && (
                               <p className="text-sm text-gray-600 leading-relaxed">{member.description}</p>

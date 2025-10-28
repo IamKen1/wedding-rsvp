@@ -257,7 +257,7 @@ export default function Schedule() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h3 className="text-3xl md:text-4xl font-display text-forest-700 mb-4 font-light tracking-wide">
+          <h3 className="text-3xl md:text-4xl font-display font-sans text-forest-700 mb-4 font-light tracking-wide">
             Our Special Day
           </h3>
           <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-sans">

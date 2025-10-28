@@ -68,7 +68,7 @@ export default function Attire() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-serif text-forest-800 mb-2">Attire & Dress Code</h2>
+          <h2 className="text-3xl md:text-4xl font-sans text-forest-800 mb-2">Attire & Dress Code</h2>
           <p className="text-forest-600/80">Guidelines to help you look your best</p>
         </div>
 

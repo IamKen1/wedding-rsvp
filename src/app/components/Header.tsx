@@ -99,7 +99,7 @@ export default function Header() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-great-vibes text-white font-normal
               tracking-wide leading-tight mb-4
               [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
-              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-normal">&</span> Jenna
+              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-great-vibes">&</span> Jenna
             </h1>
           </MotionDiv>
 
@@ -118,7 +118,7 @@ export default function Header() {
             variants={fadeInUp}
             className="mb-6"
           >
-            <p className="text-2xl md:text-3xl lg:text-4xl font-display text-white/95 font-light tracking-wide
+            <p className="text-2xl md:text-2xl lg:text-2xl font-sans text-white/95 font-light tracking-wide
               [text-shadow:_0_2px_15px_rgba(0,0,0,0.4)]">
               Request the honor of your presence
             </p>
@@ -129,7 +129,7 @@ export default function Header() {
             variants={fadeInUp}
             className="space-y-3"
           >
-            <p className="text-xl md:text-2xl text-white/95 font-serif font-medium tracking-wide
+            <p className="text-xl md:text-2xl text-white/95 font-sans font-medium tracking-wide
               [text-shadow:_0_1px_10px_rgba(0,0,0,0.4)]">
               Saturday, January 24, 2026
             </p>

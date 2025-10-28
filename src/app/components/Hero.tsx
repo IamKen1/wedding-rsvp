@@ -82,7 +82,7 @@ export default function Hero() {
               <p className="relative text-5xl md:text-6xl lg:text-7xl font-display text-forest-700 font-light
                 px-6 md:px-12 py-4 md:py-6 bg-white/80 backdrop-blur-sm rounded-2xl border-2 border-mint-200/60
                 shadow-lg hover:shadow-xl transition-all duration-300 tracking-wide">
-                Kenneth <span className="text-blush-500 font-serif">&</span> Jenna
+                Kenneth <span className="text-blush-500 font-sans">&</span> Jenna
               </p>
             </div>
 
@@ -93,7 +93,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
               >
-                <p className="text-xl md:text-2xl text-forest-700 font-serif font-medium tracking-wide">
+                <p className="text-xl md:text-2xl text-forest-700 font-sans font-medium tracking-wide">
                   Saturday, January 24, 2026
                 </p>
               </MotionDiv>
