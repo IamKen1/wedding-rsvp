@@ -78,38 +78,12 @@ export default function Locations() {
     fetchLocations();
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut'
-      }
-    }
-  };
-
-  // Debug logging
-  console.log('Locations Component Render - Loading:', loading, 'Error:', error, 'Locations:', locations.length);
-
   return (
-    <MotionSection id="locations" className="relative py-20 bg-gradient-to-b from-cream-50 via-sage-50 to-mint-50 overflow-hidden">
+    <MotionSection id="locations" className="relative py-20 bg-white border-t border-gray-100 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-mint-200/20 rounded-full blur-2xl animate-float" />
-        <div className="absolute bottom-32 right-20 w-24 h-24 bg-blush-200/30 rounded-full blur-xl animate-float" 
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[#F5EEE6]/15 rounded-full blur-2xl animate-float" />
+        <div className="absolute bottom-32 right-20 w-24 h-24 bg-[#E6D5BE]/20 rounded-full blur-xl animate-float" 
              style={{ animationDelay: '2s' }} />
       </div>
 
@@ -121,22 +95,17 @@ export default function Locations() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-script text-forest-800 mb-4 font-light tracking-wide">
+          <h2 className="text-2xl md:text-4xl font-script text-gray-800 mb-4 font-light tracking-wide">
             Wedding Locations
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blush-400 to-sage-400 mx-auto mb-6 rounded-full"></div>
-          <p className="text-forest-600 font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
+          <div className="w-24 h-1 bg-[#C9A87C] mx-auto mb-6 rounded-full"></div>
+          <p className="text-gray-700 font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
             Important venue information and directions for our special day
           </p>
         </MotionDiv>
 
         {/* Locations Grid */}
-        <MotionDiv
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div>
           {loading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <SkeletonLoader type="card" count={3} />
@@ -146,54 +115,43 @@ export default function Locations() {
               <p className="text-red-600 font-proxima-regular">{error}</p>
             </div>
           ) : locations.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-              {locations.map((location) => {
-          const cardVariants = {
-            hidden: { y: 30, opacity: 0, scale: 0.95 },
-            visible: { 
-              y: 0,
-              opacity: 1,
-              scale: 1,
-              transition: {
-                duration: 0.6,
-                ease: "easeOut"
-              }
-            }
-          };
-          
-          return (
+            <div className="flex flex-wrap gap-8 justify-center">
+              {locations.map((location, index) => (
           <MotionDiv
             key={location.id}
-            variants={cardVariants}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50 w-full max-w-sm"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 w-full max-w-sm"
           >
             <div className="text-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 bg-[#C9A87C] rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaMapMarkerAlt className="text-white text-lg" />
               </div>
-              <h3 className="text-xl font-bold font-proxima-regular text-forest-800 mb-2">{location.name}</h3>
+              <h3 className="text-xl font-bold font-proxima-regular text-gray-800 mb-2">{location.name}</h3>
             </div>
 
             <div className="space-y-4">
               {/* Address */}
               <div>
-                <p className="text-forest-700 font-proxima-regular text-sm leading-relaxed">{location.address}</p>
+                <p className="text-gray-700 font-proxima-regular text-sm leading-relaxed">{location.address}</p>
               </div>
 
               {/* Contact Information */}
               {(location.contactPhone || location.contactEmail) && (
                 <div className="border-t border-gray-200 pt-4">
-            <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Contact Information</h4>
+            <h4 className="text-sm font-semibold text-gray-800 mb-2 font-proxima-regular">Contact Information</h4>
             {location.contactPhone && (
               <div className="flex items-center gap-2 mb-1">
-                <FaPhone className="text-forest-500 text-xs" />
-                <span className="text-sm text-forest-600 font-proxima-regular">{location.contactPhone}</span>
+                <FaPhone className="text-[#C9A87C] text-xs" />
+                <span className="text-sm text-gray-700 font-proxima-regular">{location.contactPhone}</span>
               </div>
             )}
             {location.contactEmail && (
               <div className="flex items-center gap-2">
-                <FaEnvelope className="text-forest-500 text-xs" />
-                <span className="text-sm text-forest-600 font-proxima-regular">{location.contactEmail}</span>
+                <FaEnvelope className="text-[#C9A87C] text-xs" />
+                <span className="text-sm text-gray-700 font-proxima-regular">{location.contactEmail}</span>
               </div>
             )}
                 </div>
@@ -202,12 +160,12 @@ export default function Locations() {
               {/* Map Photo */}
               {location.mapPhoto && (
                 <div className="border-t border-gray-200 pt-4">
-            <h4 className="text-sm font-semibold text-forest-600 mb-3 font-proxima-regular flex items-center gap-2">
+            <h4 className="text-sm font-semibold text-gray-800 mb-3 font-proxima-regular flex items-center gap-2">
               <FaImage className="text-xs" />
               Map & Directions
             </h4>
             <div 
-              className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-forest-400 transition-colors"
+              className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-[#C9A87C] transition-colors"
               onClick={() => setSelectedPhoto(location.mapPhoto!)}
             >
               <img 
@@ -216,7 +174,7 @@ export default function Locations() {
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
               />
             </div>
-            <p className="text-xs text-forest-500 font-proxima-regular mt-1 text-center">
+            <p className="text-xs text-gray-600 font-proxima-regular mt-1 text-center">
               Click to view full size
             </p>
                 </div>
@@ -225,16 +183,16 @@ export default function Locations() {
               {/* Directions */}
               {location.directions && (
                 <div className="border-t border-gray-200 pt-4">
-            <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Directions</h4>
-            <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.directions}</p>
+            <h4 className="text-sm font-semibold text-gray-800 mb-2 font-proxima-regular">Directions</h4>
+            <p className="text-sm text-gray-700 font-proxima-regular leading-relaxed">{location.directions}</p>
                 </div>
               )}
 
               {/* Special Instructions */}
               {location.specialInstructions && (
                 <div className="border-t border-gray-200 pt-4">
-            <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Special Instructions</h4>
-            <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.specialInstructions}</p>
+            <h4 className="text-sm font-semibold text-gray-800 mb-2 font-proxima-regular">Special Instructions</h4>
+            <p className="text-sm text-gray-700 font-proxima-regular leading-relaxed">{location.specialInstructions}</p>
                 </div>
               )}
 
@@ -245,8 +203,8 @@ export default function Locations() {
               href={location.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-forest-500 to-sage-500 
-                 text-white rounded-lg hover:from-forest-600 hover:to-sage-600 transition-all duration-200 
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A87C] 
+                 text-white rounded-lg hover:bg-[#B89870] transition-all duration-200 
                  text-sm font-medium font-proxima-regular"
             >
               <FaExternalLinkAlt className="text-xs" />
@@ -256,15 +214,14 @@ export default function Locations() {
               )}
             </div>
           </MotionDiv>
-          );
-              })}
+              ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-forest-600 font-proxima-regular">No locations available at this time.</p>
+              <p className="text-gray-600 font-proxima-regular">No locations available at this time.</p>
             </div>
           )}
-        </MotionDiv>
+        </div>
       </div>
 
       {/* Photo Modal */}
