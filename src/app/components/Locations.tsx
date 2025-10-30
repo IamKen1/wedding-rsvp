@@ -183,7 +183,7 @@ export default function Locations() {
               {/* Directions */}
               {location.directions && (
                 <div className="border-t border-gray-200 pt-4">
-            <h4 className="text-sm font-semibold text-gray-800 mb-2 font-proxima-regular">Directions</h4>
+            {/* <h4 className="text-sm font-bold text-gray-800 mb-2 font-proxima-regular">Address</h4> */}
             <p className="text-sm text-gray-700 font-proxima-regular leading-relaxed">{location.directions}</p>
                 </div>
               )}

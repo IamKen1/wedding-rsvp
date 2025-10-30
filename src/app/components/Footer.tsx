@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import { MotionDiv, MotionSection } from '@/types/motion';
 import { 
   FaPhone, 
@@ -10,6 +11,8 @@ import {
 } from 'react-icons/fa';
 
 export default function Footer() {
+  const [showKennethPhone, setShowKennethPhone] = useState(false);
+  const [showJennaPhone, setShowJennaPhone] = useState(false);
   return (
     <MotionSection 
       initial={{ opacity: 0 }}
@@ -58,21 +61,39 @@ export default function Footer() {
           >
             <h4 className="text-xl font-semibold text-white mb-6 font-proxima-regular">Contact Us</h4>
             <div className="space-y-4">
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-mint-400/20">
+              <button 
+                onClick={() => setShowKennethPhone(!showKennethPhone)}
+                className="w-full bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-mint-400/20 
+                  hover:bg-white/20 transition-all duration-300 cursor-pointer"
+              >
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <FaPhone className="text-mint-400" />
                   <span className="font-medium text-mint-300">Kenneth</span>
                 </div>
-                {/* <p className="text-gray-200 text-sm">0929-133-8412</p> */}
-              </div>
+                {showKennethPhone && (
+                  <p className="text-gray-200 text-sm mt-2 animate-fadeIn">0929-133-8412</p>
+                )}
+                {!showKennethPhone && (
+                  <p className="text-gray-400 text-xs mt-1">Click to reveal</p>
+                )}
+              </button>
               
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-blush-400/20">
+              <button 
+                onClick={() => setShowJennaPhone(!showJennaPhone)}
+                className="w-full bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-blush-400/20
+                  hover:bg-white/20 transition-all duration-300 cursor-pointer"
+              >
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <FaPhone className="text-blush-400" />
                   <span className="font-medium text-blush-300">Jenna</span>
                 </div>
-                {/* <p className="text-gray-200 text-sm">0912-345-6789</p> */}
-              </div>
+                {showJennaPhone && (
+                  <p className="text-gray-200 text-sm mt-2 animate-fadeIn">0929-133-8412</p>
+                )}
+                {!showJennaPhone && (
+                  <p className="text-gray-400 text-xs mt-1">Click to reveal</p>
+                )}
+              </button>
             </div>
           </MotionDiv>
 
