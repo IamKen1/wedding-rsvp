@@ -81,50 +81,50 @@ export default function Header() {
             }
           }}
         >
-          {/* Names - Elegant and Readable with Responsive Sizing */}
-          <MotionDiv
+            {/* Names - Elegant and Readable with Responsive Sizing */}
+            <MotionDiv
             variants={fadeInUp}
-          >
+            >
             <h1 className="text-[clamp(3rem,12vw,9rem)] font-something text-white font-normal
-              tracking-wide leading-tight mb-2
+              tracking-wide leading-tight mb-0.5
               [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
               drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
               Kenneth <span className="text-[clamp(2rem,7vw,7rem)] font-something">&</span> Jenna
             </h1>
-          </MotionDiv>
+            </MotionDiv>
 
-          {/* Wedding Date */}
-          <MotionDiv
+            {/* Wedding Date */}
+            <MotionDiv
             variants={fadeInUp}
-            className="mb-3"
-          >
+            className="mb-1"
+            >
             <p className="text-[clamp(1.125rem,3vw,1.75rem)] text-white tracking-wide
               [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
               drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
               JANUARY 24, 2026 * SATURDAY * 1:30 P.M.
             </p>
-          </MotionDiv>
+            </MotionDiv>
 
-          {/* Elegant Separator */}
-          <MotionDiv
+            {/* Elegant Separator */}
+            <MotionDiv
             variants={fadeInUp}
-            className="mb-4 flex items-center justify-center gap-2"
-          >
+            className="mb-1 flex items-center justify-center gap-2"
+            >
             <div className="w-8 h-[1px] bg-white/40" />
             <div className="w-1 h-1 bg-white/60 rounded-full" />
             <div className="w-8 h-[1px] bg-white/40" />
-          </MotionDiv>
+            </MotionDiv>
 
-          {/* Subtitle */}
-          <MotionDiv
+            {/* Subtitle */}
+            <MotionDiv
             variants={fadeInUp}
-           
-          >
+             
+            >
             <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white/95 font-script tracking-wider
               [text-shadow:_0_2px_12px_rgba(0,0,0,0.8),_0_1px_6px_rgba(0,0,0,0.6)]">
               A celebration of love and commitment
             </p>
-          </MotionDiv>
+            </MotionDiv>
         </MotionDiv>
       </MotionDiv>
 
