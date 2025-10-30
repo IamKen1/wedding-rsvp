@@ -8,6 +8,30 @@ const greatVibes = localFont({
   display: 'swap',
 });
 
+const somethingFont = localFont({
+  src: './fonts/something.ttf',
+  variable: '--font-something',
+  display: 'swap',
+});
+
+const proximanova_regular = localFont({
+  src: './fonts/proximanova_regular.ttf',
+  variable: '--font-proximanova-regular',
+  display: 'swap',
+});
+
+const proximanova_bold = localFont({
+  src: './fonts/proximanova_bold.otf',
+  variable: '--font-proximanova-bold',
+  display: 'swap',
+});
+
+const proximanova_light = localFont({
+  src: './fonts/proximanova_light.otf',
+  variable: '--font-proximanova-light',
+  display: 'swap',
+});
+
 export const metadata = {
   title: 'Kenneth & Jenna Wedding',
   description: 'RSVP to our wedding celebration!',
@@ -25,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={greatVibes.variable}>
+    <html lang="en" suppressHydrationWarning className={`${greatVibes.variable} ${somethingFont.variable} ${proximanova_regular.variable} ${proximanova_bold.variable} ${proximanova_light.variable}`}>
       <head>
         {/* Preconnect to Google Fonts for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +57,7 @@ export default function RootLayout({
         {/* DNS prefetch for API calls */}
         <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_BASE_URL || ''} />
       </head>
-      <body suppressHydrationWarning className={greatVibes.variable}>{children}</body>
+      <body suppressHydrationWarning className={`${greatVibes.variable} ${somethingFont.variable} ${proximanova_regular.variable} ${proximanova_bold.variable} ${proximanova_light.variable}`}>{children}</body>
     </html>
   );
 }

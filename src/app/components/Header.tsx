@@ -48,7 +48,7 @@ export default function Header() {
           alt="Kenneth and Jenna"
           fill
           priority
-          quality={95}
+          quality={100}
           className="object-cover"
           sizes="100vw"
           style={{
@@ -81,7 +81,7 @@ export default function Header() {
           }}
         >
           {/* Elegant Top Line */}
-          <MotionDiv
+          {/* <MotionDiv
             variants={fadeInUp}
             className="mb-8"
           >
@@ -89,24 +89,24 @@ export default function Header() {
             <p className="text-white/90 text-2xl md:text-3xl lg:text-4xl font-great-vibes tracking-wider font-normal">
               Together with their families
             </p>
-          </MotionDiv>
+          </MotionDiv> */}
 
           {/* Names - Elegant and Readable */}
           <MotionDiv
             variants={fadeInUp}
-            className="mb-8"
+            className="mt-[-222px]"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-great-vibes text-white font-normal
+            <h1 className="text-6xl md:text-9xl lg:text-9xl font-something text-white font-normal
               tracking-wide leading-tight mb-4
               [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
-              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-great-vibes">&</span> Jenna
+              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-something">&</span> Jenna
             </h1>
           </MotionDiv>
 
           {/* Elegant Separator */}
           <MotionDiv
             variants={fadeInUp}
-            className="mb-8 flex items-center justify-center gap-4"
+            className="mb-1 flex items-center justify-center gap-4"
           >
             <div className="w-12 h-[1px] bg-white/40" />
             <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
@@ -114,38 +114,38 @@ export default function Header() {
           </MotionDiv>
 
           {/* Wedding Invitation Text */}
-          <MotionDiv
+          {/* <MotionDiv
             variants={fadeInUp}
-            className="mb-6"
+            className="mt-1"
           >
             <p className="text-2xl md:text-2xl lg:text-2xl font-sans text-white/95 font-light tracking-wide
               [text-shadow:_0_2px_15px_rgba(0,0,0,0.4)]">
               Request the honor of your presence
             </p>
-          </MotionDiv>
+          </MotionDiv> */}
 
           {/* Date and Location */}
           <MotionDiv
             variants={fadeInUp}
             className="space-y-3"
           >
-            <p className="text-xl md:text-2xl text-white/95 font-sans font-medium tracking-wide
+            <p className="text-xl md:text-2xl text-white/95 font-proxima-regular font-medium tracking-wide
               [text-shadow:_0_1px_10px_rgba(0,0,0,0.4)]">
               Saturday, January 24, 2026
             </p>
-            <p className="text-base md:text-lg text-white/80 font-sans tracking-wider
+            <p className="text-base md:text-lg text-white/80 font-proxima-regular tracking-wider
               [text-shadow:_0_1px_8px_rgba(0,0,0,0.4)]">
               A celebration of love and commitment
             </p>
           </MotionDiv>
 
           {/* Bottom Decorative Line */}
-          <MotionDiv
+          {/* <MotionDiv
             variants={fadeInUp}
             className="mt-12"
           >
             <div className="w-16 h-[1px] bg-white/60 mx-auto" />
-          </MotionDiv>
+          </MotionDiv> */}
         </MotionDiv>
       </MotionDiv>
 

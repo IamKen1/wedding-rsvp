@@ -17,7 +17,10 @@
   --font-great-vibes: 'Great Vibes', cursive;   /* Custom Great Vibes font for special headers */
   --font-display: 'Montserrat', sans-serif;     /* Modern sans-serif for big titles */
   --font-sans: 'Montserrat', sans-serif;        /* Modern sans-serif for body & forms */
-  
+  --font-something: 'Something', sans-serif;  /* Custom Something font for unique accents */
+  --font-proxima-regular: 'Proxima Nova Regular', sans-serif; /* Proxima Nova Regular for clean text */
+  --font-proxima-bold: 'Proxima Nova Bold', sans-serif;       /* Proxima Nova Bold for emphasis */
+  --font-proxima-light: 'Proxima Nova Light', sans
   /* Warm Beige/Tan Color Palette - Based on color motif */
   --text-primary: #4A3C2E;
   --text-secondary: #6B5D4F;
@@ -43,6 +46,30 @@ body {
   font-family: var(--font-great-vibes), cursive;
   font-weight: 400;
   letter-spacing: 0.02em;
+}
+
+.font-something {
+  font-family: var(--font-something), sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+}
+
+.font-proxima-light {
+  font-family: var(--font-proxima-light);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+.font-proxima-regular {
+  font-family: var(--font-proxima-regular);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.font-proxima-bold {
+  font-family: var(--font-proxima-bold);
+  font-weight: 700;
+  letter-spacing: 0.015em;
 }
 
 .font-display {
