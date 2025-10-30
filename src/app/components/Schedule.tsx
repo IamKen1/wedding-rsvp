@@ -257,7 +257,7 @@ export default function Schedule() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h3 className="text-3xl md:text-4xl font-display font-proxima-regular text-forest-700 mb-4 font-light tracking-wide">
+          <h3 className="text-3xl md:text-4xl  font-script text-forest-700 mb-4 font-light tracking-wide">
             Our Special Day
           </h3>
           <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-proxima-regular">
@@ -397,7 +397,7 @@ export default function Schedule() {
 
               <div className="text-center mb-8">
                 <FaTshirt className="text-mint-500 text-4xl mx-auto mb-4" />
-                <h4 className="text-3xl font-bold font-proxima-regular text-forest-700 mb-4">Dress Code</h4>
+                <h4 className="text-3xl font-bold font-script text-forest-700 mb-4">Dress Code</h4>
                 <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p>
               </div>
 
@@ -527,11 +527,11 @@ export default function Schedule() {
                       {/* Parents Section */}
                       {parents.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-rose-200/50">
-                          <h4 className="text-2xl font-bold font-proxima-regular text-center text-rose-700 mb-6">Parents</h4>
+                          <h4 className="text-2xl font-bold font-script text-center text-rose-700 mb-6">Parents</h4>
                           <div className="grid md:grid-cols-2 gap-6">
                             {brideParents.length > 0 && (
                               <div>
-                                <h5 className="text-lg font-semibold text-rose-600 text-center mb-4 font-proxima-regular">Bride&apos;s Parents</h5>
+                                <h5 className="text-lg font-semibold text-rose-600 text-center mb-4 font-script">Bride&apos;s Parents</h5>
                                 <div className="space-y-4">
                                   {brideParents.map(member => (
                                     <div key={member.id} className="bg-gradient-to-br from-rose-50 to-pink-50 p-4 rounded-xl border border-rose-200 shadow-sm hover:shadow-md transition-all">
@@ -545,7 +545,7 @@ export default function Schedule() {
                             )}
                             {groomParents.length > 0 && (
                               <div>
-                                <h5 className="text-lg font-semibold text-purple-600 text-center mb-4 font-proxima-regular">Groom&apos;s Parents</h5>
+                                <h5 className="text-lg font-semibold text-purple-600 text-center mb-4 font-script">Groom&apos;s Parents</h5>
                                 <div className="space-y-4">
                                   {groomParents.map(member => (
                                     <div key={member.id} className="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-xl border border-purple-200 shadow-sm hover:shadow-md transition-all">
@@ -564,7 +564,7 @@ export default function Schedule() {
                       {/* Sponsors Section */}
                       {sponsors.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-mint-200/50">
-                          <h4 className="text-2xl font-bold font-proxima-regular text-center text-mint-700 mb-6">Principal Sponsors</h4>
+                          <h4 className="text-2xl font-bold font-script text-center text-mint-700 mb-6">Principal Sponsors</h4>
                           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {sponsors.map(member => {
                               const isNinong = member.side === 'male';
@@ -588,7 +588,7 @@ export default function Schedule() {
                       {/* Other Members Section */}
                       {others.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-sage-200/50">
-                          <h4 className="text-2xl font-bold font-proxima-regular text-center text-sage-700 mb-6">Wedding Party</h4>
+                          <h4 className="text-2xl font-bold font-script text-center text-sage-700 mb-6">Wedding Party</h4>
                           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {others.map(member => (
                               <div key={member.id} className="bg-gradient-to-br from-sage-50 to-mint-50 p-4 rounded-xl border border-sage-200 shadow-sm hover:shadow-md transition-all">

@@ -130,12 +130,14 @@ export default function Header() {
           duration: 1,
           delay: 1.5,
           repeat: Infinity,
-          repeatType: "reverse"
+          repeatType: "reverse",
+          repeatDelay: 0
         }}
+        style={{ opacity }}
       >
         <div className="flex flex-col items-center gap-2">
           <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/60 to-transparent" />
-          <p className="text-white/60 text-xs font-proxima-regular tracking-widest uppercase">Scroll</p>
+          <p className="text-white/60 text-xs font-proxima-regular tracking-widest uppercase [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">Scroll</p>
         </div>
       </MotionDiv>
     </header>

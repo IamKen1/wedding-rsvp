@@ -152,7 +152,7 @@ export default function Attire() {
                     <div className="mb-4 p-4 bg-[#F5EEE6]/30 rounded-xl border border-[#E6D5BE]/40">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#C9A87C]" />
-                        <div className="text-xs font-semibold text-gray-700 font-proxima-regular uppercase tracking-wide">
+                        <div className="text-xs font-semibold text-gray-700 font-script uppercase tracking-wide">
                           Dress Code
                         </div>
                       </div>

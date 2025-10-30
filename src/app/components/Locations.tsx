@@ -121,7 +121,7 @@ export default function Locations() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-display font-proxima-regular text-forest-800 mb-4 font-light tracking-wide">
+          <h2 className="text-2xl md:text-4xl font-script text-forest-800 mb-4 font-light tracking-wide">
             Wedding Locations
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blush-400 to-sage-400 mx-auto mb-6 rounded-full"></div>
