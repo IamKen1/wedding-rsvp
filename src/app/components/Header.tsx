@@ -1,7 +1,7 @@
 "use client";
 
-import coupleImage from '../../../public/images/couple.png';
-import coupleCenterImage from '../../../public/images/couple_center.png';
+import coupleImage from '../../../public/images/bgcouple.jpg';
+import coupleCenterImage from '../../../public/images/bgcouple.jpg';
 import { useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { MotionDiv } from '@/types/motion';
