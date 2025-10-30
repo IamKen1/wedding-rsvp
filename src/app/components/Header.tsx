@@ -69,7 +69,7 @@ export default function Header() {
         style={{ y: contentY, opacity }}
       >
         <MotionDiv 
-          className="text-center max-w-4xl mx-auto"
+          className="text-center max-w-4xl mx-auto -mt-[30vh] md:-mt-[30vh]"
           initial="hidden"
           animate="visible"
           variants={{
@@ -80,21 +80,9 @@ export default function Header() {
             }
           }}
         >
-          {/* Elegant Top Line */}
-          {/* <MotionDiv
-            variants={fadeInUp}
-            className="mb-8"
-          >
-            <div className="w-16 h-[1px] bg-white/60 mx-auto mb-6" />
-            <p className="text-white/90 text-2xl md:text-3xl lg:text-4xl font-great-vibes tracking-wider font-normal">
-              Together with their families
-            </p>
-          </MotionDiv> */}
-
           {/* Names - Elegant and Readable */}
           <MotionDiv
             variants={fadeInUp}
-            className="mt-[-222px]"
           >
             <h1 className="text-6xl md:text-9xl lg:text-9xl font-something text-white font-normal
               tracking-wide leading-tight mb-4
@@ -113,17 +101,6 @@ export default function Header() {
             <div className="w-12 h-[1px] bg-white/40" />
           </MotionDiv>
 
-          {/* Wedding Invitation Text */}
-          {/* <MotionDiv
-            variants={fadeInUp}
-            className="mt-1"
-          >
-            <p className="text-2xl md:text-2xl lg:text-2xl font-sans text-white/95 font-light tracking-wide
-              [text-shadow:_0_2px_15px_rgba(0,0,0,0.4)]">
-              Request the honor of your presence
-            </p>
-          </MotionDiv> */}
-
           {/* Date and Location */}
           <MotionDiv
             variants={fadeInUp}
@@ -138,14 +115,6 @@ export default function Header() {
               A celebration of love and commitment
             </p>
           </MotionDiv>
-
-          {/* Bottom Decorative Line */}
-          {/* <MotionDiv
-            variants={fadeInUp}
-            className="mt-12"
-          >
-            <div className="w-16 h-[1px] bg-white/60 mx-auto" />
-          </MotionDiv> */}
         </MotionDiv>
       </MotionDiv>
 
@@ -169,4 +138,3 @@ export default function Header() {
     </header>
   );
 }
-
