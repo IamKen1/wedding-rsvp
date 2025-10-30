@@ -146,117 +146,117 @@ export default function Locations() {
               <p className="text-red-600 font-proxima-regular">{error}</p>
             </div>
           ) : locations.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
               {locations.map((location) => {
-                const cardVariants = {
-                  hidden: { y: 30, opacity: 0, scale: 0.95 },
-                  visible: { 
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    transition: {
-                      duration: 0.6,
-                      ease: "easeOut"
-                    }
-                  }
-                };
-                
-                return (
-                <MotionDiv
-                  key={location.id}
-                  variants={cardVariants}
-                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50"
-                >
-                  <div className="text-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <FaMapMarkerAlt className="text-white text-lg" />
-                    </div>
-                    <h3 className="text-xl font-bold font-proxima-regular text-forest-800 mb-2">{location.name}</h3>
-                  </div>
+          const cardVariants = {
+            hidden: { y: 30, opacity: 0, scale: 0.95 },
+            visible: { 
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              transition: {
+                duration: 0.6,
+                ease: "easeOut"
+              }
+            }
+          };
+          
+          return (
+          <MotionDiv
+            key={location.id}
+            variants={cardVariants}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50 w-full max-w-sm"
+          >
+            <div className="text-center mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <FaMapMarkerAlt className="text-white text-lg" />
+              </div>
+              <h3 className="text-xl font-bold font-proxima-regular text-forest-800 mb-2">{location.name}</h3>
+            </div>
 
-                  <div className="space-y-4">
-                    {/* Address */}
-                    <div>
-                      <p className="text-forest-700 font-proxima-regular text-sm leading-relaxed">{location.address}</p>
-                    </div>
+            <div className="space-y-4">
+              {/* Address */}
+              <div>
+                <p className="text-forest-700 font-proxima-regular text-sm leading-relaxed">{location.address}</p>
+              </div>
 
-                    {/* Contact Information */}
-                    {(location.contactPhone || location.contactEmail) && (
-                      <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Contact Information</h4>
-                        {location.contactPhone && (
-                          <div className="flex items-center gap-2 mb-1">
-                            <FaPhone className="text-forest-500 text-xs" />
-                            <span className="text-sm text-forest-600 font-proxima-regular">{location.contactPhone}</span>
-                          </div>
-                        )}
-                        {location.contactEmail && (
-                          <div className="flex items-center gap-2">
-                            <FaEnvelope className="text-forest-500 text-xs" />
-                            <span className="text-sm text-forest-600 font-proxima-regular">{location.contactEmail}</span>
-                          </div>
-                        )}
-                      </div>
-                    )}
+              {/* Contact Information */}
+              {(location.contactPhone || location.contactEmail) && (
+                <div className="border-t border-gray-200 pt-4">
+            <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Contact Information</h4>
+            {location.contactPhone && (
+              <div className="flex items-center gap-2 mb-1">
+                <FaPhone className="text-forest-500 text-xs" />
+                <span className="text-sm text-forest-600 font-proxima-regular">{location.contactPhone}</span>
+              </div>
+            )}
+            {location.contactEmail && (
+              <div className="flex items-center gap-2">
+                <FaEnvelope className="text-forest-500 text-xs" />
+                <span className="text-sm text-forest-600 font-proxima-regular">{location.contactEmail}</span>
+              </div>
+            )}
+                </div>
+              )}
 
-                    {/* Map Photo */}
-                    {location.mapPhoto && (
-                      <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-3 font-proxima-regular flex items-center gap-2">
-                          <FaImage className="text-xs" />
-                          Map & Directions
-                        </h4>
-                        <div 
-                          className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-forest-400 transition-colors"
-                          onClick={() => setSelectedPhoto(location.mapPhoto!)}
-                        >
-                          <img 
-                            src={location.mapPhoto} 
-                            alt={`Map for ${location.name}`}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
-                          />
-                        </div>
-                        <p className="text-xs text-forest-500 font-proxima-regular mt-1 text-center">
-                          Click to view full size
-                        </p>
-                      </div>
-                    )}
+              {/* Map Photo */}
+              {location.mapPhoto && (
+                <div className="border-t border-gray-200 pt-4">
+            <h4 className="text-sm font-semibold text-forest-600 mb-3 font-proxima-regular flex items-center gap-2">
+              <FaImage className="text-xs" />
+              Map & Directions
+            </h4>
+            <div 
+              className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-forest-400 transition-colors"
+              onClick={() => setSelectedPhoto(location.mapPhoto!)}
+            >
+              <img 
+                src={location.mapPhoto} 
+                alt={`Map for ${location.name}`}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+              />
+            </div>
+            <p className="text-xs text-forest-500 font-proxima-regular mt-1 text-center">
+              Click to view full size
+            </p>
+                </div>
+              )}
 
-                    {/* Directions */}
-                    {location.directions && (
-                      <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Directions</h4>
-                        <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.directions}</p>
-                      </div>
-                    )}
+              {/* Directions */}
+              {location.directions && (
+                <div className="border-t border-gray-200 pt-4">
+            <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Directions</h4>
+            <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.directions}</p>
+                </div>
+              )}
 
-                    {/* Special Instructions */}
-                    {location.specialInstructions && (
-                      <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Special Instructions</h4>
-                        <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.specialInstructions}</p>
-                      </div>
-                    )}
+              {/* Special Instructions */}
+              {location.specialInstructions && (
+                <div className="border-t border-gray-200 pt-4">
+            <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Special Instructions</h4>
+            <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.specialInstructions}</p>
+                </div>
+              )}
 
-                    {/* Map Link */}
-                    {location.mapUrl && (
-                      <div className="pt-4">
-                        <a
-                          href={location.mapUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-forest-500 to-sage-500 
-                                   text-white rounded-lg hover:from-forest-600 hover:to-sage-600 transition-all duration-200 
-                                   text-sm font-medium font-proxima-regular"
-                        >
-                          <FaExternalLinkAlt className="text-xs" />
-                          Open in Maps
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </MotionDiv>
-                );
+              {/* Map Link */}
+              {location.mapUrl && (
+                <div className="pt-4">
+            <a
+              href={location.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-forest-500 to-sage-500 
+                 text-white rounded-lg hover:from-forest-600 hover:to-sage-600 transition-all duration-200 
+                 text-sm font-medium font-proxima-regular"
+            >
+              <FaExternalLinkAlt className="text-xs" />
+              Open in Maps
+            </a>
+                </div>
+              )}
+            </div>
+          </MotionDiv>
+          );
               })}
             </div>
           ) : (

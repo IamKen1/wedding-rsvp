@@ -290,92 +290,92 @@ export default function Schedule() {
 
         {/* Content based on active tab */}
         {activeTab === 'schedule' && (
-          <MotionDiv
+            <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-          >
+            >
             {loading ? (
               <div className="grid md:grid-cols-3 gap-8">
-                <SkeletonLoader type="card" count={3} />
+              <SkeletonLoader type="card" count={3} />
               </div>
             ) : error ? (
               <div className="text-center py-16">
-                <FaInfoCircle className="text-red-500 text-4xl mx-auto mb-4" />
-                <p className="text-red-600 text-lg mb-2 font-proxima-regular font-semibold">Error loading schedule</p>
-                <p className="text-forest-600 font-proxima-regular">{error}</p>
+              <FaInfoCircle className="text-red-500 text-4xl mx-auto mb-4" />
+              <p className="text-red-600 text-lg mb-2 font-proxima-regular font-semibold">Error loading schedule</p>
+              <p className="text-forest-600 font-proxima-regular">{error}</p>
               </div>
             ) : scheduleEvents.length > 0 ? (
-              <div className="grid md:grid-cols-3 gap-8 mb-16">
-                {scheduleEvents.map((event, index) => {
+              <div className="flex flex-wrap justify-center gap-8 mb-16">
+              {scheduleEvents.map((event, index) => {
               const IconComponent = getIconComponent(event.icon);
               const gradientClass = getGradientClass(event.color);
               return (
-                <div
-                  key={event.id}
-                  className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
-                  onMouseEnter={() => setHoveredEvent(index)}
-                  onMouseLeave={() => setHoveredEvent(null)}
-                >
-                  <div className={`relative p-8 rounded-3xl bg-white/90 backdrop-blur-sm 
-                    shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50
-                    ${hoveredEvent === index ? 'scale-105 -translate-y-2' : ''}`}
-                  >
-                    {/* Background gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} 
-                      opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`} />
-                    
-                    {/* Time badge */}
-                    <div className="absolute -top-4 left-8">
-                      <div className={`bg-gradient-to-r ${gradientClass} text-white px-4 py-2 
-                        rounded-full text-sm font-bold shadow-lg flex items-center gap-2`}>
-                        <FaClock className="text-xs" />
-                        {formatTime(event.eventTime)}
-                      </div>
-                    </div>
-
-                    {/* Icon */}
-                    <div className="flex justify-center mb-6 mt-4">
-                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${gradientClass} 
-                        flex items-center justify-center shadow-lg group-hover:scale-110 
-                        transition-transform duration-300`}>
-                        <IconComponent className="text-white text-2xl" />
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="text-center">
-                      <h4 className="text-xl font-bold font-proxima-regular text-forest-700 mb-2">
-                        {event.eventName}
-                      </h4>
-                      <p className="text-forest-500 mb-3 text-sm leading-relaxed font-proxima-regular">
-                        {event.description || 'Wedding celebration event'}
-                      </p>
-                      {event.location && (
-                        <div className="flex items-center justify-center gap-2 text-mint-600">
-                          <FaMapMarkerAlt className="text-xs" />
-                          <span className="text-sm font-medium font-proxima-regular">{event.location}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Decorative elements */}
-                    <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 
-                      transition-opacity duration-300">
-                      <FaHeart className="text-blush-400 animate-pulse" />
-                    </div>
-                  </div>
+              <div
+              key={event.id}
+              className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-full max-w-sm md:w-auto md:flex-shrink-0"
+              onMouseEnter={() => setHoveredEvent(index)}
+              onMouseLeave={() => setHoveredEvent(null)}
+              >
+              <div className={`relative p-8 rounded-3xl bg-white/90 backdrop-blur-sm 
+              shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50
+              ${hoveredEvent === index ? 'scale-105 -translate-y-2' : ''}`}
+              >
+              {/* Background gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} 
+                opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`} />
+              
+              {/* Time badge */}
+              <div className="absolute -top-4 left-8">
+                <div className={`bg-gradient-to-r ${gradientClass} text-white px-4 py-2 
+                rounded-full text-sm font-bold shadow-lg flex items-center gap-2`}>
+                <FaClock className="text-xs" />
+                {formatTime(event.eventTime)}
                 </div>
+              </div>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-6 mt-4">
+                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${gradientClass} 
+                flex items-center justify-center shadow-lg group-hover:scale-110 
+                transition-transform duration-300`}>
+                <IconComponent className="text-white text-2xl" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="text-center">
+                <h4 className="text-xl font-bold font-proxima-regular text-forest-700 mb-2">
+                {event.eventName}
+                </h4>
+                <p className="text-forest-500 mb-3 text-sm leading-relaxed font-proxima-regular">
+                {event.description || 'Wedding celebration event'}
+                </p>
+                {event.location && (
+                <div className="flex items-center justify-center gap-2 text-mint-600">
+                <FaMapMarkerAlt className="text-xs" />
+                <span className="text-sm font-medium font-proxima-regular">{event.location}</span>
+                </div>
+                )}
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 
+                transition-opacity duration-300">
+                <FaHeart className="text-blush-400 animate-pulse" />
+              </div>
+              </div>
+              </div>
               );
             })}
-                </div>
+              </div>
             ) : (
               <div className="text-center py-16">
-                <FaCalendarAlt className="text-forest-400 text-4xl mx-auto mb-4" />
-                <p className="text-forest-600 text-lg font-proxima-regular">No events scheduled at this time.</p>
+              <FaCalendarAlt className="text-forest-400 text-4xl mx-auto mb-4" />
+              <p className="text-forest-600 text-lg font-proxima-regular">No events scheduled at this time.</p>
               </div>
             )}
-          </MotionDiv>
+            </MotionDiv>
         )}
 
         {/* Attire Tab */}
@@ -401,82 +401,86 @@ export default function Schedule() {
                 <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p>
               </div>
 
-              {loading ? (
-                <div className="grid md:grid-cols-2 gap-8">
-                  <SkeletonLoader type="card" count={2} />
-                </div>
-              ) : attireGuidelines.length > 0 ? (
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  {attireGuidelines.map((attire, index) => (
-                    <div key={attire.id} className={`bg-gradient-to-br p-6 rounded-2xl border-2 shadow-lg
-                      ${index % 2 === 0 
-                        ? 'from-blush-50 to-mint-50 border-blush-200/50' 
-                        : 'from-sage-50 to-mint-50 border-sage-200/50'}`}>
-                      <h5 className="font-bold font-proxima-regular text-forest-700 text-xl mb-4 text-center">{attire.title}</h5>
-                      <p className="text-forest-600 mb-4 text-center font-proxima-regular">{attire.description}</p>
-                      
-                      <div className="space-y-4">
-                        {attire.dressCode && (
-                          <div className="text-center">
-                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Dress Code:</span>
-                            <p className="text-forest-700 font-medium font-proxima-regular">{attire.dressCode}</p>
-                          </div>
-                        )}
-                        
-                        {attire.colorScheme && (
-                          <div className="text-center">
-                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Color Scheme:</span>
-                            <div className="flex items-center justify-center gap-3">
-                              <div 
-                                className="w-6 h-6 rounded-full border-2 border-gray-300 shadow-sm" 
-                                style={{ backgroundColor: attire.colorScheme }}
-                                title={attire.colorScheme}
-                              />
-                              <p className="text-forest-700 font-proxima-regular capitalize">
-                                {getColorName(attire.colorScheme)}
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                        
-                        {attire.guidelines && (
-                          <div className="text-center">
-                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Guidelines:</span>
-                            <p className="text-forest-600 text-sm font-proxima-regular leading-relaxed">{attire.guidelines}</p>
-                          </div>
-                        )}
-
-                        {attire.photos && attire.photos.length > 0 && (
-                          <div className="text-center">
-                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-3">Reference Photos:</span>
-                            <div className="grid grid-cols-2 gap-3">
-                              {attire.photos.slice(0, 4).map((photo, photoIndex) => (
-                                <div key={photoIndex} className="aspect-square rounded-lg overflow-hidden border-2 border-white shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                                  <img 
-                                    src={photo} 
-                                    alt={`${attire.title} reference ${photoIndex + 1}`}
-                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
-                                    onClick={() => window.open(photo, '_blank')}
+                {loading ? (
+                  <div className="flex justify-center mb-8">
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <SkeletonLoader type="card" count={2} />
+                    </div>
+                  </div>
+                ) : attireGuidelines.length > 0 ? (
+                  <div className="flex justify-center mb-8">
+                    <div className={`grid gap-8 max-w-4xl ${attireGuidelines.length === 1 ? 'grid-cols-1 max-w-md' : 'md:grid-cols-2'}`}>
+                      {attireGuidelines.map((attire, index) => (
+                        <div key={attire.id} className={`bg-gradient-to-br p-6 rounded-2xl border-2 shadow-lg
+                          ${index % 2 === 0 
+                            ? 'from-blush-50 to-mint-50 border-blush-200/50' 
+                            : 'from-sage-50 to-mint-50 border-sage-200/50'}`}>
+                          <h5 className="font-bold font-proxima-regular text-forest-700 text-xl mb-4 text-center">{attire.title}</h5>
+                          <p className="text-forest-600 mb-4 text-center font-proxima-regular">{attire.description}</p>
+                          
+                          <div className="space-y-4">
+                            {attire.dressCode && (
+                              <div className="text-center">
+                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Dress Code:</span>
+                                <p className="text-forest-700 font-medium font-proxima-regular">{attire.dressCode}</p>
+                              </div>
+                            )}
+                            
+                            {attire.colorScheme && (
+                              <div className="text-center">
+                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Color Scheme:</span>
+                                <div className="flex items-center justify-center gap-3">
+                                  <div 
+                                    className="w-6 h-6 rounded-full border-2 border-gray-300 shadow-sm" 
+                                    style={{ backgroundColor: attire.colorScheme }}
+                                    title={attire.colorScheme}
                                   />
+                                  <p className="text-forest-700 font-proxima-regular capitalize">
+                                    {getColorName(attire.colorScheme)}
+                                  </p>
                                 </div>
-                              ))}
-                            </div>
-                            {attire.photos.length > 4 && (
-                              <p className="text-xs text-forest-500 font-proxima-regular mt-2">
-                                +{attire.photos.length - 4} more photo{attire.photos.length - 4 > 1 ? 's' : ''} (click any photo to view all)
-                              </p>
+                              </div>
+                            )}
+                            
+                            {attire.guidelines && (
+                              <div className="text-center">
+                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Guidelines:</span>
+                                <p className="text-forest-600 text-sm font-proxima-regular leading-relaxed">{attire.guidelines}</p>
+                              </div>
+                            )}
+
+                            {attire.photos && attire.photos.length > 0 && (
+                              <div className="text-center">
+                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-3">Reference Photos:</span>
+                                <div className="grid grid-cols-2 gap-3">
+                                  {attire.photos.slice(0, 4).map((photo, photoIndex) => (
+                                    <div key={photoIndex} className="aspect-square rounded-lg overflow-hidden border-2 border-white shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                                      <img 
+                                        src={photo} 
+                                        alt={`${attire.title} reference ${photoIndex + 1}`}
+                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                                        onClick={() => window.open(photo, '_blank')}
+                                      />
+                                    </div>
+                                  ))}
+                                </div>
+                                {attire.photos.length > 4 && (
+                                  <p className="text-xs text-forest-500 font-proxima-regular mt-2">
+                                    +{attire.photos.length - 4} more photo{attire.photos.length - 4 > 1 ? 's' : ''} (click any photo to view all)
+                                  </p>
+                                )}
+                              </div>
                             )}
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-forest-600 font-proxima-regular">No attire guidelines available at this time.</p>
-                </div>
-              )}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-forest-600 font-proxima-regular">No attire guidelines available at this time.</p>
+                  </div>
+                )}
 
               {/* Important Notes */}
               <div className="bg-gradient-to-r from-red-50 to-blush-50 p-4 rounded-xl 
