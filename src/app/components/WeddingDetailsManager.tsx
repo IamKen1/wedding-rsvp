@@ -52,12 +52,7 @@ const formatTime = (time: string): string => {
 
 interface WeddingAttire {
   id: number;
-  category: string;
-  title: string;
-  description: string;
-  colorScheme: string;
-  dressCode: string;
-  guidelines: string;
+  photos: string[];
   sortOrder: number;
 }
 
@@ -426,16 +421,29 @@ export default function WeddingDetailsManager() {
     <div className="space-y-4">
       {attire.map((item) => (
         <div key={item.id} className="bg-white rounded-lg shadow p-4 border border-sage-100">
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-start gap-4">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: item.colorScheme }}></div>
-                <h3 className="text-lg font-semibold font-proxima-regular text-forest-700">{item.title}</h3>
-                <span className="text-sm bg-sage-100 text-sage-700 px-2 py-1 rounded">{item.category}</span>
+              <div className="flex items-center gap-3 mb-3">
+                <FaTshirt className="text-sage-500" />
+                <h3 className="text-lg font-semibold font-proxima-regular text-forest-700">
+                  Attire Item #{item.sortOrder}
+                </h3>
               </div>
-              <p className="text-gray-600 mb-2">Dress Code: {item.dressCode}</p>
-              <p className="text-sm text-gray-500 mb-2">{item.description}</p>
-              <p className="text-xs text-gray-400">{item.guidelines}</p>
+              {item.photos && item.photos.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                  {item.photos.map((photo, idx) => (
+                    <div key={idx} className="aspect-square rounded-lg overflow-hidden border border-gray-200">
+                      <img 
+                        src={photo} 
+                        alt={`Attire ${item.sortOrder} - Photo ${idx + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-400 text-sm">No photos uploaded</p>
+              )}
             </div>
             <div className="flex gap-2">
               <button

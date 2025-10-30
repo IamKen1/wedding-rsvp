@@ -380,25 +380,7 @@ export default function WeddingDetailFormModal({
 
   const renderAttireForm = () => (
     <>
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Category *
-          </label>
-          <select
-            value={formData.category || ''}
-            onChange={(e) => updateField('category', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
-            required
-          >
-            <option value="">Select category</option>
-            <option value="bridal-party">Bridal Party</option>
-            <option value="groomsmen">Groomsmen</option>
-            <option value="family">Family</option>
-            <option value="guests">Guests</option>
-          </select>
-        </div>
-
+      <div className="grid gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Sort Order
@@ -411,73 +393,7 @@ export default function WeddingDetailFormModal({
           />
         </div>
 
-        <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Title *
-          </label>
-          <input
-            type="text"
-            value={formData.title || ''}
-            onChange={(e) => updateField('title', e.target.value)}
-            placeholder="e.g., Bridesmaids Dresses"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
-            required
-          />
-        </div>
-
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Dress Code *
-          </label>
-          <input
-            type="text"
-            value={formData.dressCode || ''}
-            onChange={(e) => updateField('dressCode', e.target.value)}
-            placeholder="e.g., Cocktail, Formal"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Color Scheme
-          </label>
-          <input
-            type="color"
-            value={formData.colorScheme || '#10B981'}
-            onChange={(e) => updateField('colorScheme', e.target.value)}
-            className="w-full h-10 border border-gray-300 rounded-lg"
-          />
-        </div>
-
-        <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Description
-          </label>
-          <textarea
-            value={formData.description || ''}
-            onChange={(e) => updateField('description', e.target.value)}
-            rows={3}
-            placeholder="Description of the attire"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
-          />
-        </div>
-
-        <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Guidelines
-          </label>
-          <textarea
-            value={formData.guidelines || ''}
-            onChange={(e) => updateField('guidelines', e.target.value)}
-            rows={3}
-            placeholder="Specific guidelines or requirements"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-transparent"
-          />
-        </div>
-
-        <div className="col-span-2">
           <PhotoUpload
             label="Reference Photos"
             photos={formData.photos || []}

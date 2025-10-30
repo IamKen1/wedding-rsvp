@@ -111,7 +111,8 @@ export default function Header() {
           >
             <p className="text-xl md:text-2xl text-white/95 font-proxima-regular font-medium tracking-wide
               [text-shadow:_0_1px_10px_rgba(0,0,0,0.4)]">
-              SATURDAY JANUARY 24, 2026
+              JANUARY 24, 2026 * SATURDAY * 1:30 P.M.
+
             </p>
             <p className="text-base md:text-xl text-white/80 font-script tracking-wider
               [text-shadow:_0_1px_8px_rgba(0,0,0,0.4)]">

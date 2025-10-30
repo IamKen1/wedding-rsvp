@@ -33,7 +33,6 @@ export default function PhotoUpload({
   const [dragOver, setDragOver] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [previewPhotos, setPreviewPhotos] = useState<PhotoPreview[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateFile = (file: File): string | null => {
@@ -55,7 +54,7 @@ export default function PhotoUpload({
     const fileArray = Array.from(files);
 
     // Check if adding these files would exceed the limit
-    if (photos.length + previewPhotos.length + fileArray.length > maxPhotos) {
+    if (photos.length + fileArray.length > maxPhotos) {
       setError(`Maximum ${maxPhotos} photos allowed`);
       return;
     }
@@ -71,15 +70,6 @@ export default function PhotoUpload({
       validFiles.push(file);
     }
 
-    // Create preview objects
-    const newPreviews: PhotoPreview[] = validFiles.map(file => ({
-      id: Date.now() + Math.random().toString(),
-      file,
-      preview: URL.createObjectURL(file)
-    }));
-
-    setPreviewPhotos(prev => [...prev, ...newPreviews]);
-    
     // Convert files to base64 and add to photos
     setUploading(true);
     try {
@@ -91,6 +81,7 @@ export default function PhotoUpload({
       }
       
       onPhotosChange([...photos, ...newPhotos]);
+      setError(null);
     } catch (error) {
       setError('Failed to process images');
     } finally {
@@ -118,16 +109,6 @@ export default function PhotoUpload({
     onPhotosChange(newPhotos);
   };
 
-  const handleRemovePreview = (previewId: string) => {
-    setPreviewPhotos(prev => {
-      const preview = prev.find(p => p.id === previewId);
-      if (preview) {
-        URL.revokeObjectURL(preview.preview);
-      }
-      return prev.filter(p => p.id !== previewId);
-    });
-  };
-
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setDragOver(true);
@@ -143,7 +124,7 @@ export default function PhotoUpload({
     handleFileChange(e.dataTransfer.files);
   };
 
-  const totalPhotos = photos.length + previewPhotos.length;
+  const totalPhotos = photos.length;
   const canAddMore = totalPhotos < maxPhotos;
 
   return (
@@ -209,7 +190,7 @@ export default function PhotoUpload({
       )}
 
       {/* Photo Gallery */}
-      {(photos.length > 0 || previewPhotos.length > 0) && (
+      {photos.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* Existing Photos */}
           {photos.map((photo, index) => (
@@ -254,41 +235,12 @@ export default function PhotoUpload({
             </div>
           ))}
 
-          {/* Preview Photos (being uploaded) */}
-          {previewPhotos.map((preview) => (
-            <div key={preview.id} className="relative group">
-              <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                <Image
-                  src={preview.preview}
-                  alt="Preview"
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-cover opacity-75"
-                />
-              </div>
-              
-              {/* Processing Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center">
-                <div className="text-white text-xs bg-black bg-opacity-50 px-2 py-1 rounded">
-                  Processing...
-                </div>
-              </div>
 
-              <button
-                type="button"
-                onClick={() => handleRemovePreview(preview.id)}
-                className="absolute top-2 right-2 p-1 bg-red-500 bg-opacity-90 rounded-full hover:bg-opacity-100 transition-colors"
-                title="Cancel upload"
-              >
-                <FaTimes className="text-white text-xs" />
-              </button>
-            </div>
-          ))}
         </div>
       )}
 
       {/* Empty State */}
-      {photos.length === 0 && previewPhotos.length === 0 && !canAddMore && (
+      {photos.length === 0 && !canAddMore && (
         <div className="text-center py-8 text-gray-500">
           <FaImage className="mx-auto text-3xl mb-2" />
           <p>No photos uploaded</p>

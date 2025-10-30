@@ -31,13 +31,7 @@ interface WeddingEvent {
 
 interface WeddingAttire {
   id: number;
-  category: string;
-  title: string;
-  description: string;
-  colorScheme: string;
-  dressCode: string;
-  guidelines: string;
-  photos?: string[];
+  photos: string[];
   sortOrder: number;
 }
 
@@ -80,6 +74,7 @@ export default function Schedule() {
   const [entourageData, setEntourageData] = useState<EntourageMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
 
   // Helper function to convert hex colors to readable names
   const getColorName = (hexColor: string): string => {
@@ -257,9 +252,9 @@ export default function Schedule() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h3 className="text-3xl md:text-4xl  font-script text-forest-700 mb-4 font-light tracking-wide">
+            <h3 className="text-4xl md:text-5xl font-script text-forest-700 mb-4 font-light tracking-wide">
             Our Special Day
-          </h3>
+            </h3>
           <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-proxima-regular">
             Join us for a celebration of love, joy, and new beginnings
           </p>
@@ -396,9 +391,9 @@ export default function Schedule() {
                 rounded-tr-[100px]" />
 
               <div className="text-center mb-8">
-                <FaTshirt className="text-mint-500 text-4xl mx-auto mb-4" />
+               
                 <h4 className="text-3xl font-bold font-script text-forest-700 mb-4">Dress Code</h4>
-                <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p>
+                {/* <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p> */}
               </div>
 
                 {loading ? (
@@ -408,73 +403,33 @@ export default function Schedule() {
                     </div>
                   </div>
                 ) : attireGuidelines.length > 0 ? (
-                  <div className="flex justify-center mb-8">
-                    <div className={`grid gap-8 max-w-4xl ${attireGuidelines.length === 1 ? 'grid-cols-1 max-w-md' : 'md:grid-cols-2'}`}>
-                      {attireGuidelines.map((attire, index) => (
-                        <div key={attire.id} className={`bg-gradient-to-br p-6 rounded-2xl border-2 shadow-lg
-                          ${index % 2 === 0 
-                            ? 'from-blush-50 to-mint-50 border-blush-200/50' 
-                            : 'from-sage-50 to-mint-50 border-sage-200/50'}`}>
-                          <h5 className="font-bold font-proxima-regular text-forest-700 text-xl mb-4 text-center">{attire.title}</h5>
-                          <p className="text-forest-600 mb-4 text-center font-proxima-regular">{attire.description}</p>
-                          
-                          <div className="space-y-4">
-                            {attire.dressCode && (
-                              <div className="text-center">
-                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Dress Code:</span>
-                                <p className="text-forest-700 font-medium font-proxima-regular">{attire.dressCode}</p>
+                  <div className="flex flex-wrap justify-center gap-6 mb-8">
+                    {attireGuidelines.map((attire) => (
+                      attire.photos && attire.photos.length > 0 && attire.photos.map((photo, photoIndex) => (
+                        <div 
+                          key={`${attire.id}-${photoIndex}`} 
+                          className="group relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] cursor-pointer"
+                          onClick={() => setFullScreenImage(photo)}
+                        >
+                          <div className="absolute -inset-0.5 bg-gradient-to-r from-blush-200/40 via-mint-200/40 to-blush-200/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur" />
+                          <div className="relative bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all duration-300 group-hover:shadow-xl group-hover:border-mint-300">
+                            <div className="relative overflow-hidden">
+                              <img 
+                                src={photo} 
+                                alt={`Attire ${attire.id} - ${photoIndex + 1}`}
+                                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span className="text-white text-sm font-medium bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm">
+                                  Click to view full size
+                                </span>
                               </div>
-                            )}
-                            
-                            {attire.colorScheme && (
-                              <div className="text-center">
-                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Color Scheme:</span>
-                                <div className="flex items-center justify-center gap-3">
-                                  <div 
-                                    className="w-6 h-6 rounded-full border-2 border-gray-300 shadow-sm" 
-                                    style={{ backgroundColor: attire.colorScheme }}
-                                    title={attire.colorScheme}
-                                  />
-                                  <p className="text-forest-700 font-proxima-regular capitalize">
-                                    {getColorName(attire.colorScheme)}
-                                  </p>
-                                </div>
-                              </div>
-                            )}
-                            
-                            {attire.guidelines && (
-                              <div className="text-center">
-                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Guidelines:</span>
-                                <p className="text-forest-600 text-sm font-proxima-regular leading-relaxed">{attire.guidelines}</p>
-                              </div>
-                            )}
-
-                            {attire.photos && attire.photos.length > 0 && (
-                              <div className="text-center">
-                                <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-3">Reference Photos:</span>
-                                <div className="grid grid-cols-2 gap-3">
-                                  {attire.photos.slice(0, 4).map((photo, photoIndex) => (
-                                    <div key={photoIndex} className="aspect-square rounded-lg overflow-hidden border-2 border-white shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                                      <img 
-                                        src={photo} 
-                                        alt={`${attire.title} reference ${photoIndex + 1}`}
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
-                                        onClick={() => window.open(photo, '_blank')}
-                                      />
-                                    </div>
-                                  ))}
-                                </div>
-                                {attire.photos.length > 4 && (
-                                  <p className="text-xs text-forest-500 font-proxima-regular mt-2">
-                                    +{attire.photos.length - 4} more photo{attire.photos.length - 4 > 1 ? 's' : ''} (click any photo to view all)
-                                  </p>
-                                )}
-                              </div>
-                            )}
+                            </div>
+                            <div className="h-1 bg-gradient-to-r from-blush-300 via-mint-300 to-blush-300" />
                           </div>
                         </div>
-                      ))}
-                    </div>
+                      ))
+                    ))}
                   </div>
                 ) : (
                   <div className="text-center py-8">
@@ -661,6 +616,27 @@ export default function Schedule() {
           </MotionDiv>
         )}
       </MotionDiv>
+
+      {/* Full Screen Image Modal */}
+      {fullScreenImage && (
+        <div 
+          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4 pt-20 cursor-pointer"
+          onClick={() => setFullScreenImage(null)}
+        >
+          <button
+            className="absolute top-20 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
+            onClick={() => setFullScreenImage(null)}
+          >
+            ×
+          </button>
+          <img
+            src={fullScreenImage}
+            alt="Full size attire"
+            className="max-w-[90%] max-h-[85vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }

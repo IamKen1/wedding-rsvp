@@ -469,12 +469,12 @@ export default function RSVP() {
               <p className="text-lg md:text-xl text-gray-700 mb-3 font-proxima-regular">
                 We're so excited to celebrate with you!
               </p>
-              <p className="text-gray-600 font-semibold font-proxima-regular text-base md:text-lg">
-                Your invitation includes {guestInfo.allocatedSeats} seat{guestInfo.allocatedSeats > 1 ? 's' : ''}
+                <p className="text-gray-600 font-semibold font-proxima-regular text-base md:text-lg">
+                Your invitation includes <span className="font-bold">{guestInfo.allocatedSeats}</span> seat{guestInfo.allocatedSeats > 1 ? 's' : ''}
                 {guestInfo.notes && (
                   <span className="text-gray-600 font-normal"> • {guestInfo.notes}</span>
                 )}
-              </p>
+                </p>
             </div>
           ) : null}
           
@@ -484,7 +484,7 @@ export default function RSVP() {
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
               <p className="text-base md:text-lg text-[#6B5D4F] max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
-                We would be honored to have you celebrate with us on our special day
+                We would be honored to have you join us on our special day.
               </p>
               
               {/* Countdown Timer */}
