@@ -69,7 +69,7 @@ export default function Header() {
       {/* Main Content - Centered Elegantly */}
       <MotionDiv 
         className="relative h-full w-full flex items-center justify-center px-6 z-20"
-        style={{ y: contentY, opacity }}
+        style={{ y: contentY }}
       >
         <MotionDiv 
           className="text-center max-w-4xl mx-auto -mt-[30vh] md:-mt-[30vh]"
@@ -133,7 +133,6 @@ export default function Header() {
           repeatType: "reverse",
           repeatDelay: 0
         }}
-        style={{ opacity }}
       >
         <div className="flex flex-col items-center gap-2">
           <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/60 to-transparent" />
