@@ -15,7 +15,7 @@ export default function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative py-16 bg-gradient-elegant from-forest-800 via-forest-700 to-forest-900 text-white overflow-hidden"
+      className="relative py-16 pb-32 md:pb-16 bg-gradient-elegant from-forest-800 via-forest-700 to-forest-900 text-white overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0">

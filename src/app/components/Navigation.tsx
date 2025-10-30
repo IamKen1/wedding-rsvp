@@ -133,56 +133,56 @@ export default function Navigation() {
               })}
             </div>
 
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-full transition-all duration-300 cursor-pointer text-gray-800 hover:bg-gray-100"
-              aria-label="Toggle menu"
-            >
-              <MotionDiv
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {isOpen ? <IoCloseOutline size={28} /> : <IoMenuOutline size={28} />}
-              </MotionDiv>
-            </button>
           </div>
         </div>
       </MotionNav>
 
-      <AnimatePresence>
-        {isOpen && (
-          <MotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-white z-[90] md:hidden"
-          >
-            <div className="flex flex-col items-center justify-center h-full">
-              {navLinks.map((link, index) => (
-                <MotionDiv
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: index * 0.1 }}
+      {/* Mobile Bottom Tab Bar - Native App Style */}
+      <MotionDiv
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        className="md:hidden fixed bottom-0 left-0 right-0 z-[200] 
+          bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-2xl"
+      >
+        <div className="flex items-center justify-around px-2 py-2 safe-area-inset-bottom">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <button
+                key={link.href}
+                onClick={() => handleNavClick(link.href)}
+                className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl
+                  transition-all duration-300 cursor-pointer flex-1 relative min-w-0
+                  ${isActive ? 'bg-[#F5EEE6]/80' : 'bg-transparent'}`}
+              >
+                {/* Active indicator */}
+                {isActive && (
+                  <MotionDiv
+                    layoutId="activeTab"
+                    className="absolute top-0 left-0 right-0 mx-auto w-10 h-1 
+                      bg-[#C9A87C] rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                
+                <link.icon 
+                  className={`text-xl transition-all duration-300
+                    ${isActive ? 'text-[#C9A87C] scale-110' : 'text-gray-500'}`} 
+                />
+                
+                <span 
+                  className={`text-[10px] font-semibold tracking-wide font-proxima-regular
+                    transition-all duration-300 text-center
+                    ${isActive ? 'text-gray-900' : 'text-gray-500'}`}
                 >
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="px-6 py-4 text-white text-xl font-semibold tracking-wider cursor-pointer font-proxima-regular
-                      hover:text-mint-light transition-colors duration-300 relative group"
-                  >
-                    {link.label}
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] 
-                      bg-mint-light transition-all duration-300 group-hover:w-3/4" />
-                  </button>
-                </MotionDiv>
-              ))}
-            </div>
-          </MotionDiv>
-        )}
-      </AnimatePresence>
+                  {link.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </MotionDiv>
     </>
   );
 } 

@@ -128,9 +128,10 @@ export default function Header() {
         </MotionDiv>
       </MotionDiv>
 
-      {/* Subtle Scroll Indicator */}
+      {/* Subtle Scroll Indicator - Adjusted for mobile bottom nav */}
       <MotionDiv
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30"
+        className="absolute bottom-8 md:bottom-8 left-1/2 -translate-x-1/2 z-30
+          mb-16 md:mb-0"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
