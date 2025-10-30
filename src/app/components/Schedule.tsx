@@ -620,7 +620,7 @@ export default function Schedule() {
       {/* Full Screen Image Modal */}
       {fullScreenImage && (
         <div 
-          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4 pt-20 cursor-pointer"
+          className="fixed inset-0 z-[99999] bg-black/95 flex items-center justify-center p-4 pt-20 cursor-pointer"
           onClick={() => setFullScreenImage(null)}
         >
           <button

@@ -227,7 +227,7 @@ export default function Locations() {
       {/* Photo Modal */}
       {selectedPhoto && (
         <div 
-          className="fixed inset-0 z-[9999] bg-black bg-opacity-90 flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 z-[99999] bg-black bg-opacity-90 flex items-center justify-center p-4 pt-20 overflow-y-auto"
           onClick={(e) => {
             // Close modal if clicking backdrop
             if (e.target === e.currentTarget) {
@@ -235,7 +235,7 @@ export default function Locations() {
             }
           }}
         >
-          <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col">
+          <div className="relative max-w-4xl w-full max-h-[85vh] flex flex-col">
             <div className="flex justify-end mb-4">
               <button
                 onClick={() => setSelectedPhoto(null)}
@@ -249,7 +249,7 @@ export default function Locations() {
               <img 
                 src={selectedPhoto} 
                 alt="Location map"
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                className="max-w-[90%] max-h-full object-contain rounded-lg shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
             </div>
