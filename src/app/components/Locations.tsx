@@ -121,11 +121,11 @@ export default function Locations() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-display font-sans text-forest-800 mb-4 font-light tracking-wide">
+          <h2 className="text-2xl md:text-4xl font-display font-proxima-regular text-forest-800 mb-4 font-light tracking-wide">
             Wedding Locations
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blush-400 to-sage-400 mx-auto mb-6 rounded-full"></div>
-          <p className="text-forest-600 font-sans text-lg max-w-2xl mx-auto font-normal">
+          <p className="text-forest-600 font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
             Important venue information and directions for our special day
           </p>
         </MotionDiv>
@@ -143,7 +143,7 @@ export default function Locations() {
             </div>
           ) : error ? (
             <div className="text-center py-12">
-              <p className="text-red-600 font-sans">{error}</p>
+              <p className="text-red-600 font-proxima-regular">{error}</p>
             </div>
           ) : locations.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -171,29 +171,29 @@ export default function Locations() {
                     <div className="w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <FaMapMarkerAlt className="text-white text-lg" />
                     </div>
-                    <h3 className="text-xl font-bold font-sans text-forest-800 mb-2">{location.name}</h3>
+                    <h3 className="text-xl font-bold font-proxima-regular text-forest-800 mb-2">{location.name}</h3>
                   </div>
 
                   <div className="space-y-4">
                     {/* Address */}
                     <div>
-                      <p className="text-forest-700 font-sans text-sm leading-relaxed">{location.address}</p>
+                      <p className="text-forest-700 font-proxima-regular text-sm leading-relaxed">{location.address}</p>
                     </div>
 
                     {/* Contact Information */}
                     {(location.contactPhone || location.contactEmail) && (
                       <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-sans">Contact Information</h4>
+                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Contact Information</h4>
                         {location.contactPhone && (
                           <div className="flex items-center gap-2 mb-1">
                             <FaPhone className="text-forest-500 text-xs" />
-                            <span className="text-sm text-forest-600 font-sans">{location.contactPhone}</span>
+                            <span className="text-sm text-forest-600 font-proxima-regular">{location.contactPhone}</span>
                           </div>
                         )}
                         {location.contactEmail && (
                           <div className="flex items-center gap-2">
                             <FaEnvelope className="text-forest-500 text-xs" />
-                            <span className="text-sm text-forest-600 font-sans">{location.contactEmail}</span>
+                            <span className="text-sm text-forest-600 font-proxima-regular">{location.contactEmail}</span>
                           </div>
                         )}
                       </div>
@@ -202,7 +202,7 @@ export default function Locations() {
                     {/* Map Photo */}
                     {location.mapPhoto && (
                       <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-3 font-sans flex items-center gap-2">
+                        <h4 className="text-sm font-semibold text-forest-600 mb-3 font-proxima-regular flex items-center gap-2">
                           <FaImage className="text-xs" />
                           Map & Directions
                         </h4>
@@ -216,7 +216,7 @@ export default function Locations() {
                             className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
                           />
                         </div>
-                        <p className="text-xs text-forest-500 font-sans mt-1 text-center">
+                        <p className="text-xs text-forest-500 font-proxima-regular mt-1 text-center">
                           Click to view full size
                         </p>
                       </div>
@@ -225,16 +225,16 @@ export default function Locations() {
                     {/* Directions */}
                     {location.directions && (
                       <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-sans">Directions</h4>
-                        <p className="text-sm text-forest-600 font-sans leading-relaxed">{location.directions}</p>
+                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Directions</h4>
+                        <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.directions}</p>
                       </div>
                     )}
 
                     {/* Special Instructions */}
                     {location.specialInstructions && (
                       <div className="border-t border-gray-200 pt-4">
-                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-sans">Special Instructions</h4>
-                        <p className="text-sm text-forest-600 font-sans leading-relaxed">{location.specialInstructions}</p>
+                        <h4 className="text-sm font-semibold text-forest-600 mb-2 font-proxima-regular">Special Instructions</h4>
+                        <p className="text-sm text-forest-600 font-proxima-regular leading-relaxed">{location.specialInstructions}</p>
                       </div>
                     )}
 
@@ -247,7 +247,7 @@ export default function Locations() {
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-forest-500 to-sage-500 
                                    text-white rounded-lg hover:from-forest-600 hover:to-sage-600 transition-all duration-200 
-                                   text-sm font-medium font-sans"
+                                   text-sm font-medium font-proxima-regular"
                         >
                           <FaExternalLinkAlt className="text-xs" />
                           Open in Maps
@@ -261,7 +261,7 @@ export default function Locations() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-forest-600 font-sans">No locations available at this time.</p>
+              <p className="text-forest-600 font-proxima-regular">No locations available at this time.</p>
             </div>
           )}
         </MotionDiv>

@@ -52,16 +52,19 @@ export default function Header() {
           className="object-cover"
           sizes="100vw"
           style={{
-            objectPosition: isMobile ? 'center center' : '65% center',
+        objectPosition: isMobile ? 'center center' : '65% center',
           }}
         />
       </MotionDiv>
 
-      {/* Subtle Gradient Overlay - Much lighter */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30 z-10" />
+      {/* Cloud-like fading overlay */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 z-10" /> */}
       
-      {/* Very subtle bottom fade */}
-      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white/60 to-transparent z-10" />
+      {/* Soft cloud fade from sides */}
+      {/* <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 z-10" /> */}
+      
+      {/* Bottom cloud fade */}
+      {/* <div className="absolute bottom-0 inset-x-0 h-22 bg-gradient-to-t from-white/20 via-white/60 to-transparent z-10" /> */}
 
       {/* Main Content - Centered Elegantly */}
       <MotionDiv 
@@ -132,7 +135,7 @@ export default function Header() {
       >
         <div className="flex flex-col items-center gap-2">
           <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/60 to-transparent" />
-          <p className="text-white/60 text-xs font-sans tracking-widest uppercase">Scroll</p>
+          <p className="text-white/60 text-xs font-proxima-regular tracking-widest uppercase">Scroll</p>
         </div>
       </MotionDiv>
     </header>

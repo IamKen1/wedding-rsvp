@@ -81,7 +81,7 @@ export default function Hero() {
               <p className="relative text-5xl md:text-6xl lg:text-7xl font-display text-gray-800 font-light
                 px-6 md:px-12 py-4 md:py-6 bg-white/90 backdrop-blur-sm rounded-2xl border-2 border-[#E6D5BE]/40
                 shadow-md hover:shadow-lg transition-all duration-300 tracking-wide">
-                Kenneth <span className="text-[#C9A87C] font-sans">&</span> Jenna
+                Kenneth <span className="text-[#C9A87C] font-proxima-regular">&</span> Jenna
               </p>
             </div>
 
@@ -92,7 +92,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
               >
-                <p className="text-xl md:text-2xl text-gray-700 font-sans font-medium tracking-wide">
+                <p className="text-xl md:text-2xl text-gray-700 font-proxima-regular font-medium tracking-wide">
                   Saturday, January 24, 2026
                 </p>
               </MotionDiv>
@@ -103,7 +103,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 1.2 }}
                 className="max-w-[900px] mx-auto"
               >
-                <p className="text-lg md:text-xl text-gray-600 leading-relaxed px-4 font-sans">
+                <p className="text-lg md:text-xl text-gray-600 leading-relaxed px-4 font-proxima-regular">
                   Join us as we celebrate our love and commitment in the presence of our beloved family and friends.
                   Together, we'll create memories that will last a lifetime.
                 </p>

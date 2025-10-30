@@ -300,7 +300,7 @@ export default function InvitationManager() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-sage-50 to-mint-50 py-6 flex items-center justify-center">
-        <div className="text-lg font-sans text-gray-600">Loading invitations...</div>
+        <div className="text-lg font-proxima-regular text-gray-600">Loading invitations...</div>
       </div>
     );
   }
@@ -311,10 +311,10 @@ export default function InvitationManager() {
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <div className="mb-4">
-            <h1 className="text-3xl font-sans font-bold text-forest-700 mb-2">
+            <h1 className="text-3xl font-proxima-regular font-bold text-forest-700 mb-2">
               Wedding Invitation Manager
             </h1>
-            <p className="text-lg font-sans text-forest-600">
+            <p className="text-lg font-proxima-regular text-forest-600">
               Manage guest invitations and generate personalized RSVP links
             </p>
           </div>
@@ -322,12 +322,12 @@ export default function InvitationManager() {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="bg-blue-50 p-3 rounded-lg text-center">
-              <div className="text-xl font-bold font-sans text-blue-700">{guests.length}</div>
-              <div className="text-sm font-sans text-blue-600">Total Invitations</div>
+              <div className="text-xl font-bold font-proxima-regular text-blue-700">{guests.length}</div>
+              <div className="text-sm font-proxima-regular text-blue-600">Total Invitations</div>
             </div>
             <div className="bg-green-50 p-3 rounded-lg text-center">
-              <div className="text-xl font-bold font-sans text-green-700">{getTotalSeats()}</div>
-              <div className="text-sm font-sans text-green-600">Total Seats Allocated</div>
+              <div className="text-xl font-bold font-proxima-regular text-green-700">{getTotalSeats()}</div>
+              <div className="text-sm font-proxima-regular text-green-600">Total Seats Allocated</div>
             </div>
           </div>
 
@@ -338,7 +338,7 @@ export default function InvitationManager() {
               disabled={uploadingExcel}
               className="bg-mint-500 text-white px-4 py-2 rounded-lg hover:bg-mint-600 
                 transition-colors duration-300 flex items-center gap-2 disabled:opacity-50 cursor-pointer
-                disabled:cursor-not-allowed font-sans text-sm font-medium"
+                disabled:cursor-not-allowed font-proxima-regular text-sm font-medium"
             >
               <FaPlus /> Add New Invitation
             </button>
@@ -347,7 +347,7 @@ export default function InvitationManager() {
               disabled={uploadingExcel}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 
                 transition-colors duration-300 flex items-center gap-2 disabled:opacity-50 cursor-pointer
-                disabled:cursor-not-allowed font-sans text-sm font-medium"
+                disabled:cursor-not-allowed font-proxima-regular text-sm font-medium"
             >
               {uploadingExcel ? (
                 <>
@@ -365,7 +365,7 @@ export default function InvitationManager() {
               disabled={isExporting || uploadingExcel}
               className="bg-sage-500 text-white px-4 py-2 rounded-lg hover:bg-sage-600 
                 transition-colors duration-300 flex items-center gap-2 disabled:opacity-50 cursor-pointer
-                disabled:cursor-not-allowed font-sans text-sm font-medium"
+                disabled:cursor-not-allowed font-proxima-regular text-sm font-medium"
             >
               {isExporting ? (
                 <>
@@ -384,7 +384,7 @@ export default function InvitationManager() {
         {/* Guest List */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="px-6 py-3 bg-forest-50 border-b border-forest-100">
-            <h2 className="text-lg font-semibold font-sans text-forest-700 flex items-center gap-2">
+            <h2 className="text-lg font-semibold font-proxima-regular text-forest-700 flex items-center gap-2">
               <FaUsers /> Guest Invitations
             </h2>
           </div>
@@ -393,19 +393,19 @@ export default function InvitationManager() {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-sm font-medium font-proxima-regular text-gray-700 uppercase tracking-wider">
                     Guest/Family
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-sm font-medium font-proxima-regular text-gray-700 uppercase tracking-wider">
                     Seats
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-sm font-medium font-proxima-regular text-gray-700 uppercase tracking-wider">
                     Email
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-sm font-medium font-proxima-regular text-gray-700 uppercase tracking-wider">
                     Invitation Link
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium font-sans text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-sm font-medium font-proxima-regular text-gray-700 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -415,16 +415,16 @@ export default function InvitationManager() {
                   <tr key={guest.invitationCode} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <div>
-                        <div className="font-medium font-sans text-base text-gray-900">{guest.name}</div>
+                        <div className="font-medium font-proxima-regular text-base text-gray-900">{guest.name}</div>
                         {guest.notes && (
-                          <div className="text-sm font-sans text-gray-600">{guest.notes}</div>
+                          <div className="text-sm font-proxima-regular text-gray-600">{guest.notes}</div>
                         )}
                       </div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1">
                         <FaUsers className="text-mint-500" />
-                        <span className="font-medium font-sans text-base">{guest.allocatedSeats}</span>
+                        <span className="font-medium font-proxima-regular text-base">{guest.allocatedSeats}</span>
                       </div>
                     </td>
                     <td className="px-4 py-3">
@@ -432,10 +432,10 @@ export default function InvitationManager() {
                         {guest.email ? (
                           <>
                             <FaEnvelope className="text-gray-400" />
-                            <span className="text-sm font-sans text-gray-700">{guest.email}</span>
+                            <span className="text-sm font-proxima-regular text-gray-700">{guest.email}</span>
                           </>
                         ) : (
-                          <span className="text-sm font-sans text-gray-400 italic">No email</span>
+                          <span className="text-sm font-proxima-regular text-gray-400 italic">No email</span>
                         )}
                       </div>
                     </td>
@@ -457,7 +457,7 @@ export default function InvitationManager() {
                         </button>
                       </div>
                       {copiedId === guest.invitationCode && (
-                        <div className="text-xs font-sans text-green-600 mt-1">
+                        <div className="text-xs font-proxima-regular text-green-600 mt-1">
                           ✓ Copied to clipboard!
                         </div>
                       )}
@@ -489,8 +489,8 @@ export default function InvitationManager() {
 
         {/* Instructions */}
         <div className="mt-6 bg-mint-50 border border-mint-200 rounded-xl p-4">
-          <h3 className="font-semibold font-sans text-base text-forest-700 mb-3">How to use invitation links:</h3>
-          <ul className="space-y-2 text-forest-600 font-sans">
+          <h3 className="font-semibold font-proxima-regular text-base text-forest-700 mb-3">How to use invitation links:</h3>
+          <ul className="space-y-2 text-forest-600 font-proxima-regular">
             <li className="flex items-start gap-2">
               <span className="w-2 h-2 bg-mint-400 rounded-full mt-2 flex-shrink-0"></span>
               Each guest/family has a unique invitation ID that tracks their allocated seats

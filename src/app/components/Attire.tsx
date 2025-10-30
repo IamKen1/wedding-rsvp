@@ -83,7 +83,7 @@ export default function Attire() {
         <div className="text-center mb-12 relative">
           <div className="inline-block relative">
             <div className="absolute -inset-x-8 -inset-y-4 bg-gradient-to-r from-transparent via-[#F5EEE6]/30 to-transparent blur-xl" />
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-great-vibes text-gray-800 mb-3 relative">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-something text-gray-800 mb-3 relative">
               Dress Code & Attire
             </h2>
           </div>
@@ -125,7 +125,7 @@ export default function Attire() {
                         {getCategoryIcon(item.category)}
                       </div>
                       <div>
-                        <div className="text-[10px] uppercase tracking-widest text-[#C9A87C] font-semibold mb-1.5 font-sans">
+                        <div className="text-[10px] uppercase tracking-widest text-[#C9A87C] font-semibold mb-1.5 font-proxima-regular">
                           {item.category}
                         </div>
                         <h3 className="text-xl md:text-2xl font-serif font-semibold text-gray-800">
@@ -152,7 +152,7 @@ export default function Attire() {
                     <div className="mb-4 p-4 bg-[#F5EEE6]/30 rounded-xl border border-[#E6D5BE]/40">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#C9A87C]" />
-                        <div className="text-xs font-semibold text-gray-700 font-sans uppercase tracking-wide">
+                        <div className="text-xs font-semibold text-gray-700 font-proxima-regular uppercase tracking-wide">
                           Dress Code
                         </div>
                       </div>
@@ -167,7 +167,7 @@ export default function Attire() {
                     <div className="mb-4 p-4 bg-white border border-gray-100 rounded-xl">
                       <div className="flex items-center gap-2 mb-2">
                         <FaInfoCircle className="text-[#C9A87C] text-xs" />
-                        <div className="text-xs font-semibold text-gray-700 font-sans uppercase tracking-wide">
+                        <div className="text-xs font-semibold text-gray-700 font-proxima-regular uppercase tracking-wide">
                           Guidelines
                         </div>
                       </div>
@@ -180,7 +180,7 @@ export default function Attire() {
                   {/* Photo Gallery */}
                   {item.photos && item.photos.length > 0 && (
                     <div className="mt-5 pt-5 border-t border-gray-100">
-                      <div className="text-[10px] uppercase tracking-widest text-[#C9A87C] font-semibold mb-3 font-sans">
+                      <div className="text-[10px] uppercase tracking-widest text-[#C9A87C] font-semibold mb-3 font-proxima-regular">
                         Style Inspiration
                       </div>
                       <div className="grid grid-cols-3 gap-2">

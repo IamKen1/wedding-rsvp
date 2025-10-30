@@ -240,11 +240,11 @@ export default function RSVP() {
               <FaCheckCircle className="text-white text-xl" />
             </div>
             
-            <h3 className="text-2xl font-great-vibes text-[#4A3C2E] mb-3 font-semibold tracking-tight">
+            <h3 className="text-2xl font-something text-[#4A3C2E] mb-3 font-semibold tracking-tight">
               Thank You!
             </h3>
             
-            <p className="text-sm text-[#6B5D4F] leading-relaxed mb-5 font-sans">
+            <p className="text-sm text-[#6B5D4F] leading-relaxed mb-5 font-proxima-regular">
               Your RSVP has been received! We're so excited to celebrate with you on our special day.
               We'll be in touch with more details as the date approaches.
             </p>
@@ -257,7 +257,7 @@ export default function RSVP() {
             
             {/* Wedding Hashtag */}
             <div className="pt-4 border-t border-[#C9A87C]/30">
-              <p className="text-base font-sans text-[#8B6F47] tracking-wider">
+              <p className="text-base font-proxima-regular text-[#8B6F47] tracking-wider">
                 Share your photos with #TheJenuineKennection
               </p>
             </div>
@@ -287,16 +287,16 @@ export default function RSVP() {
               <FaCheckCircle className="text-white text-xl" />
             </div>
             
-            <h3 className="text-2xl font-great-vibes text-[#4A3C2E] mb-3 font-semibold tracking-tight">
+            <h3 className="text-2xl font-something text-[#4A3C2E] mb-3 font-semibold tracking-tight">
               RSVP Already Submitted
             </h3>
             
-            <p className="text-sm text-[#6B5D4F] leading-relaxed mb-5 font-sans">
+            <p className="text-sm text-[#6B5D4F] leading-relaxed mb-5 font-proxima-regular">
               Thank you! You have already submitted your RSVP for our wedding. Here are the details you provided:
             </p>
 
             <div className="bg-[#F5EEE6] rounded-xl p-5 mb-5 text-left max-w-md mx-auto border border-[#C9A87C]/30">
-              <div className="space-y-2.5 font-sans text-sm">
+              <div className="space-y-2.5 font-proxima-regular text-sm">
                 <div className="flex justify-between">
                   <span className="font-medium text-[#6B5D4F]">Name:</span>
                   <span className="text-[#4A3C2E]">{existingRSVP.name}</span>
@@ -343,7 +343,7 @@ export default function RSVP() {
               </div>
             </div>
 
-            <p className="text-xs text-[#6B5D4F] leading-relaxed font-sans">
+            <p className="text-xs text-[#6B5D4F] leading-relaxed font-proxima-regular">
               If you need to make changes to your RSVP, please contact us directly. We're so excited to celebrate with you!
             </p>
 
@@ -391,15 +391,15 @@ export default function RSVP() {
               <FaTimesCircle className="text-white text-2xl" />
             </div>
             
-            <h3 className="text-2xl font-great-vibes text-[#4A3C2E] mb-4 font-semibold tracking-tight">
+            <h3 className="text-2xl font-something text-[#4A3C2E] mb-4 font-semibold tracking-tight">
               RSVP Deadline Has Passed
             </h3>
             
-            <p className="text-base text-[#6B5D4F] leading-relaxed mb-4 font-sans">
+            <p className="text-base text-[#6B5D4F] leading-relaxed mb-4 font-proxima-regular">
               We're sorry, but the RSVP deadline of <strong>December 24, 2025</strong> has passed.
             </p>
 
-            <p className="text-base text-[#6B5D4F] leading-relaxed mb-6 font-sans">
+            <p className="text-base text-[#6B5D4F] leading-relaxed mb-6 font-proxima-regular">
               All available seats may have been taken. If you would still like to attend, 
               please contact us directly and we'll do our best to accommodate you.
             </p>
@@ -463,13 +463,13 @@ export default function RSVP() {
             </div>
           ) : guestInfo ? (
             <div className="bg-[#F5EEE6]/40 border-2 border-[#E6D5BE]/50 rounded-xl p-6 mb-6">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-great-vibes text-gray-800 mb-4 font-medium tracking-tight">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-something text-gray-800 mb-4 font-medium tracking-tight">
                 Hello, {guestInfo.name}! 💕
               </h3>
-              <p className="text-lg md:text-xl text-gray-700 mb-3 font-sans">
+              <p className="text-lg md:text-xl text-gray-700 mb-3 font-proxima-regular">
                 We're so excited to celebrate with you!
               </p>
-              <p className="text-gray-600 font-semibold font-sans text-base md:text-lg">
+              <p className="text-gray-600 font-semibold font-proxima-regular text-base md:text-lg">
                 Your invitation includes {guestInfo.allocatedSeats} seat{guestInfo.allocatedSeats > 1 ? 's' : ''}
                 {guestInfo.notes && (
                   <span className="text-gray-600 font-normal"> • {guestInfo.notes}</span>
@@ -480,10 +480,10 @@ export default function RSVP() {
           
           {!isLoadingGuest && (
             <>
-              <h3 className="text-3xl md:text-4xl font-great-vibes text-[#4A3C2E] mb-4 font-semibold tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-something text-[#4A3C2E] mb-4 font-semibold tracking-tight">
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
-              <p className="text-base md:text-lg text-[#6B5D4F] max-w-2xl mx-auto leading-relaxed font-sans mb-4">
+              <p className="text-base md:text-lg text-[#6B5D4F] max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
                 We would be honored to have you celebrate with us on our special day
               </p>
               
@@ -491,39 +491,39 @@ export default function RSVP() {
               <div className="bg-gradient-to-r from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] rounded-2xl p-4 md:p-6 mb-6 max-w-2xl mx-auto border-2 border-[#C9A87C]/50 shadow-lg">
                 <div className="flex items-center justify-center gap-2 mb-3">
                   <FaClock className="text-[#8B6F47] text-lg md:text-xl" />
-                  <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-sans">
+                  <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-proxima-regular">
                     RSVP Deadline: December 24, 2025
                   </p>
                 </div>
                 
                 <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-md mx-auto">
                   <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.days}
                     </div>
-                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Days</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Days</div>
                   </div>
                   <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.hours}
                     </div>
-                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Hours</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Hours</div>
                   </div>
                   <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.minutes}
                     </div>
-                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Minutes</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Minutes</div>
                   </div>
                   <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-sans">
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.seconds}
                     </div>
-                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-sans mt-1">Seconds</div>
+                    <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Seconds</div>
                   </div>
                 </div>
                 
-                <p className="text-[10px] md:text-xs text-[#6B5D4F] mt-3 font-sans text-center">
+                <p className="text-[10px] md:text-xs text-[#6B5D4F] mt-3 font-proxima-regular text-center">
                   Please submit your RSVP before the deadline to secure your seat!
                 </p>
               </div>
@@ -531,7 +531,7 @@ export default function RSVP() {
               {/* Wedding Hashtag */}
               <div className="mt-6 flex items-center justify-center gap-3">
                 <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A87C]"></div>
-                <p className="text-xl md:text-2xl font-sans text-[#8B6F47] tracking-wider">
+                <p className="text-xl md:text-2xl font-proxima-regular text-[#8B6F47] tracking-wider">
                   #TheJenuineKennection
                 </p>
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#C9A87C]"></div>
@@ -552,7 +552,7 @@ export default function RSVP() {
             <div className="grid md:grid-cols-2 gap-5">
               {/* Name */}
               <div>
-                <label className="block text-[#4A3C2E] font-semibold mb-2 font-sans text-sm">
+                <label className="block text-[#4A3C2E] font-semibold mb-2 font-proxima-regular text-sm">
                   <FaUser className="inline mr-2 text-[#8B6F47] text-xs" />
                   Full Name *
                 </label>
@@ -560,19 +560,19 @@ export default function RSVP() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full px-4 py-2.5 rounded-xl border-2 transition-all duration-300 font-sans text-sm
+                  className={`w-full px-4 py-2.5 rounded-xl border-2 transition-all duration-300 font-proxima-regular text-sm
                     ${errors.name 
                       ? 'border-red-400 bg-red-50' 
                       : 'border-[#C9A87C]/40 focus:border-[#8B6F47] bg-white'
                     } focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30`}
                   placeholder="Enter your full name"
                 />
-                {errors.name && <p className="text-red-600 text-xs mt-1 font-sans">{errors.name}</p>}
+                {errors.name && <p className="text-red-600 text-xs mt-1 font-proxima-regular">{errors.name}</p>}
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-[#4A3C2E] font-semibold mb-2 font-sans text-sm">
+                <label className="block text-[#4A3C2E] font-semibold mb-2 font-proxima-regular text-sm">
                   <FaEnvelope className="inline mr-2 text-[#8B6F47] text-xs" />
                   Email Address (Optional)
                 </label>
@@ -580,20 +580,20 @@ export default function RSVP() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-2.5 rounded-xl border-2 transition-all duration-300 font-sans text-sm
+                  className={`w-full px-4 py-2.5 rounded-xl border-2 transition-all duration-300 font-proxima-regular text-sm
                     ${errors.email 
                       ? 'border-red-400 bg-red-50' 
                       : 'border-[#C9A87C]/40 focus:border-[#8B6F47] bg-white'
                     } focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30`}
                   placeholder="your.email@example.com"
                 />
-                {errors.email && <p className="text-red-600 text-xs mt-1 font-sans">{errors.email}</p>}
+                {errors.email && <p className="text-red-600 text-xs mt-1 font-proxima-regular">{errors.email}</p>}
               </div>
             </div>
 
             {/* Phone */}
             <div>
-              <label className="block text-[#4A3C2E] font-semibold mb-2 font-sans text-sm">
+              <label className="block text-[#4A3C2E] font-semibold mb-2 font-proxima-regular text-sm">
                 <FaPhone className="inline mr-2 text-[#8B6F47] text-xs" />
                 Phone Number (Optional)
               </label>
@@ -602,14 +602,14 @@ export default function RSVP() {
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border-2 border-[#C9A87C]/40 focus:border-[#8B6F47] 
-                  bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 font-sans text-sm"
+                  bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 font-proxima-regular text-sm"
                 placeholder="Your phone number"
               />
             </div>
 
             {/* Attendance */}
             <div>
-              <label className="block text-[#4A3C2E] font-semibold mb-3 font-sans text-sm">
+              <label className="block text-[#4A3C2E] font-semibold mb-3 font-proxima-regular text-sm">
                 <FaHeart className="inline mr-2 text-[#C9A87C] text-xs" />
                 Will you be able to attend? *
               </label>
@@ -617,7 +617,7 @@ export default function RSVP() {
                 <button
                   type="button"
                   onClick={() => handleInputChange('willAttend', 'yes')}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 text-center cursor-pointer font-sans
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 text-center cursor-pointer font-proxima-regular
                     ${formData.willAttend === 'yes'
                       ? 'border-[#8B6F47] bg-[#F5EEE6] text-[#4A3C2E]'
                       : 'border-[#C9A87C]/30 bg-white text-[#6B5D4F] hover:border-[#C9A87C]'
@@ -630,7 +630,7 @@ export default function RSVP() {
                 <button
                   type="button"
                   onClick={() => handleInputChange('willAttend', 'no')}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 text-center cursor-pointer font-sans
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 text-center cursor-pointer font-proxima-regular
                     ${formData.willAttend === 'no'
                       ? 'border-[#8B6F47] bg-[#F5EEE6] text-[#4A3C2E]'
                       : 'border-[#C9A87C]/30 bg-white text-[#6B5D4F] hover:border-[#C9A87C]'
@@ -641,13 +641,13 @@ export default function RSVP() {
                   <div className="text-xs opacity-75">Will be there in spirit</div>
                 </button>
               </div>
-              {errors.willAttend && <p className="text-red-600 text-xs mt-2 font-sans">{errors.willAttend}</p>}
+              {errors.willAttend && <p className="text-red-600 text-xs mt-2 font-proxima-regular">{errors.willAttend}</p>}
             </div>
 
             {/* Guest Count - only show if attending */}
             {formData.willAttend === 'yes' && (
               <div>
-                <label className="block text-[#4A3C2E] font-semibold mb-2 font-sans text-sm">
+                <label className="block text-[#4A3C2E] font-semibold mb-2 font-proxima-regular text-sm">
                   <FaUsers className="inline mr-2 text-[#8B6F47] text-xs" />
                   Number of Guests (Including Yourself) *
                   {guestInfo && (
@@ -660,19 +660,19 @@ export default function RSVP() {
                   value={formData.guestCount}
                   onChange={(e) => handleInputChange('guestCount', parseInt(e.target.value))}
                   className="w-full px-4 py-2.5 rounded-xl border-2 border-[#C9A87C]/40 focus:border-[#8B6F47] 
-                    bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 cursor-pointer font-sans text-sm"
+                    bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 cursor-pointer font-proxima-regular text-sm"
                 >
                   {Array.from({ length: guestInfo?.allocatedSeats || 6 }, (_, i) => i + 1).map(num => (
                     <option key={num} value={num}>{num} Guest{num > 1 ? 's' : ''}</option>
                   ))}
                 </select>
-                {errors.guestCount && <p className="text-red-600 text-xs mt-1 font-sans">{errors.guestCount}</p>}
+                {errors.guestCount && <p className="text-red-600 text-xs mt-1 font-proxima-regular">{errors.guestCount}</p>}
               </div>
             )}
 
             {/* Message */}
             <div>
-              <label className="block text-[#4A3C2E] font-semibold mb-2 font-sans text-sm">
+              <label className="block text-[#4A3C2E] font-semibold mb-2 font-proxima-regular text-sm">
                 <FaComments className="inline mr-2 text-[#8B6F47] text-xs" />
                 Message for the Couple (Optional)
               </label>
@@ -680,7 +680,7 @@ export default function RSVP() {
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border-2 border-[#C9A87C]/40 focus:border-[#8B6F47] 
-                  bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 font-sans text-sm"
+                  bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 font-proxima-regular text-sm"
                 rows={4}
                 placeholder="Share your love, wishes, or any special message for Kenneth & Jenna..."
               />
@@ -695,7 +695,7 @@ export default function RSVP() {
                   rounded-2xl font-bold text-base shadow-2xl hover:shadow-3xl 
                   transform hover:scale-105 transition-all duration-300 
                   disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer
-                  focus:outline-none focus:ring-4 focus:ring-[#C9A87C]/40 font-great-vibes
+                  focus:outline-none focus:ring-4 focus:ring-[#C9A87C]/40 font-something
                   overflow-hidden group"
               >
                 <span className="relative z-10">
@@ -715,7 +715,7 @@ export default function RSVP() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
                   transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </button>
-              <p className="text-xs text-[#6B5D4F] mt-3 font-sans">
+              <p className="text-xs text-[#6B5D4F] mt-3 font-proxima-regular">
                 Your RSVP helps us prepare for the perfect celebration! 🎉
               </p>
             </div>

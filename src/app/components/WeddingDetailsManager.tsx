@@ -265,7 +265,7 @@ export default function WeddingDetailsManager() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <FaClock className="text-mint-500" />
-                <h3 className="text-lg font-semibold font-sans text-forest-700">{event.eventName}</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-forest-700">{event.eventName}</h3>
                 <span className="text-sm text-gray-500">{formatTime(event.eventTime)}</span>
               </div>
               <p className="text-gray-600 mb-2">📍 {event.location}</p>
@@ -308,7 +308,7 @@ export default function WeddingDetailsManager() {
         <div className="flex justify-between items-start">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <h4 className="font-semibold font-sans text-forest-700">{member.name}</h4>
+              <h4 className="font-semibold font-proxima-regular text-forest-700">{member.name}</h4>
               <span className={`text-xs px-2 py-0.5 rounded ${bgColor} ${textColor} font-medium`}>
                 {member.category === 'parents' ? 'Parent' : member.category === 'sponsors' ? 'Sponsor' : 'Entourage'}
               </span>
@@ -340,12 +340,12 @@ export default function WeddingDetailsManager() {
         {/* Parents Section */}
         {(brideParents.length > 0 || groomParents.length > 0) && (
           <div>
-            <h2 className="text-2xl font-sans text-forest-700 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-proxima-regular text-forest-700 mb-4 flex items-center gap-2">
               👨‍👩‍👧‍👦 Parents
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-semibold font-sans text-rose-600 mb-3">Bride's Parents</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-rose-600 mb-3">Bride's Parents</h3>
                 <div className="space-y-3">
                   {brideParents.length > 0 ? (
                     brideParents.map((member) => renderMemberCard(member, 'bg-rose-50', 'border-rose-200', 'text-rose-600'))
@@ -355,7 +355,7 @@ export default function WeddingDetailsManager() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold font-sans text-purple-600 mb-3">Groom's Parents</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-purple-600 mb-3">Groom's Parents</h3>
                 <div className="space-y-3">
                   {groomParents.length > 0 ? (
                     groomParents.map((member) => renderMemberCard(member, 'bg-purple-50', 'border-purple-200', 'text-purple-600'))
@@ -371,12 +371,12 @@ export default function WeddingDetailsManager() {
         {/* Sponsors Section */}
         {(maleSponsors.length > 0 || femaleSponsors.length > 0) && (
           <div>
-            <h2 className="text-2xl font-sans text-forest-700 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-proxima-regular text-forest-700 mb-4 flex items-center gap-2">
               🎩👗 Principal Sponsors
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-semibold font-sans text-purple-600 mb-3">Male Sponsors</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-purple-600 mb-3">Male Sponsors</h3>
                 <div className="space-y-3">
                   {maleSponsors.length > 0 ? (
                     maleSponsors.map((member) => renderMemberCard(member, 'bg-purple-50', 'border-purple-200', 'text-purple-600'))
@@ -386,7 +386,7 @@ export default function WeddingDetailsManager() {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold font-sans text-rose-600 mb-3">Female Sponsors</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-rose-600 mb-3">Female Sponsors</h3>
                 <div className="space-y-3">
                   {femaleSponsors.length > 0 ? (
                     femaleSponsors.map((member) => renderMemberCard(member, 'bg-rose-50', 'border-rose-200', 'text-rose-600'))
@@ -402,7 +402,7 @@ export default function WeddingDetailsManager() {
         {/* Other Entourage - No Separation */}
         {otherMembers.length > 0 && (
           <div>
-            <h2 className="text-2xl font-sans text-forest-700 mb-4 flex items-center gap-2">
+            <h2 className="text-2xl font-proxima-regular text-forest-700 mb-4 flex items-center gap-2">
               💍 Wedding Entourage
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -430,7 +430,7 @@ export default function WeddingDetailsManager() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-4 h-4 rounded-full" style={{ backgroundColor: item.colorScheme }}></div>
-                <h3 className="text-lg font-semibold font-sans text-forest-700">{item.title}</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-forest-700">{item.title}</h3>
                 <span className="text-sm bg-sage-100 text-sage-700 px-2 py-1 rounded">{item.category}</span>
               </div>
               <p className="text-gray-600 mb-2">Dress Code: {item.dressCode}</p>
@@ -465,7 +465,7 @@ export default function WeddingDetailsManager() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <FaMapMarkerAlt className="text-forest-500" />
-                <h3 className="text-lg font-semibold font-sans text-forest-700">{location.name}</h3>
+                <h3 className="text-lg font-semibold font-proxima-regular text-forest-700">{location.name}</h3>
               </div>
               <p className="text-gray-600 mb-2">📍 {location.address}</p>
               {location.contactPhone && (
@@ -528,19 +528,19 @@ export default function WeddingDetailsManager() {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold font-sans text-forest-700">Wedding Details Management</h2>
+        <h2 className="text-2xl font-bold font-proxima-regular text-forest-700">Wedding Details Management</h2>
         <div className="flex gap-2">
           {activeCategory === 'entourage' && (
             <button
               onClick={() => setShowExcelUpload(true)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2 font-sans text-sm"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2 font-proxima-regular text-sm"
             >
               <FaUpload /> Mass Upload Excel
             </button>
           )}
           <button
             onClick={handleAdd}
-            className="bg-mint-500 text-white px-4 py-2 rounded-lg hover:bg-mint-600 transition-colors flex items-center gap-2 font-sans text-sm"
+            className="bg-mint-500 text-white px-4 py-2 rounded-lg hover:bg-mint-600 transition-colors flex items-center gap-2 font-proxima-regular text-sm"
           >
             <FaPlus /> Add New
           </button>
@@ -556,7 +556,7 @@ export default function WeddingDetailsManager() {
               <button
                 key={category.key}
                 onClick={() => setActiveCategory(category.key as DetailCategory)}
-                className={`py-2 px-2 sm:px-4 rounded-md font-sans text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap ${
+                className={`py-2 px-2 sm:px-4 rounded-md font-proxima-regular text-xs sm:text-sm font-medium transition-colors flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap ${
                   activeCategory === category.key
                     ? 'bg-white text-forest-700 shadow'
                     : 'text-gray-600 hover:text-forest-600'
@@ -592,7 +592,7 @@ export default function WeddingDetailsManager() {
                 return null;
               })()}
             </div>
-            <p className="text-gray-500 font-sans">No {activeCategory} data found</p>
+            <p className="text-gray-500 font-proxima-regular">No {activeCategory} data found</p>
             <p className="text-sm text-gray-400 mt-1">Click "Add New" to create your first entry</p>
           </div>
         )}

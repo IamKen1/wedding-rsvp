@@ -257,10 +257,10 @@ export default function Schedule() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h3 className="text-3xl md:text-4xl font-display font-sans text-forest-700 mb-4 font-light tracking-wide">
+          <h3 className="text-3xl md:text-4xl font-display font-proxima-regular text-forest-700 mb-4 font-light tracking-wide">
             Our Special Day
           </h3>
-          <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-sans">
+          <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-proxima-regular">
             Join us for a celebration of love, joy, and new beginnings
           </p>
           
@@ -275,7 +275,7 @@ export default function Schedule() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all duration-300 cursor-pointer font-sans text-sm md:text-base ${
+                className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all duration-300 cursor-pointer font-proxima-regular text-sm md:text-base ${
                   activeTab === tab.id
                     ? 'bg-mint-500 text-white shadow-lg transform scale-105'
                     : 'bg-white/80 text-forest-700 hover:bg-mint-100 hover:shadow-md'
@@ -302,8 +302,8 @@ export default function Schedule() {
             ) : error ? (
               <div className="text-center py-16">
                 <FaInfoCircle className="text-red-500 text-4xl mx-auto mb-4" />
-                <p className="text-red-600 text-lg mb-2 font-sans font-semibold">Error loading schedule</p>
-                <p className="text-forest-600 font-sans">{error}</p>
+                <p className="text-red-600 text-lg mb-2 font-proxima-regular font-semibold">Error loading schedule</p>
+                <p className="text-forest-600 font-proxima-regular">{error}</p>
               </div>
             ) : scheduleEvents.length > 0 ? (
               <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -345,16 +345,16 @@ export default function Schedule() {
 
                     {/* Content */}
                     <div className="text-center">
-                      <h4 className="text-xl font-bold font-sans text-forest-700 mb-2">
+                      <h4 className="text-xl font-bold font-proxima-regular text-forest-700 mb-2">
                         {event.eventName}
                       </h4>
-                      <p className="text-forest-500 mb-3 text-sm leading-relaxed font-sans">
+                      <p className="text-forest-500 mb-3 text-sm leading-relaxed font-proxima-regular">
                         {event.description || 'Wedding celebration event'}
                       </p>
                       {event.location && (
                         <div className="flex items-center justify-center gap-2 text-mint-600">
                           <FaMapMarkerAlt className="text-xs" />
-                          <span className="text-sm font-medium font-sans">{event.location}</span>
+                          <span className="text-sm font-medium font-proxima-regular">{event.location}</span>
                         </div>
                       )}
                     </div>
@@ -372,7 +372,7 @@ export default function Schedule() {
             ) : (
               <div className="text-center py-16">
                 <FaCalendarAlt className="text-forest-400 text-4xl mx-auto mb-4" />
-                <p className="text-forest-600 text-lg font-sans">No events scheduled at this time.</p>
+                <p className="text-forest-600 text-lg font-proxima-regular">No events scheduled at this time.</p>
               </div>
             )}
           </MotionDiv>
@@ -397,7 +397,7 @@ export default function Schedule() {
 
               <div className="text-center mb-8">
                 <FaTshirt className="text-mint-500 text-4xl mx-auto mb-4" />
-                <h4 className="text-3xl font-bold font-sans text-forest-700 mb-4">Dress Code</h4>
+                <h4 className="text-3xl font-bold font-proxima-regular text-forest-700 mb-4">Dress Code</h4>
                 <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p>
               </div>
 
@@ -412,27 +412,27 @@ export default function Schedule() {
                       ${index % 2 === 0 
                         ? 'from-blush-50 to-mint-50 border-blush-200/50' 
                         : 'from-sage-50 to-mint-50 border-sage-200/50'}`}>
-                      <h5 className="font-bold font-sans text-forest-700 text-xl mb-4 text-center">{attire.title}</h5>
-                      <p className="text-forest-600 mb-4 text-center font-sans">{attire.description}</p>
+                      <h5 className="font-bold font-proxima-regular text-forest-700 text-xl mb-4 text-center">{attire.title}</h5>
+                      <p className="text-forest-600 mb-4 text-center font-proxima-regular">{attire.description}</p>
                       
                       <div className="space-y-4">
                         {attire.dressCode && (
                           <div className="text-center">
-                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-2">Dress Code:</span>
-                            <p className="text-forest-700 font-medium font-sans">{attire.dressCode}</p>
+                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Dress Code:</span>
+                            <p className="text-forest-700 font-medium font-proxima-regular">{attire.dressCode}</p>
                           </div>
                         )}
                         
                         {attire.colorScheme && (
                           <div className="text-center">
-                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-2">Color Scheme:</span>
+                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Color Scheme:</span>
                             <div className="flex items-center justify-center gap-3">
                               <div 
                                 className="w-6 h-6 rounded-full border-2 border-gray-300 shadow-sm" 
                                 style={{ backgroundColor: attire.colorScheme }}
                                 title={attire.colorScheme}
                               />
-                              <p className="text-forest-700 font-sans capitalize">
+                              <p className="text-forest-700 font-proxima-regular capitalize">
                                 {getColorName(attire.colorScheme)}
                               </p>
                             </div>
@@ -441,14 +441,14 @@ export default function Schedule() {
                         
                         {attire.guidelines && (
                           <div className="text-center">
-                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-2">Guidelines:</span>
-                            <p className="text-forest-600 text-sm font-sans leading-relaxed">{attire.guidelines}</p>
+                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-2">Guidelines:</span>
+                            <p className="text-forest-600 text-sm font-proxima-regular leading-relaxed">{attire.guidelines}</p>
                           </div>
                         )}
 
                         {attire.photos && attire.photos.length > 0 && (
                           <div className="text-center">
-                            <span className="text-sm font-semibold font-sans text-forest-600 block mb-3">Reference Photos:</span>
+                            <span className="text-sm font-semibold font-proxima-regular text-forest-600 block mb-3">Reference Photos:</span>
                             <div className="grid grid-cols-2 gap-3">
                               {attire.photos.slice(0, 4).map((photo, photoIndex) => (
                                 <div key={photoIndex} className="aspect-square rounded-lg overflow-hidden border-2 border-white shadow-md hover:shadow-lg transition-shadow cursor-pointer">
@@ -462,7 +462,7 @@ export default function Schedule() {
                               ))}
                             </div>
                             {attire.photos.length > 4 && (
-                              <p className="text-xs text-forest-500 font-sans mt-2">
+                              <p className="text-xs text-forest-500 font-proxima-regular mt-2">
                                 +{attire.photos.length - 4} more photo{attire.photos.length - 4 > 1 ? 's' : ''} (click any photo to view all)
                               </p>
                             )}
@@ -474,14 +474,14 @@ export default function Schedule() {
                 </div>
               ) : (
                 <div className="text-center py-8">
-                  <p className="text-forest-600 font-sans">No attire guidelines available at this time.</p>
+                  <p className="text-forest-600 font-proxima-regular">No attire guidelines available at this time.</p>
                 </div>
               )}
 
               {/* Important Notes */}
               <div className="bg-gradient-to-r from-red-50 to-blush-50 p-4 rounded-xl 
                 border-l-4 border-red-400 shadow-inner">
-                <p className="text-red-700 text-center font-sans">
+                <p className="text-red-700 text-center font-proxima-regular">
                   <span className="font-bold">Please Note:</span> White and ivory are reserved for the bride
                 </p>
               </div>
@@ -504,13 +504,13 @@ export default function Schedule() {
             ) : error ? (
               <div className="text-center py-16">
                 <FaHeart className="text-red-500 text-4xl mx-auto mb-4" />
-                <p className="text-red-600 text-lg mb-2 font-sans">Error loading entourage</p>
+                <p className="text-red-600 text-lg mb-2 font-proxima-regular">Error loading entourage</p>
                 <p className="text-gray-600">{error}</p>
               </div>
             ) : entourageData.length === 0 ? (
               <div className="text-center py-16">
                 <FaHeart className="text-gray-400 text-4xl mx-auto mb-4" />
-                <p className="text-gray-500 text-lg font-sans">No entourage members added yet</p>
+                <p className="text-gray-500 text-lg font-proxima-regular">No entourage members added yet</p>
               </div>
             ) : (
               <div className="space-y-12">
@@ -527,17 +527,17 @@ export default function Schedule() {
                       {/* Parents Section */}
                       {parents.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-rose-200/50">
-                          <h4 className="text-2xl font-bold font-sans text-center text-rose-700 mb-6">Parents</h4>
+                          <h4 className="text-2xl font-bold font-proxima-regular text-center text-rose-700 mb-6">Parents</h4>
                           <div className="grid md:grid-cols-2 gap-6">
                             {brideParents.length > 0 && (
                               <div>
-                                <h5 className="text-lg font-semibold text-rose-600 text-center mb-4 font-sans">Bride&apos;s Parents</h5>
+                                <h5 className="text-lg font-semibold text-rose-600 text-center mb-4 font-proxima-regular">Bride&apos;s Parents</h5>
                                 <div className="space-y-4">
                                   {brideParents.map(member => (
                                     <div key={member.id} className="bg-gradient-to-br from-rose-50 to-pink-50 p-4 rounded-xl border border-rose-200 shadow-sm hover:shadow-md transition-all">
-                                      <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
-                                      <p className="text-sm text-rose-600 text-center font-medium font-sans">{member.role}</p>
-                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                      <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
+                                      <p className="text-sm text-rose-600 text-center font-medium font-proxima-regular">{member.role}</p>
+                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                                     </div>
                                   ))}
                                 </div>
@@ -545,13 +545,13 @@ export default function Schedule() {
                             )}
                             {groomParents.length > 0 && (
                               <div>
-                                <h5 className="text-lg font-semibold text-purple-600 text-center mb-4 font-sans">Groom&apos;s Parents</h5>
+                                <h5 className="text-lg font-semibold text-purple-600 text-center mb-4 font-proxima-regular">Groom&apos;s Parents</h5>
                                 <div className="space-y-4">
                                   {groomParents.map(member => (
                                     <div key={member.id} className="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-xl border border-purple-200 shadow-sm hover:shadow-md transition-all">
-                                      <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
-                                      <p className="text-sm text-purple-600 text-center font-medium font-sans">{member.role}</p>
-                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                      <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
+                                      <p className="text-sm text-purple-600 text-center font-medium font-proxima-regular">{member.role}</p>
+                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                                     </div>
                                   ))}
                                 </div>
@@ -564,7 +564,7 @@ export default function Schedule() {
                       {/* Sponsors Section */}
                       {sponsors.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-mint-200/50">
-                          <h4 className="text-2xl font-bold font-sans text-center text-mint-700 mb-6">Principal Sponsors</h4>
+                          <h4 className="text-2xl font-bold font-proxima-regular text-center text-mint-700 mb-6">Principal Sponsors</h4>
                           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {sponsors.map(member => {
                               const isNinong = member.side === 'male';
@@ -573,11 +573,11 @@ export default function Schedule() {
                                   key={member.id} 
                                   className={`bg-gradient-to-br ${isNinong ? 'from-blue-50 to-cyan-50 border-blue-200' : 'from-pink-50 to-rose-50 border-pink-200'} p-4 rounded-xl border shadow-sm hover:shadow-md transition-all`}
                                 >
-                                  <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
-                                  <p className={`text-sm ${isNinong ? 'text-blue-600' : 'text-pink-600'} text-center font-medium font-sans`}>
+                                  <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
+                                  <p className={`text-sm ${isNinong ? 'text-blue-600' : 'text-pink-600'} text-center font-medium font-proxima-regular`}>
                                     {member.role}
                                   </p>
-                                  {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                  {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                                 </div>
                               );
                             })}
@@ -588,13 +588,13 @@ export default function Schedule() {
                       {/* Other Members Section */}
                       {others.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-sage-200/50">
-                          <h4 className="text-2xl font-bold font-sans text-center text-sage-700 mb-6">Wedding Party</h4>
+                          <h4 className="text-2xl font-bold font-proxima-regular text-center text-sage-700 mb-6">Wedding Party</h4>
                           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {others.map(member => (
                               <div key={member.id} className="bg-gradient-to-br from-sage-50 to-mint-50 p-4 rounded-xl border border-sage-200 shadow-sm hover:shadow-md transition-all">
-                                <h6 className="font-bold text-forest-700 text-center font-sans">{member.name}</h6>
-                                <p className="text-sm text-sage-600 text-center font-medium font-sans">{member.role}</p>
-                                {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-sans">{member.description}</p>}
+                                <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
+                                <p className="text-sm text-sage-600 text-center font-medium font-proxima-regular">{member.role}</p>
+                                {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                               </div>
                             ))}
                           </div>
@@ -626,9 +626,9 @@ export default function Schedule() {
                 rounded-tr-[100px]" />
 
               <FaGift className="text-mint-500 text-5xl mx-auto mb-6" />
-              <h4 className="text-3xl font-bold font-sans text-forest-700 mb-6">Gift Information</h4>
+              <h4 className="text-3xl font-bold font-proxima-regular text-forest-700 mb-6">Gift Information</h4>
               
-                <div className="space-y-6 text-lg text-forest-600 leading-relaxed font-sans">
+                <div className="space-y-6 text-lg text-forest-600 leading-relaxed font-proxima-regular">
                 <p className="text-xl font-semibold text-forest-700">
                   Your presence is the greatest gift of all! 
                 </p>

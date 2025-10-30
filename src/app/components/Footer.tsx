@@ -36,15 +36,15 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             className="text-center md:text-left"
           >
-            <h4 className="text-2xl font-great-vibes text-mint-300 mb-6">Kenneth & Jenna</h4>
+            <h4 className="text-2xl font-something text-mint-300 mb-6">Kenneth & Jenna</h4>
             <div className="space-y-4">
               <div className="flex items-center justify-center md:justify-start gap-3">
                 <FaCalendarAlt className="text-mint-400 text-lg" />
-                <span className="text-gray-200 font-sans">Saturday, January 24, 2026</span>
+                <span className="text-gray-200 font-proxima-regular">Saturday, January 24, 2026</span>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-3">
                 <FaClock className="text-mint-400 text-lg" />
-                <span className="text-gray-200 font-sans">1:30 PM Onwards</span>
+                <span className="text-gray-200 font-proxima-regular">1:30 PM Onwards</span>
               </div>
             </div>
           </MotionDiv>
@@ -56,7 +56,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center"
           >
-            <h4 className="text-xl font-semibold text-white mb-6 font-sans">Contact Us</h4>
+            <h4 className="text-xl font-semibold text-white mb-6 font-proxima-regular">Contact Us</h4>
             <div className="space-y-4">
               <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-mint-400/20">
                 <div className="flex items-center justify-center gap-3 mb-2">
@@ -83,13 +83,13 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-center md:text-right"
           >
-            <h4 className="text-xl font-semibold text-white mb-6 font-sans">Venue</h4>
+            <h4 className="text-xl font-semibold text-white mb-6 font-proxima-regular">Venue</h4>
             <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-sage-400/20">
               <div className="flex items-center justify-center md:justify-end gap-3 mb-3">
                 <FaMapMarkerAlt className="text-sage-400 text-lg" />
                 <span className="font-medium text-sage-300">Location</span>
               </div>
-              <p className="text-gray-200 leading-relaxed font-sans">
+              <p className="text-gray-200 leading-relaxed font-proxima-regular">
                 Liam and Belle<br />
                 Sta Maria, Bulacan
               </p>
@@ -113,7 +113,7 @@ export default function Footer() {
           className="text-center"
         >
           <div className="mb-6">
-            <p className="text-lg text-gray-200 italic leading-relaxed max-w-2xl mx-auto font-sans">
+            <p className="text-lg text-gray-200 italic leading-relaxed max-w-2xl mx-auto font-proxima-regular">
               "Love is not about how many days, weeks, or months you've been together, 
               it's all about how much you love each other every day."
             </p>
@@ -131,7 +131,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-gray-400 text-sm font-sans">
+          <p className="text-gray-400 text-sm font-proxima-regular">
             © 2026 Kenneth & Jenna Wedding. Made with{' '}
             <FaHeart className="inline text-red-400 mx-1" />
             {' '}for our special day.
