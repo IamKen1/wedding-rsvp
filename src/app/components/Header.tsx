@@ -107,13 +107,13 @@ export default function Header() {
           {/* Date and Location */}
           <MotionDiv
             variants={fadeInUp}
-            className="space-y-3"
+            className="space-y-1"
           >
             <p className="text-xl md:text-2xl text-white/95 font-proxima-regular font-medium tracking-wide
               [text-shadow:_0_1px_10px_rgba(0,0,0,0.4)]">
-              Saturday, January 24, 2026
+              SATURDAY JANUARY 24, 2026
             </p>
-            <p className="text-base md:text-lg text-white/80 font-proxima-regular tracking-wider
+            <p className="text-base md:text-xl text-white/80 font-script tracking-wider
               [text-shadow:_0_1px_8px_rgba(0,0,0,0.4)]">
               A celebration of love and commitment
             </p>
