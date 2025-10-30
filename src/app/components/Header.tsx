@@ -52,27 +52,25 @@ export default function Header() {
           className="object-cover"
           sizes="100vw"
           style={{
-        objectPosition: isMobile ? 'center center' : '65% center',
+            objectPosition: isMobile ? 'center center' : '65% center',
+            objectFit: 'cover'
           }}
         />
       </MotionDiv>
 
-      {/* Cloud-like fading overlay */}
-      {/* <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20 z-10" /> */}
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/20 z-10" />
       
-      {/* Soft cloud fade from sides */}
-      {/* <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 z-10" /> */}
-      
-      {/* Bottom cloud fade */}
-      {/* <div className="absolute bottom-0 inset-x-0 h-22 bg-gradient-to-t from-white/20 via-white/60 to-transparent z-10" /> */}
+      {/* Vignette effect - darker edges */}
+      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40 z-10" />
 
       {/* Main Content - Centered Elegantly */}
       <MotionDiv 
-        className="relative h-full w-full flex items-center justify-center px-6 z-20"
+        className="relative h-full w-full flex items-center justify-center px-4 sm:px-6 z-20"
         style={{ y: contentY }}
       >
         <MotionDiv 
-          className="text-center max-w-4xl mx-auto -mt-[30vh] md:-mt-[30vh]"
+          className="text-center max-w-4xl mx-auto -mt-[25vh] sm:-mt-[28vh] md:-mt-[30vh]"
           initial="hidden"
           animate="visible"
           variants={{
@@ -83,39 +81,47 @@ export default function Header() {
             }
           }}
         >
-          {/* Names - Elegant and Readable */}
+          {/* Names - Elegant and Readable with Responsive Sizing */}
           <MotionDiv
             variants={fadeInUp}
           >
-            <h1 className="text-6xl md:text-9xl lg:text-9xl font-something text-white font-normal
-              tracking-wide leading-tight mb-4
-              [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
-              Kenneth <span className="text-4xl md:text-6xl lg:text-7xl font-something">&</span> Jenna
+            <h1 className="text-[clamp(3rem,12vw,9rem)] font-something text-white font-normal
+              tracking-wide leading-tight mb-2
+              [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
+              drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
+              Kenneth <span className="text-[clamp(2rem,7vw,7rem)] font-something">&</span> Jenna
             </h1>
+          </MotionDiv>
+
+          {/* Wedding Date */}
+          <MotionDiv
+            variants={fadeInUp}
+            className="mb-3"
+          >
+            <p className="text-[clamp(1.125rem,3vw,1.75rem)] text-white tracking-wide
+              [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
+              drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
+              JANUARY 24, 2026 * SATURDAY * 1:30 P.M.
+            </p>
           </MotionDiv>
 
           {/* Elegant Separator */}
           <MotionDiv
             variants={fadeInUp}
-            className="mb-1 flex items-center justify-center gap-4"
+            className="mb-4 flex items-center justify-center gap-2"
           >
-            <div className="w-12 h-[1px] bg-white/40" />
-            <div className="w-1.5 h-1.5 bg-white/60 rounded-full" />
-            <div className="w-12 h-[1px] bg-white/40" />
+            <div className="w-8 h-[1px] bg-white/40" />
+            <div className="w-1 h-1 bg-white/60 rounded-full" />
+            <div className="w-8 h-[1px] bg-white/40" />
           </MotionDiv>
 
-          {/* Date and Location */}
+          {/* Subtitle */}
           <MotionDiv
             variants={fadeInUp}
             className="space-y-1"
           >
-            <p className="text-xl md:text-2xl text-white/95 font-proxima-regular font-medium tracking-wide
-              [text-shadow:_0_1px_10px_rgba(0,0,0,0.4)]">
-              JANUARY 24, 2026 * SATURDAY * 1:30 P.M.
-
-            </p>
-            <p className="text-base md:text-xl text-white/80 font-script tracking-wider
-              [text-shadow:_0_1px_8px_rgba(0,0,0,0.4)]">
+            <p className="text-[clamp(0.875rem,2vw,1.25rem)] text-white/95 font-script tracking-wider
+              [text-shadow:_0_2px_12px_rgba(0,0,0,0.8),_0_1px_6px_rgba(0,0,0,0.6)]">
               A celebration of love and commitment
             </p>
           </MotionDiv>
