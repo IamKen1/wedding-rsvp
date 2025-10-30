@@ -118,9 +118,9 @@ export default function Header() {
           {/* Subtitle */}
           <MotionDiv
             variants={fadeInUp}
-            className="space-y-1"
+           
           >
-            <p className="text-[clamp(0.875rem,2vw,1.25rem)] text-white/95 font-script tracking-wider
+            <p className="text-[clamp(1rem,2.5vw,1.5rem)] text-white/95 font-script tracking-wider
               [text-shadow:_0_2px_12px_rgba(0,0,0,0.8),_0_1px_6px_rgba(0,0,0,0.6)]">
               A celebration of love and commitment
             </p>
