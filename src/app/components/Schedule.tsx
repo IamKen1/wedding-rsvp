@@ -351,9 +351,9 @@ export default function Schedule() {
                             
                             {/* Description */}
                             {event.description && (
-                              <p className="text-gray-600 text-xs mb-2 font-proxima-regular leading-relaxed">
+                                <p className="text-gray-600 text-xs mb-2 font-proxima-regular leading-relaxed italic">
                                 {event.description}
-                              </p>
+                                </p>
                             )}
                             
                             {/* Location */}
