@@ -319,8 +319,10 @@ export default function Schedule() {
               <div className="max-w-3xl mx-auto mb-12">
                 {/* Timeline Container */}
                 <div className="relative">
-                  {/* Vertical Line */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#9E5E40]/20 via-[#9E5E40]/40 to-[#9E5E40]/20" />
+                  {/* Vertical Line - Hidden on mobile, shown on md+ */}
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#9E5E40]/20 via-[#9E5E40]/40 to-[#9E5E40]/20" />
+                  {/* Mobile Vertical Line - Left side */}
+                  <div className="md:hidden absolute left-[2rem] top-0 h-full w-0.5 bg-gradient-to-b from-[#9E5E40]/20 via-[#9E5E40]/40 to-[#9E5E40]/20" />
                   
                   {scheduleEvents.map((event, index) => {
                     const IconComponent = getIconComponent(event.icon);
@@ -333,48 +335,58 @@ export default function Schedule() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className={`relative flex items-center mb-4 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+                        className={`relative flex items-center mb-6 
+                          ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} 
+                          flex-row`}
                       >
                         {/* Content Card */}
-                        <div className={`w-[calc(50%-2.5rem)] ${isEven ? 'text-right pr-6' : 'text-left pl-6'}`}>
-                          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-4 border border-[#9E5E40]/10 hover:shadow-lg transition-all duration-300 group">
+                        <div className={`
+                          md:w-[calc(50%-2.5rem)] w-full
+                          ${isEven ? 'md:text-right md:pr-6' : 'md:text-left md:pl-6'} 
+                          text-left pl-24 md:pl-0
+                        `}>
+                          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-5 md:p-4 border border-[#9E5E40]/10 hover:shadow-lg transition-all duration-300 group">
                             {/* Time */}
-                            <div className={`flex items-center gap-1.5 text-[#9E5E40] font-bold mb-2 ${isEven ? 'justify-end' : 'justify-start'}`}>
-                              <FaClock className="text-xs" />
-                              <span className="text-base font-proxima-regular">{formatTime(event.eventTime)}</span>
+                            <div className={`flex items-center gap-2 text-[#9E5E40] font-bold mb-3 
+                              ${isEven ? 'md:justify-end' : 'md:justify-start'} 
+                              justify-start`}>
+                              <FaClock className="text-sm" />
+                              <span className="text-lg md:text-base font-proxima-regular">{formatTime(event.eventTime)}</span>
                             </div>
                             
                             {/* Event Name */}
-                            <h4 className="text-lg font-bold font-proxima-regular text-gray-800 mb-1.5">
+                            <h4 className="text-xl md:text-lg font-bold font-proxima-regular text-gray-800 mb-2 md:mb-1.5">
                               {event.eventName}
                             </h4>
                             
                             {/* Description */}
                             {event.description && (
-                                <p className="text-gray-600 text-xs mb-2 font-proxima-regular leading-relaxed italic">
+                                <p className="text-gray-600 text-sm md:text-xs mb-3 md:mb-2 font-proxima-regular leading-relaxed italic">
                                 {event.description}
                                 </p>
                             )}
                             
                             {/* Location */}
                             {event.location && (
-                              <div className={`flex items-center gap-1 text-gray-600 text-[11px] ${isEven ? 'justify-end' : 'justify-start'}`}>
-                                <FaMapMarkerAlt className="text-[#9E5E40] text-[9px]" />
+                              <div className={`flex items-center gap-1.5 text-gray-600 text-xs md:text-[11px] 
+                                ${isEven ? 'md:justify-end' : 'md:justify-start'} 
+                                justify-start`}>
+                                <FaMapMarkerAlt className="text-[#9E5E40] text-[10px] md:text-[9px]" />
                                 <span className="font-proxima-regular">{event.location}</span>
                               </div>
                             )}
                           </div>
                         </div>
                         
-                        {/* Center Icon */}
-                        <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#9E5E40] to-[#7d4a33] flex items-center justify-center shadow-md border-3 border-white group-hover:scale-110 transition-transform duration-300">
-                            <IconComponent className="text-white text-lg" />
+                        {/* Center Icon - Desktop (center) / Mobile (left) */}
+                        <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 z-10">
+                          <div className="w-16 h-16 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#9E5E40] to-[#7d4a33] flex items-center justify-center shadow-lg border-4 md:border-3 border-white group-hover:scale-110 transition-transform duration-300">
+                            <IconComponent className="text-white text-2xl md:text-lg" />
                           </div>
                         </div>
                         
-                        {/* Empty space on opposite side */}
-                        <div className="w-[calc(50%-2.5rem)]" />
+                        {/* Empty space on opposite side - Desktop only */}
+                        <div className="hidden md:block w-[calc(50%-2.5rem)]" />
                       </MotionDiv>
                     );
                   })}
