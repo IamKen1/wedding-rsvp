@@ -5,7 +5,8 @@ import InvitationManager from '../components/InvitationManager';
 import WeddingDetailsManager from '../components/WeddingDetailsManager';
 import ConfirmationModal from '../components/ConfirmationModal';
 import SuccessNotification from '../components/SuccessNotification';
-import { FaUsers, FaEnvelope, FaCogs } from 'react-icons/fa';
+import { FaUsers, FaEnvelope, FaCogs, FaCameraRetro } from 'react-icons/fa';
+import PrenupPhotoManager from '../components/PrenupPhotoManager';
 
 interface RSVPData {
   id: string;
@@ -24,7 +25,8 @@ interface RSVPData {
 enum TabType {
   INVITATIONS = 'invitations',
   RSVPS = 'rsvps',
-  WEDDING_DETAILS = 'wedding-details'
+  WEDDING_DETAILS = 'wedding-details',
+  PRENUP_PHOTOS = 'prenup-photos'
 }
 
 export default function AdminPage() {
@@ -196,6 +198,17 @@ export default function AdminPage() {
               >
                 <FaCogs className="inline mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">Wedding </span>Details
+              </button>
+              <button
+                onClick={() => setActiveTab(TabType.PRENUP_PHOTOS)}
+                className={`py-2 px-2 sm:px-1 border-b-2 font-semibold text-sm sm:text-base font-sans cursor-pointer transition-all duration-200 whitespace-nowrap ${
+                  activeTab === TabType.PRENUP_PHOTOS
+                    ? 'border-mint-500 text-mint-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300'
+                }`}
+              >
+                <FaCameraRetro className="inline mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Prenup </span>Photos
               </button>
             </nav>
           </div>
@@ -430,9 +443,12 @@ export default function AdminPage() {
           )}
         </div>
           </>
-        ) : (
+        ) : activeTab === TabType.WEDDING_DETAILS ? (
           /* Wedding Details Tab Content */
           <WeddingDetailsManager />
+        ) : (
+          /* Prenup Photos Tab Content */
+          <PrenupPhotoManager />
         )}
       </div>
 

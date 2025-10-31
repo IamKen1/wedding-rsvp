@@ -67,13 +67,21 @@ interface EntourageMember {
   sortOrder: number;
 }
 
+interface PrenupPhoto {
+  id: number;
+  photoUrl: string;
+  caption: string;
+  sortOrder: number;
+}
+
 export default function Schedule() {
   const { openModal } = useImageModal();
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'entourage' | 'gifts'>('schedule');
+  const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'entourage' | 'prenup' | 'gifts'>('schedule');
   const [scheduleEvents, setScheduleEvents] = useState<WeddingEvent[]>([]);
   const [attireGuidelines, setAttireGuidelines] = useState<WeddingAttire[]>([]);
   const [entourageData, setEntourageData] = useState<EntourageMember[]>([]);
+  const [prenupPhotos, setPrenupPhotos] = useState<PrenupPhoto[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -131,10 +139,11 @@ export default function Schedule() {
         setError(null);
 
         // Parallel fetch for better performance
-        const [eventsResponse, attireResponse, entourageResponse] = await Promise.all([
+        const [eventsResponse, attireResponse, entourageResponse, prenupResponse] = await Promise.all([
           fetch('/api/admin/schedule', { next: { revalidate: 60 } }),
           fetch('/api/admin/attire', { next: { revalidate: 60 } }),
-          fetch('/api/admin/entourage', { next: { revalidate: 60 } })
+          fetch('/api/admin/entourage', { next: { revalidate: 60 } }),
+          fetch('/api/prenup', { next: { revalidate: 60 } })
         ]);
 
         if (eventsResponse.ok) {
@@ -152,6 +161,11 @@ export default function Schedule() {
         if (entourageResponse.ok) {
           const entourage = await entourageResponse.json();
           setEntourageData(entourage.sort((a: EntourageMember, b: EntourageMember) => a.sortOrder - b.sortOrder));
+        }
+
+        if (prenupResponse.ok) {
+          const prenup = await prenupResponse.json();
+          setPrenupPhotos(prenup.sort((a: PrenupPhoto, b: PrenupPhoto) => a.sortOrder - b.sortOrder));
         }
       } catch (err) {
         console.error('Error fetching schedule data:', err);
@@ -266,6 +280,7 @@ export default function Schedule() {
               { id: 'schedule' as const, label: 'Schedule', icon: FaCalendarAlt },
               { id: 'attire' as const, label: 'Attire', icon: FaTshirt },
               { id: 'entourage' as const, label: 'Entourage', icon: FaHeart },
+              { id: 'prenup' as const, label: 'Prenup', icon: FaCameraRetro },
               { id: 'gifts' as const, label: 'Gifts', icon: FaGift }
             ].map((tab) => (
               <button
@@ -913,6 +928,73 @@ export default function Schedule() {
                     </>
                   );
                 })()}
+              </div>
+            )}
+          </MotionDiv>
+        )}
+
+        {/* Prenup Photos Tab */}
+        {activeTab === 'prenup' && (
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {loading ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <SkeletonLoader type="image" count={8} />
+              </div>
+            ) : prenupPhotos.length > 0 ? (
+              <>
+                <div className="text-center mb-12">
+                  <h4 className="text-4xl md:text-5xl font-script text-[#9E5E40] mb-4">Prenup Photos</h4>
+                  <p className="text-[#9E5E40] font-proxima-regular text-lg">
+                    Our prenup photoshoot moments
+                  </p>
+                </div>
+                <div className="flex flex-wrap justify-center gap-4 max-w-7xl mx-auto">
+                  {prenupPhotos.map((photo, index) => (
+                    <MotionDiv
+                      key={photo.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                      className="group relative aspect-square overflow-hidden rounded-xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.667rem)] lg:w-[calc(25%-0.75rem)]"
+                      onClick={() => openModal(photo.photoUrl)}
+                    >
+                      {/* Subtle hover glow */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#F5EEE6]/40 via-[#E6D5BE]/40 to-[#F5EEE6]/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur" />
+                      
+                      {/* Photo */}
+                      <div className="relative w-full h-full">
+                        <img
+                          src={photo.photoUrl}
+                          alt={photo.caption || `Prenup photo ${index + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        {/* Overlay on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {photo.caption && (
+                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                              <p className="text-white text-sm font-proxima-regular text-center">
+                                {photo.caption}
+                              </p>
+                            </div>
+                          )}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <FaCameraRetro className="text-white text-3xl opacity-80" />
+                          </div>
+                        </div>
+                      </div>
+                    </MotionDiv>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-16">
+                <FaCameraRetro className="text-gray-300 text-6xl mx-auto mb-4" />
+                <p className="text-gray-500 text-xl font-proxima-regular">No prenup photos available yet</p>
               </div>
             )}
           </MotionDiv>

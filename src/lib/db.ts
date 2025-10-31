@@ -149,6 +149,18 @@ export async function initializeDatabase() {
       )
     `;
 
+    // Create prenup_photos table
+    await sql`
+      CREATE TABLE IF NOT EXISTS prenup_photos (
+        id SERIAL PRIMARY KEY,
+        photo_url TEXT NOT NULL,
+        caption TEXT,
+        sort_order INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+
     // Add photo columns to existing tables (migrations)
     try {
       // Add photos column to wedding_attire if it doesn't exist
@@ -208,6 +220,7 @@ export async function initializeDatabase() {
     await sql`CREATE INDEX IF NOT EXISTS idx_wedding_entourage_sort_order ON wedding_entourage(sort_order)`;
     await sql`CREATE INDEX IF NOT EXISTS idx_wedding_attire_category ON wedding_attire(category)`;
     await sql`CREATE INDEX IF NOT EXISTS idx_wedding_locations_sort_order ON wedding_locations(sort_order)`;
+    await sql`CREATE INDEX IF NOT EXISTS idx_prenup_photos_sort_order ON prenup_photos(sort_order)`;
 
     console.log('Database tables initialized successfully');
     return true;
@@ -733,6 +746,82 @@ export async function deleteWeddingLocation(id: number) {
     return result[0];
   } catch (error) {
     console.error('Error deleting wedding location:', error);
+    throw error;
+  }
+}
+
+// Prenup Photos operations
+export async function getAllPrenupPhotos(): Promise<any[]> {
+  try {
+    const photos = await sql`
+      SELECT * FROM prenup_photos 
+      ORDER BY sort_order ASC, created_at ASC
+    `;
+    return photos;
+  } catch (error) {
+    console.error('Error fetching prenup photos:', error);
+    throw error;
+  }
+}
+
+export async function createPrenupPhoto(photo: {
+  photoUrl: string;
+  caption?: string;
+  sortOrder?: number;
+}) {
+  try {
+    const result = await sql`
+      INSERT INTO prenup_photos (photo_url, caption, sort_order)
+      VALUES (${photo.photoUrl}, ${photo.caption || null}, ${photo.sortOrder || 0})
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Error creating prenup photo:', error);
+    throw error;
+  }
+}
+
+export async function updatePrenupPhoto(id: number, photo: {
+  photoUrl: string;
+  caption?: string;
+  sortOrder?: number;
+}) {
+  try {
+    const result = await sql`
+      UPDATE prenup_photos 
+      SET photo_url = ${photo.photoUrl}, caption = ${photo.caption || null}, 
+          sort_order = ${photo.sortOrder || 0}, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ${id}
+      RETURNING *
+    `;
+    return result[0];
+  } catch (error) {
+    console.error('Error updating prenup photo:', error);
+    throw error;
+  }
+}
+
+export async function deletePrenupPhoto(id: number) {
+  try {
+    const result = await sql`DELETE FROM prenup_photos WHERE id = ${id} RETURNING *`;
+    return result[0];
+  } catch (error) {
+    console.error('Error deleting prenup photo:', error);
+    throw error;
+  }
+}
+
+export async function createMultiplePrenupPhotos(photos: Array<{ photoUrl: string; caption?: string; sortOrder?: number }>) {
+  try {
+    const results = [];
+    for (const photo of photos) {
+      const result = await createPrenupPhoto(photo);
+      results.push(result);
+    }
+    return results;
+  } catch (error) {
+    console.error('Error creating multiple prenup photos:', error);
     throw error;
   }
 }
