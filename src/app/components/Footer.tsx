@@ -88,7 +88,7 @@ export default function Footer() {
                   <span className="font-medium text-blush-300">Jenna</span>
                 </div>
                 {showJennaPhone && (
-                  <p className="text-gray-200 text-sm mt-2 animate-fadeIn">0929-133-8412</p>
+                  <p className="text-gray-200 text-sm mt-2 animate-fadeIn">0955-437-2117</p>
                 )}
                 {!showJennaPhone && (
                   <p className="text-gray-400 text-xs mt-1">Click to reveal</p>
@@ -111,7 +111,7 @@ export default function Footer() {
                 <span className="font-medium text-sage-300">Location</span>
               </div>
               <p className="text-gray-200 leading-relaxed font-proxima-regular">
-                Liam and Belle<br />
+                Liam and Belle Resort and Pavillion<br />
                 Sta Maria, Bulacan
               </p>
             </div>
