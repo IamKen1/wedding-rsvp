@@ -1032,7 +1032,7 @@ export default function Schedule() {
 
                 <div className="bg-gradient-to-r from-sage-50 to-mint-50 p-6 rounded-xl 
                   border border-mint-200 shadow-inner">
-                  <p className="text-gray-800 font-proxima-regular  text-xl">
+                  <p className="text-[#9E5E40] font-proxima-regular  text-xl">
                     Your love, laughter, and presence as we exchange vows is all we truly need to make our day perfect.
                   </p>
                 </div>
