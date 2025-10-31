@@ -3,6 +3,7 @@
 import { MotionDiv } from '@/types/motion';
 import { useState, useEffect } from 'react';
 import SkeletonLoader from './SkeletonLoader';
+import { useImageModal } from '../contexts/ImageModalContext';
 import {
   FaChurch,
   FaGlassCheers,
@@ -67,6 +68,7 @@ interface EntourageMember {
 }
 
 export default function Schedule() {
+  const { openModal } = useImageModal();
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'schedule' | 'attire' | 'entourage' | 'gifts'>('schedule');
   const [scheduleEvents, setScheduleEvents] = useState<WeddingEvent[]>([]);
@@ -74,7 +76,6 @@ export default function Schedule() {
   const [entourageData, setEntourageData] = useState<EntourageMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
 
   // Helper function to convert hex colors to readable names
   const getColorName = (hexColor: string): string => {
@@ -408,7 +409,7 @@ export default function Schedule() {
                       <div
                         key={`${attire.id}-${photoIndex}`}
                         className="group relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] cursor-pointer"
-                        onClick={() => setFullScreenImage(photo)}
+                        onClick={() => openModal(photo)}
                       >
                         <div className="absolute -inset-0.5 bg-gradient-to-r from-blush-200/40 via-mint-200/40 to-blush-200/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur" />
                         <div className="relative bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 transition-all duration-300 group-hover:shadow-xl group-hover:border-mint-300">
@@ -966,27 +967,6 @@ export default function Schedule() {
           </MotionDiv>
         )}
       </MotionDiv>
-
-      {/* Full Screen Image Modal */}
-      {fullScreenImage && (
-        <div
-          className="fixed inset-0 z-[99999] bg-black/95 flex items-center justify-center p-4 pt-20 cursor-pointer"
-          onClick={() => setFullScreenImage(null)}
-        >
-          <button
-            className="absolute top-20 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
-            onClick={() => setFullScreenImage(null)}
-          >
-            ×
-          </button>
-          <img
-            src={fullScreenImage}
-            alt="Full size attire"
-            className="max-w-[90%] max-h-[85vh] object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
     </section>
   );
 }

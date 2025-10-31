@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense } from 'react';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
@@ -6,6 +8,8 @@ import Locations from './components/Locations';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
 import SkeletonLoader from './components/SkeletonLoader';
+import ImageModal from './components/ImageModal';
+import { ImageModalProvider, useImageModal } from './contexts/ImageModalContext';
 
 // Loading fallbacks for each section
 const ScheduleFallback = () => (
@@ -61,33 +65,51 @@ const RSVPFallback = () => (
   </div>
 );
 
+function HomePageContent() {
+  const { imageUrl, closeModal } = useImageModal();
+
+  return (
+    <>
+      <main className="relative bg-white">
+        <Navigation />
+        <div id="top">
+          <Header />
+        </div>
+        {/* RSVP Section - Moved to top priority position */}
+        <div id="rsvp" className="relative z-10">
+          <Suspense fallback={<RSVPFallback />}>
+            <RSVP />
+          </Suspense>
+        </div>
+        {/* Wedding Details Section - Combined Schedule, Attire, Entourage in tabs */}
+        <div id="schedule" className="relative z-10">
+          {/* Add ID anchor for entourage for backward compatibility */}
+          <div id="entourage" className="absolute -top-20"></div>
+          <Suspense fallback={<ScheduleFallback />}>
+            <Schedule />
+          </Suspense>
+        </div>
+        <div id="locations" className="relative z-10">
+          <Suspense fallback={<LocationsFallback />}>
+            <Locations />
+          </Suspense>
+        </div>
+        <Footer />
+      </main>
+      {/* Global Image Modal - Rendered at page level for proper z-index layering */}
+      <ImageModal 
+        imageUrl={imageUrl}
+        onClose={closeModal}
+        alt="Full size image"
+      />
+    </>
+  );
+}
+
 export default function HomePage() {
   return (
-    <main className="relative bg-white">
-      <Navigation />
-      <div id="top">
-        <Header />
-      </div>
-      {/* RSVP Section - Moved to top priority position */}
-      <div id="rsvp" className="relative z-10">
-        <Suspense fallback={<RSVPFallback />}>
-          <RSVP />
-        </Suspense>
-      </div>
-      {/* Wedding Details Section - Combined Schedule, Attire, Entourage in tabs */}
-      <div id="schedule" className="relative z-10">
-        {/* Add ID anchor for entourage for backward compatibility */}
-        <div id="entourage" className="absolute -top-20"></div>
-        <Suspense fallback={<ScheduleFallback />}>
-          <Schedule />
-        </Suspense>
-      </div>
-      <div id="locations" className="relative z-10">
-        <Suspense fallback={<LocationsFallback />}>
-          <Locations />
-        </Suspense>
-      </div>
-      <Footer />
-    </main>
+    <ImageModalProvider>
+      <HomePageContent />
+    </ImageModalProvider>
   );
 }

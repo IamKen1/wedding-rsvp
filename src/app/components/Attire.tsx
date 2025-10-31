@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { MotionSection, MotionDiv } from '@/types/motion';
 import SkeletonLoader from './SkeletonLoader';
+import { useImageModal } from '../contexts/ImageModalContext';
 import { FaPalette, FaInfoCircle } from 'react-icons/fa';
 
 interface WeddingAttireItem {
@@ -12,10 +13,10 @@ interface WeddingAttireItem {
 }
 
 export default function Attire() {
+  const { openModal } = useImageModal();
   const [attire, setAttire] = useState<WeddingAttireItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAttire = async () => {
@@ -96,7 +97,7 @@ export default function Attire() {
                   transition={{ duration: 0.5, delay: (idx * item.photos.length + photoIdx) * 0.05 }}
                   viewport={{ once: true }}
                   className="group relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] cursor-pointer"
-                  onClick={() => setFullScreenImage(photo)}
+                  onClick={() => openModal(photo)}
                 >
                   {/* Subtle hover glow */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-[#F5EEE6]/40 via-[#E6D5BE]/40 to-[#F5EEE6]/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur" />
@@ -146,27 +147,6 @@ export default function Attire() {
           </MotionDiv>
         )}
       </div>
-
-      {/* Full Screen Image Modal */}
-      {fullScreenImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-pointer"
-          onClick={() => setFullScreenImage(null)}
-        >
-          <button
-            className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
-            onClick={() => setFullScreenImage(null)}
-          >
-            ×
-          </button>
-          <img
-            src={fullScreenImage}
-            alt="Full size attire"
-            className="max-w-full max-h-full object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
     </MotionSection>
   );
 }

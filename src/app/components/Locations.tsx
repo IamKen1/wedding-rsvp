@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { MotionDiv, MotionSection } from '@/types/motion';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaExternalLinkAlt, FaImage, FaTimes } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaExternalLinkAlt, FaImage } from 'react-icons/fa';
 import SkeletonLoader from './SkeletonLoader';
+import { useImageModal } from '../contexts/ImageModalContext';
 
 interface WeddingLocation {
   id: number;
@@ -19,32 +20,10 @@ interface WeddingLocation {
 }
 
 export default function Locations() {
+  const { openModal } = useImageModal();
   const [locations, setLocations] = useState<WeddingLocation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
-
-  // Handle escape key to close modal
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && selectedPhoto) {
-        setSelectedPhoto(null);
-      }
-    };
-
-    if (selectedPhoto) {
-      document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedPhoto]);
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -166,7 +145,7 @@ export default function Locations() {
             </h4>
             <div 
               className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-[#9E5E40] transition-colors"
-              onClick={() => setSelectedPhoto(location.mapPhoto!)}
+              onClick={() => openModal(location.mapPhoto!)}
             >
               <img 
                 src={location.mapPhoto} 
@@ -224,39 +203,6 @@ export default function Locations() {
           )}
         </div>
       </div>
-
-      {/* Photo Modal */}
-      {selectedPhoto && (
-        <div 
-          className="fixed inset-0 z-[99999] bg-black bg-opacity-90 flex items-center justify-center p-4 pt-20 overflow-y-auto"
-          onClick={(e) => {
-            // Close modal if clicking backdrop
-            if (e.target === e.currentTarget) {
-              setSelectedPhoto(null);
-            }
-          }}
-        >
-          <div className="relative max-w-4xl w-full max-h-[85vh] flex flex-col">
-            <div className="flex justify-end mb-4">
-              <button
-                onClick={() => setSelectedPhoto(null)}
-                className="bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors"
-                aria-label="Close modal"
-              >
-                <FaTimes className="text-xl" />
-              </button>
-            </div>
-            <div className="flex-1 flex items-center justify-center">
-              <img 
-                src={selectedPhoto} 
-                alt="Location map"
-                className="max-w-[90%] max-h-full object-contain rounded-lg shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </MotionSection>
   );
 }
