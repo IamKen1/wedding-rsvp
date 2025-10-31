@@ -316,68 +316,69 @@ export default function Schedule() {
                 <p className="text-[#9E5E40] font-proxima-regular">{error}</p>
               </div>
             ) : scheduleEvents.length > 0 ? (
-              <div className="flex flex-wrap justify-center gap-8 mb-16">
-                {scheduleEvents.map((event, index) => {
-                  const IconComponent = getIconComponent(event.icon);
-                  const gradientClass = getGradientClass(event.color);
-                  return (
-                    <div
-                      key={event.id}
-                      className="group cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-full max-w-sm md:w-auto md:flex-shrink-0"
-                      onMouseEnter={() => setHoveredEvent(index)}
-                      onMouseLeave={() => setHoveredEvent(null)}
-                    >
-                      <div className={`relative p-8 rounded-3xl bg-white/90 backdrop-blur-sm 
-              shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50
-              ${hoveredEvent === index ? 'scale-105 -translate-y-2' : ''}`}
+              <div className="max-w-3xl mx-auto mb-12">
+                {/* Timeline Container */}
+                <div className="relative">
+                  {/* Vertical Line */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#9E5E40]/20 via-[#9E5E40]/40 to-[#9E5E40]/20" />
+                  
+                  {scheduleEvents.map((event, index) => {
+                    const IconComponent = getIconComponent(event.icon);
+                    const isEven = index % 2 === 0;
+                    
+                    return (
+                      <MotionDiv
+                        key={event.id}
+                        initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className={`relative flex items-center mb-4 ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
                       >
-                        {/* Background gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#9E5E40]/5 to-[#9E5E40]/10 
-                opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500" />
-
-                        {/* Time badge */}
-                        <div className="absolute -top-4 left-8">
-                          <div className="bg-gradient-to-r from-[#9E5E40] to-[#7d4a33] text-white px-4 py-2 
-                rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-                            <FaClock className="text-xs" />
-                            {formatTime(event.eventTime)}
-                          </div>
-                        </div>
-
-                        {/* Icon */}
-                        <div className="flex justify-center mb-6 mt-4">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#9E5E40] to-[#7d4a33] 
-                flex items-center justify-center shadow-lg group-hover:scale-110 
-                transition-transform duration-300">
-                            <IconComponent className="text-white text-3xl" />
-                          </div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="text-center">
-                          <h4 className="text-xl font-bold font-proxima-regular text-gray-800  mb-2">
-                            {event.eventName}
-                          </h4>
-                          <p className="text-gray-800 mb-3 text-sm leading-relaxed font-proxima-regular">
-                            {event.description || 'Wedding celebration event'}
-                          </p>
-                          {event.location && (
-                            <div className="flex items-center justify-center gap-2 text-gray-800">
-                              <FaMapMarkerAlt className="text-xs" />
-                              <span className="text-sm font-medium font-proxima-regular">{event.location}</span>
+                        {/* Content Card */}
+                        <div className={`w-[calc(50%-2.5rem)] ${isEven ? 'text-right pr-6' : 'text-left pl-6'}`}>
+                          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-4 border border-[#9E5E40]/10 hover:shadow-lg transition-all duration-300 group">
+                            {/* Time */}
+                            <div className={`flex items-center gap-1.5 text-[#9E5E40] font-bold mb-2 ${isEven ? 'justify-end' : 'justify-start'}`}>
+                              <FaClock className="text-xs" />
+                              <span className="text-base font-proxima-regular">{formatTime(event.eventTime)}</span>
                             </div>
-                          )}
+                            
+                            {/* Event Name */}
+                            <h4 className="text-lg font-bold font-proxima-regular text-gray-800 mb-1.5">
+                              {event.eventName}
+                            </h4>
+                            
+                            {/* Description */}
+                            {event.description && (
+                              <p className="text-gray-600 text-xs mb-2 font-proxima-regular leading-relaxed">
+                                {event.description}
+                              </p>
+                            )}
+                            
+                            {/* Location */}
+                            {event.location && (
+                              <div className={`flex items-center gap-1 text-gray-600 text-[11px] ${isEven ? 'justify-end' : 'justify-start'}`}>
+                                <FaMapMarkerAlt className="text-[#9E5E40] text-[9px]" />
+                                <span className="font-proxima-regular">{event.location}</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
-
-                        {/* Decorative elements */}
-                        <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 
-                transition-opacity duration-300">
-                          <FaHeart className="text-blush-400 animate-pulse" />
+                        
+                        {/* Center Icon */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#9E5E40] to-[#7d4a33] flex items-center justify-center shadow-md border-3 border-white group-hover:scale-110 transition-transform duration-300">
+                            <IconComponent className="text-white text-lg" />
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                        
+                        {/* Empty space on opposite side */}
+                        <div className="w-[calc(50%-2.5rem)]" />
+                      </MotionDiv>
+                    );
+                  })}
+                </div>
               </div>
             ) : (
               <div className="text-center py-16">
