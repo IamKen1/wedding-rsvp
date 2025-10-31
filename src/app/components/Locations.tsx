@@ -95,11 +95,11 @@ export default function Locations() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-script text-gray-800 mb-4 font-light tracking-wide">
+          <h2 className="text-4xl md:text-5xl font-script text-[#9E5E40] mb-4 font-light tracking-wide">
             Wedding Locations
           </h2>
           <div className="w-24 h-1 bg-[#9E5E40] mx-auto mb-6 rounded-full"></div>
-          <p className="text-gray-700 font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
+          <p className="text-[#9E5E40] font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
             Important venue information and directions for our special day
           </p>
         </MotionDiv>

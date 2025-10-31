@@ -252,10 +252,10 @@ export default function Schedule() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-            <h3 className="text-4xl md:text-5xl font-script text-forest-700 mb-4 font-light tracking-wide">
+            <h3 className="text-4xl md:text-5xl font-script text-[#9E5E40] mb-4 font-light tracking-wide">
             Our Special Day
             </h3>
-          <p className="text-base text-forest-700 max-w-2xl mx-auto mb-6 font-proxima-regular">
+          <p className="text-base text-[#9E5E40] max-w-2xl mx-auto mb-6 font-proxima-regular">
             Join us for a celebration of love, joy, and new beginnings
           </p>
           

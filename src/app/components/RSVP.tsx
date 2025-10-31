@@ -463,16 +463,16 @@ export default function RSVP() {
             </div>
           ) : guestInfo ? (
             <div className="bg-[#F5EEE6]/40 border-2 border-[#E6D5BE]/50 rounded-xl p-6 mb-6">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-something text-gray-800 mb-4 font-medium tracking-tight">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-something text-[#9E5E40] mb-4 font-medium tracking-tight">
                 Hello, {guestInfo.name}! 💕
               </h3>
-              <p className="text-lg md:text-xl text-gray-700 mb-3 font-proxima-regular">
+              <p className="text-lg md:text-xl text-[#9E5E40] mb-3 font-proxima-regular">
                 We're so excited to celebrate with you!
               </p>
-                <p className="text-gray-600 font-semibold font-proxima-regular text-base md:text-lg">
+                <p className="text-[#9E5E40] font-semibold font-proxima-regular text-base md:text-lg">
                 Your invitation includes <span className="font-bold">{guestInfo.allocatedSeats}</span> seat{guestInfo.allocatedSeats > 1 ? 's' : ''}
                 {guestInfo.notes && (
-                  <span className="text-gray-600 font-normal"> • {guestInfo.notes}</span>
+                  <span className="text-[#9E5E40] font-normal"> • {guestInfo.notes}</span>
                 )}
                 </p>
             </div>
@@ -480,21 +480,21 @@ export default function RSVP() {
           
           {!isLoadingGuest && (
             <>
-              <h3 className="text-3xl md:text-4xl font-something text-[#4A3C2E] mb-4 font-semibold tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-something text-[#9E5E40] mb-4 font-semibold tracking-tight">
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
-              <p className="text-base md:text-lg text-[#6B5D4F] max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
+              <p className="text-base md:text-lg text-[#9E5E40] max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
                 We would be honored to have you join us on our special day.
               </p>
               
               {/* Countdown Timer */}
               <div className="bg-gradient-to-r from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] rounded-2xl p-4 md:p-6 mb-6 max-w-2xl mx-auto border-2 border-[#9E5E40]/50 shadow-lg">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <FaClock className="text-[#8B6F47] text-lg md:text-xl" />
-                  <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-proxima-regular">
-                    RSVP Deadline: December 24, 2025
-                  </p>
-                </div>
+                      <div className="flex items-center justify-center gap-2 mb-3">
+                        <FaClock className="text-[#9E5E40] text-lg md:text-xl" />
+                        <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-proxima-regular">
+                        RSVP Deadline: December 24, 2025
+                        </p>
+                      </div>
                 
                 <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-md mx-auto">
                   <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#9E5E40]/30 shadow-md">
