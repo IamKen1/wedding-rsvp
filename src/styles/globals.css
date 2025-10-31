@@ -167,6 +167,21 @@ p, span, div, li, td, th, label, input, textarea, select, button {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Performance optimization for images */
+img {
+  content-visibility: auto;
+}
+
+/* Prevent layout shift during image load */
+.aspect-square img {
+  will-change: auto;
+  contain: layout style paint;
+}
+
 /* Enhanced text shadows */
 .text-shadow-elegant {
   text-shadow: 

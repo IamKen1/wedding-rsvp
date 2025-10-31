@@ -936,11 +936,7 @@ export default function Schedule() {
 
         {/* Prenup Photos Tab */}
         {activeTab === 'prenup' && (
-          <MotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="animate-fadeIn">
             {loading ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <SkeletonLoader type="image" count={8} />
@@ -955,12 +951,8 @@ export default function Schedule() {
                 </div>
                 <div className="flex flex-wrap justify-center gap-4 max-w-7xl mx-auto">
                   {prenupPhotos.map((photo, index) => (
-                    <MotionDiv
+                    <div
                       key={photo.id}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.05 }}
-                      viewport={{ once: true }}
                       className="group relative aspect-square overflow-hidden rounded-xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.667rem)] lg:w-[calc(25%-0.75rem)]"
                       onClick={() => openModal(photo.photoUrl)}
                     >
@@ -972,6 +964,8 @@ export default function Schedule() {
                         <img
                           src={photo.photoUrl}
                           alt={photo.caption || `Prenup photo ${index + 1}`}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         {/* Overlay on hover */}
@@ -988,7 +982,7 @@ export default function Schedule() {
                           </div>
                         </div>
                       </div>
-                    </MotionDiv>
+                    </div>
                   ))}
                 </div>
               </>
@@ -998,7 +992,7 @@ export default function Schedule() {
                 <p className="text-gray-500 text-xl font-proxima-regular">No prenup photos available yet</p>
               </div>
             )}
-          </MotionDiv>
+          </div>
         )}
 
         {/* Gifts Tab */}
