@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getAllGuests, addGuest, deleteGuest, GuestInvitation } from '@/data/rsvp';
-import { FaUsers, FaCopy, FaEnvelope, FaEdit, FaTrash, FaPlus, FaDownload, FaFileExcel } from 'react-icons/fa';
+import { FaUsers, FaCopy, FaEnvelope, FaEdit, FaTrash, FaPlus, FaDownload, FaFileExcel, FaSearch, FaTimes } from 'react-icons/fa';
 import AddInvitationModal from './AddInvitationModal';
 import SuccessNotification from './SuccessNotification';
 import LoadingOverlay from './LoadingOverlay';
@@ -26,6 +26,7 @@ export default function InvitationManager() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [guestToDelete, setGuestToDelete] = useState<{ id: string; name: string } | null>(null);
   const [guestToEdit, setGuestToEdit] = useState<GuestInvitation | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [notification, setNotification] = useState<{ isVisible: boolean; message: string }>({
     isVisible: false,
     message: ''
@@ -85,6 +86,16 @@ export default function InvitationManager() {
   const getTotalSeats = () => {
     return guests.reduce((total, guest) => total + guest.allocatedSeats, 0);
   };
+
+  const filteredGuests = guests.filter(guest => {
+    const query = searchQuery.toLowerCase();
+    return (
+      guest.name.toLowerCase().includes(query) ||
+      (guest.email && guest.email.toLowerCase().includes(query)) ||
+      (guest.notes && guest.notes.toLowerCase().includes(query)) ||
+      guest.invitationCode.toLowerCase().includes(query)
+    );
+  });
 
   const handleAddInvitation = () => {
     setShowAddModal(true);
@@ -383,10 +394,38 @@ export default function InvitationManager() {
 
         {/* Guest List */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="px-6 py-3 bg-forest-50 border-b border-forest-100">
-            <h2 className="text-lg font-semibold font-proxima-regular text-forest-700 flex items-center gap-2">
-              <FaUsers /> Guest Invitations
-            </h2>
+          <div className="px-6 py-4 bg-forest-50 border-b border-forest-100">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-3">
+                <h2 className="text-lg font-semibold font-proxima-regular text-forest-700 flex items-center gap-2">
+                  <FaUsers /> Guest Invitations
+                </h2>
+                {searchQuery && (
+                  <span className="text-sm font-proxima-regular text-gray-600">
+                    ({filteredGuests.length} of {guests.length} shown)
+                  </span>
+                )}
+              </div>
+              <div className="relative flex-1 max-w-md">
+                <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by name, email or code..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forest-500 focus:border-transparent font-proxima-regular text-sm"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    title="Clear search"
+                  >
+                    <FaTimes />
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="overflow-x-auto">
@@ -411,7 +450,14 @@ export default function InvitationManager() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {guests.map((guest) => (
+                {filteredGuests.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-8 text-center text-gray-500 font-proxima-regular">
+                      {searchQuery ? `No invitations found matching "${searchQuery}"` : 'No invitations yet'}
+                    </td>
+                  </tr>
+                ) : (
+                  filteredGuests.map((guest) => (
                   <tr key={guest.invitationCode} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <div>
@@ -481,7 +527,8 @@ export default function InvitationManager() {
                       </div>
                     </td>
                   </tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
           </div>
