@@ -123,7 +123,7 @@ export default function Locations() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 w-full max-w-sm"
+            className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 w-full max-w-sm flex flex-col"
           >
             <div className="text-center mb-6">
               <div className="w-12 h-12 bg-[#9E5E40] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -132,7 +132,7 @@ export default function Locations() {
               <h3 className="text-xl font-bold font-proxima-regular text-gray-800 mb-2">{location.name}</h3>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 flex-grow">
               {/* Address */}
               <div>
                 <p className="text-gray-700 font-proxima-regular text-sm leading-relaxed">{location.address}</p>
@@ -196,23 +196,24 @@ export default function Locations() {
                 </div>
               )}
 
-              {/* Map Link */}
-              {location.mapUrl && (
-                <div className="pt-4">
-            <a
-              href={location.mapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#9E5E40] 
-                 text-white rounded-lg hover:bg-[#B89870] transition-all duration-200 
-                 text-sm font-medium font-proxima-regular"
-            >
-              <FaExternalLinkAlt className="text-xs" />
-              Open in Maps
-            </a>
-                </div>
-              )}
             </div>
+            
+            {/* Map Link - Pinned to bottom */}
+            {location.mapUrl && (
+              <div className="pt-4 mt-auto -mx-6 px-6">
+                <a
+                  href={location.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#9E5E40] 
+                     text-white rounded-lg hover:bg-[#B89870] transition-all duration-200 
+                     text-sm font-medium font-proxima-regular"
+                >
+                  <FaExternalLinkAlt className="text-xs" />
+                  Open in Maps
+                </a>
+              </div>
+            )}
           </MotionDiv>
               ))}
             </div>
