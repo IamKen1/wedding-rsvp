@@ -489,16 +489,16 @@ export default function Schedule() {
                           
                           <div className="max-w-4xl mx-auto space-y-8">
                             <div className="grid md:grid-cols-2 gap-12">
-                              {brideParents.length > 0 && (
+                              {groomParents.length > 0 && (
                                 <div className="space-y-4">
                                   <div className="text-center mb-6">
-                                    <h5 className="text-2xl font-script text-gray-700 mb-2">Bride&apos;s Parents</h5>
+                                    <h5 className="text-3xl font-script text-gray-700 mb-2">Groom&apos;s Parents</h5>
                                     <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                   </div>
                                   <div className="space-y-3">
-                                    {brideParents.map(member => (
+                                    {groomParents.map(member => (
                                       <div key={member.id} className="text-center">
-                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">{member.name}</p>
+                                        <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">{member.name}</p>
                                         {member.description && (
                                           <p className="text-gray-600 text-sm italic font-proxima-regular">{member.description}</p>
                                         )}
@@ -507,16 +507,16 @@ export default function Schedule() {
                                   </div>
                                 </div>
                               )}
-                              {groomParents.length > 0 && (
+                              {brideParents.length > 0 && (
                                 <div className="space-y-4">
                                   <div className="text-center mb-6">
-                                    <h5 className="text-2xl font-script text-gray-700 mb-2">Groom&apos;s Parents</h5>
+                                    <h5 className="text-3xl font-script text-gray-700 mb-2">Bride&apos;s Parents</h5>
                                     <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                   </div>
                                   <div className="space-y-3">
-                                    {groomParents.map(member => (
+                                    {brideParents.map(member => (
                                       <div key={member.id} className="text-center">
-                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">{member.name}</p>
+                                        <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">{member.name}</p>
                                         {member.description && (
                                           <p className="text-gray-600 text-sm italic font-proxima-regular">{member.description}</p>
                                         )}
@@ -540,7 +540,7 @@ export default function Schedule() {
                               {/* Ninongs (Male Sponsors) */}
                               <div className="space-y-4">
                                 <div className="text-center mb-6">
-                                  <h5 className="text-2xl font-script text-gray-700 mb-2">Ninongs</h5>
+                                  <h5 className="text-3xl font-script text-gray-700 mb-2">Ninongs</h5>
                                   <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                 </div>
                                 <div className="space-y-3">
@@ -548,7 +548,7 @@ export default function Schedule() {
                                     .filter(member => member.side === 'male')
                                     .map(member => (
                                       <div key={member.id} className="text-center">
-                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                        <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                           MR. {member.name}
                                         </p>
                                         {member.description && (
@@ -564,7 +564,7 @@ export default function Schedule() {
                               {/* Ninangs (Female Sponsors) */}
                               <div className="space-y-4">
                                 <div className="text-center mb-6">
-                                  <h5 className="text-2xl font-script text-gray-700 mb-2">Ninangs</h5>
+                                  <h5 className="text-3xl font-script text-gray-700 mb-2">Ninangs</h5>
                                   <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                 </div>
                                 <div className="space-y-3">
@@ -572,7 +572,7 @@ export default function Schedule() {
                                     .filter(member => member.side === 'female')
                                     .map(member => (
                                       <div key={member.id} className="text-center">
-                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                        <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                           MRS. {member.name}
                                         </p>
                                         {member.description && (
@@ -653,12 +653,12 @@ export default function Schedule() {
                                       {/* Best Man */}
                                       {bestManMember && (
                                         <div className="text-center space-y-3">
-                                          <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                          <h5 className="text-3xl font-script text-gray-700 tracking-wide">
                                             Best Man
                                           </h5>
                                           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                           <div>
-                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                            <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                               {bestManMember.name}
                                             </p>
                                             {bestManMember.description && (
@@ -673,12 +673,12 @@ export default function Schedule() {
                                       {/* Matron of Honor */}
                                       {matronMember && (
                                         <div className="text-center space-y-3">
-                                          <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                          <h5 className="text-3xl font-script text-gray-700 tracking-wide">
                                             Matron of Honor
                                           </h5>
                                           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                           <div>
-                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                            <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                               {matronMember.name}
                                             </p>
                                             {matronMember.description && (
@@ -729,7 +729,7 @@ export default function Schedule() {
                                   <div key={roleIndex} className="space-y-4">
                                     {/* Role Title */}
                                     <div className="text-center mb-4">
-                                      <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                      <h5 className="text-3xl font-script text-gray-700 tracking-wide">
                                         {role}
                                       </h5>
                                       <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mt-2"></div>
@@ -741,7 +741,7 @@ export default function Schedule() {
                                         <div className="space-y-2">
                                           {[...males, ...females].map(member => (
                                             <div key={member.id} className="text-center">
-                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                                 {member.name}
                                               </p>
                                               {member.description && (
@@ -759,7 +759,7 @@ export default function Schedule() {
                                         <div className="space-y-2">
                                           {males.map(member => (
                                             <div key={member.id} className="text-center">
-                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                                 {member.name}
                                               </p>
                                               {member.description && (
@@ -775,7 +775,7 @@ export default function Schedule() {
                                         <div className="space-y-2">
                                           {females.map(member => (
                                             <div key={member.id} className="text-center">
-                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                                 {member.name}
                                               </p>
                                               {member.description && (
@@ -800,21 +800,21 @@ export default function Schedule() {
                                 
                                 elements.push(
                                   <div key="bearers" className="space-y-6">
-                                    {/* Bible Bearer - Top center */}
-                                    {bibleBearerMember && (
+                                    {/* Ring Bearer - Top center */}
+                                    {ringBearerMember && (
                                       <div className="flex justify-center">
                                         <div className="text-center space-y-3">
-                                          <h5 className="text-2xl font-script text-gray-700 tracking-wide">
-                                            Bible Bearer
+                                          <h5 className="text-3xl font-script text-gray-700 tracking-wide">
+                                            Ring Bearer
                                           </h5>
                                           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                           <div>
-                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
-                                              {bibleBearerMember.name}
+                                            <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
+                                              {ringBearerMember.name}
                                             </p>
-                                            {bibleBearerMember.description && (
+                                            {ringBearerMember.description && (
                                               <p className="text-gray-600 text-sm italic font-proxima-regular">
-                                                {bibleBearerMember.description}
+                                                {ringBearerMember.description}
                                               </p>
                                             )}
                                           </div>
@@ -822,38 +822,38 @@ export default function Schedule() {
                                       </div>
                                     )}
                                     
-                                    {/* Ring Bearer and Coin Bearer - Bottom row */}
-                                    {(ringBearerMember || coinBearerMember) && (
+                                    {/* Bible Bearer and Coin Bearer - Bottom row */}
+                                    {(bibleBearerMember || coinBearerMember) && (
                                       <div className="grid md:grid-cols-2 gap-8">
-                                        {/* Ring Bearer */}
-                                        {ringBearerMember && (
+                                        {/* Bible Bearer - Left */}
+                                        {bibleBearerMember && (
                                           <div className="text-center space-y-3">
-                                            <h5 className="text-2xl font-script text-gray-700 tracking-wide">
-                                              Ring Bearer
+                                            <h5 className="text-3xl font-script text-gray-700 tracking-wide">
+                                              Bible Bearer
                                             </h5>
                                             <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                             <div>
-                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
-                                                {ringBearerMember.name}
+                                              <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
+                                                {bibleBearerMember.name}
                                               </p>
-                                              {ringBearerMember.description && (
+                                              {bibleBearerMember.description && (
                                                 <p className="text-gray-600 text-sm italic font-proxima-regular">
-                                                  {ringBearerMember.description}
+                                                  {bibleBearerMember.description}
                                                 </p>
                                               )}
                                             </div>
                                           </div>
                                         )}
                                         
-                                        {/* Coin Bearer */}
+                                        {/* Coin Bearer - Right */}
                                         {coinBearerMember && (
                                           <div className="text-center space-y-3">
-                                            <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                            <h5 className="text-3xl font-script text-gray-700 tracking-wide">
                                               Coin Bearer
                                             </h5>
                                             <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                             <div>
-                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                                 {coinBearerMember.name}
                                               </p>
                                               {coinBearerMember.description && (
@@ -877,7 +877,7 @@ export default function Schedule() {
                                   <div key="flower-girls" className="space-y-4">
                                     {/* Role Title */}
                                     <div className="text-center mb-4">
-                                      <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                      <h5 className="text-3xl font-script text-gray-700 tracking-wide">
                                         Flower Girls
                                       </h5>
                                       <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mt-2"></div>
@@ -888,7 +888,7 @@ export default function Schedule() {
                                       <div className="space-y-2">
                                         {flowerGirlMembers.map(member => (
                                           <div key={member.id} className="text-center">
-                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                            <p className="text-gray-800 font-semibold text-base font-proxima-regular uppercase">
                                               {member.name}
                                             </p>
                                             {member.description && (

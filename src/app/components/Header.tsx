@@ -132,25 +132,42 @@ export default function Header() {
         </MotionDiv>
       </MotionDiv>
 
-      {/* Subtle Scroll Indicator - Adjusted for mobile bottom nav */}
-      <MotionDiv
-        className="absolute bottom-8 md:bottom-8 left-1/2 -translate-x-1/2 z-30
-          mb-16 md:mb-0"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ 
-          duration: 1,
-          delay: 1.5,
-          repeat: Infinity,
-          repeatType: "reverse",
-          repeatDelay: 0
-        }}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/60 to-transparent" />
-          <p className="text-white/60 text-xs font-proxima-regular tracking-widest uppercase [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">Scroll</p>
-        </div>
-      </MotionDiv>
+      {/* Subtle Scroll Indicator */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-30 mb-16 md:mb-0 pointer-events-none">
+        <MotionDiv
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: 0.7,
+            y: [0, 8, 0]
+          }}
+          transition={{ 
+            opacity: { duration: 0.6, delay: 1.5 },
+            y: {
+              duration: 2,
+              delay: 2,
+              repeat: Infinity,
+              ease: [0.4, 0, 0.2, 1]
+            }
+          }}
+        >
+          <div className="flex flex-col items-center gap-1">
+            {/* Simple chevron down with glow */}
+            <svg 
+              className="w-5 h-5 text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]" 
+              fill="none" 
+              strokeWidth="2.5" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <p className="text-white/60 text-[10px] font-proxima-regular tracking-wider uppercase
+              [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
+              Scroll
+            </p>
+          </div>
+        </MotionDiv>
+      </div>
     </header>
   );
 }
