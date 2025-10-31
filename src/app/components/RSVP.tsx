@@ -532,7 +532,7 @@ export default function RSVP() {
               <div className="mt-6 flex items-center justify-center gap-3">
                 <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#9E5E40]"></div>
                 <p className="text-xl md:text-2xl font-proxima-regular text-[#9E5E40] tracking-wider">
-                  #TheJenuineKennection
+                  #TheJENuineKENnection
                 </p>
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#9E5E40]"></div>
               </div>
