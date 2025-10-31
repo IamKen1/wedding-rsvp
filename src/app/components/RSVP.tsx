@@ -484,7 +484,7 @@ export default function RSVP() {
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
               <p className="text-base md:text-lg text-gray-800 max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
-                We would be honored to have you join us on our special day.
+                We would be honored to have you join us for our adult reception.
               </p>
               
               {/* Countdown Timer */}
@@ -652,7 +652,7 @@ export default function RSVP() {
                   Number of Guests (Including Yourself) *
                   {guestInfo && (
                     <span className="text-xs text-[#8B6F47] font-medium ml-2">
-                      (You have {guestInfo.allocatedSeats} seat{guestInfo.allocatedSeats > 1 ? 's' : ''} allocated)
+                      (You have {guestInfo.allocatedSeats} adult seat{guestInfo.allocatedSeats > 1 ? 's' : ''} allocated)
                     </span>
                   )}
                 </label>

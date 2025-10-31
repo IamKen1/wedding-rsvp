@@ -484,77 +484,428 @@ export default function Schedule() {
                     <>
                       {/* Parents Section */}
                       {parents.length > 0 && (
-                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-rose-200/50">
-                          <h4 className="text-3xl font-bold font-script text-center text-[#9E5E40] mb-6">Parents</h4>
-                          <div className="grid md:grid-cols-2 gap-6">
-                            {brideParents.length > 0 && (
-                              <div>
-                                <h5 className="text-3xl font-semibold text-[#9E5E40] text-center mb-4 font-script">Bride&apos;s Parents</h5>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border border-sage-200/50">
+                          <h4 className="text-3xl md:text-4xl font-bold font-script text-center text-[#9E5E40] mb-10">Parents</h4>
+                          
+                          <div className="max-w-4xl mx-auto space-y-8">
+                            <div className="grid md:grid-cols-2 gap-12">
+                              {brideParents.length > 0 && (
                                 <div className="space-y-4">
-                                  {brideParents.map(member => (
-                                    <div key={member.id} className="bg-gradient-to-br from-rose-50 to-pink-50 p-4 rounded-xl border border-rose-200 shadow-sm hover:shadow-md transition-all">
-                                      <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
-                                      <p className="text-sm text-[#9E5E40] text-center font-medium font-proxima-regular">{member.role}</p>
-                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
-                                    </div>
-                                  ))}
+                                  <div className="text-center mb-6">
+                                    <h5 className="text-2xl font-script text-gray-700 mb-2">Bride&apos;s Parents</h5>
+                                    <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                  </div>
+                                  <div className="space-y-3">
+                                    {brideParents.map(member => (
+                                      <div key={member.id} className="text-center">
+                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">{member.name}</p>
+                                        {member.description && (
+                                          <p className="text-gray-600 text-sm italic font-proxima-regular">{member.description}</p>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            )}
-                            {groomParents.length > 0 && (
-                              <div>
-                                <h5 className="text-3xl font-semibold text-purple-600 text-center mb-4 font-script">Groom&apos;s Parents</h5>
+                              )}
+                              {groomParents.length > 0 && (
                                 <div className="space-y-4">
-                                  {groomParents.map(member => (
-                                    <div key={member.id} className="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-xl border border-purple-200 shadow-sm hover:shadow-md transition-all">
-                                      <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
-                                      <p className="text-sm text-[#9E5E40] text-center font-medium font-proxima-regular">{member.role}</p>
-                                      {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
-                                    </div>
-                                  ))}
+                                  <div className="text-center mb-6">
+                                    <h5 className="text-2xl font-script text-gray-700 mb-2">Groom&apos;s Parents</h5>
+                                    <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                  </div>
+                                  <div className="space-y-3">
+                                    {groomParents.map(member => (
+                                      <div key={member.id} className="text-center">
+                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">{member.name}</p>
+                                        {member.description && (
+                                          <p className="text-gray-600 text-sm italic font-proxima-regular">{member.description}</p>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
+                            </div>
                           </div>
                         </div>
                       )}
 
                       {/* Sponsors Section */}
                       {sponsors.length > 0 && (
-                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-mint-200/50">
-                          <h4 className="text-3xl font-bold font-script text-center text-[#9E5E40] mb-6">Principal Sponsors</h4>
-                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {sponsors.map(member => {
-                              const isNinong = member.side === 'male';
-                              return (
-                                <div
-                                  key={member.id}
-                                  className={`bg-gradient-to-br ${isNinong ? 'from-blue-50 to-cyan-50 border-blue-200' : 'from-pink-50 to-rose-50 border-pink-200'} p-4 rounded-xl border shadow-sm hover:shadow-md transition-all`}
-                                >
-                                  <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
-                                  <p className={`text-sm ${isNinong ? 'text-blue-600' : 'text-pink-600'} text-center font-medium font-proxima-regular`}>
-                                    {member.role}
-                                  </p>
-                                  {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border border-sage-200/50">
+                          <h4 className="text-3xl md:text-4xl font-bold font-script text-center text-[#9E5E40] mb-10">Principal Sponsors</h4>
+                          
+                          <div className="max-w-4xl mx-auto">
+                            <div className="grid md:grid-cols-2 gap-12">
+                              {/* Ninongs (Male Sponsors) */}
+                              <div className="space-y-4">
+                                <div className="text-center mb-6">
+                                  <h5 className="text-2xl font-script text-gray-700 mb-2">Ninongs</h5>
+                                  <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
                                 </div>
-                              );
-                            })}
+                                <div className="space-y-3">
+                                  {sponsors
+                                    .filter(member => member.side === 'male')
+                                    .map(member => (
+                                      <div key={member.id} className="text-center">
+                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                          MR. {member.name}
+                                        </p>
+                                        {member.description && (
+                                          <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                            {member.description}
+                                          </p>
+                                        )}
+                                      </div>
+                                    ))}
+                                </div>
+                              </div>
+
+                              {/* Ninangs (Female Sponsors) */}
+                              <div className="space-y-4">
+                                <div className="text-center mb-6">
+                                  <h5 className="text-2xl font-script text-gray-700 mb-2">Ninangs</h5>
+                                  <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                </div>
+                                <div className="space-y-3">
+                                  {sponsors
+                                    .filter(member => member.side === 'female')
+                                    .map(member => (
+                                      <div key={member.id} className="text-center">
+                                        <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                          MRS. {member.name}
+                                        </p>
+                                        {member.description && (
+                                          <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                            {member.description}
+                                          </p>
+                                        )}
+                                      </div>
+                                    ))}
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       )}
 
-                      {/* Other Members Section */}
+                      {/* Secondary Sponsors Section */}
                       {others.length > 0 && (
-                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-sage-200/50">
-                          <h4 className="text-3xl font-bold font-script text-center text-[9E5E40] mb-6">Wedding Party</h4>
-                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {others.map(member => (
-                              <div key={member.id} className="bg-gradient-to-br from-sage-50 to-mint-50 p-4 rounded-xl border border-sage-200 shadow-sm hover:shadow-md transition-all">
-                                <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
-                                <p className="text-sm text-[#9E5E40] text-center font-medium font-proxima-regular">{member.role}</p>
-                                {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
-                              </div>
-                            ))}
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border border-sage-200/50">
+                          <h4 className="text-3xl md:text-4xl font-bold font-script text-center text-[#9E5E40] mb-10">
+                            Secondary Sponsors
+                          </h4>
+                          
+                          <div className="max-w-4xl mx-auto space-y-8">
+                            {/* Group by role */}
+                            {(() => {
+                              // Extract actual role from format "Groomsman - Candle" -> "Candle"
+                              const extractRole = (roleStr: string) => {
+                                if (roleStr.includes(' - ')) {
+                                  return roleStr.split(' - ')[1].trim();
+                                }
+                                return roleStr;
+                              };
+                              
+                              // Get unique roles (extracted)
+                              const roles = Array.from(new Set(others.map(m => extractRole(m.role))));
+                              
+                              // Define role order for professional layout
+                              const roleOrder = ['Best Man', 'Matron of Honor', 'Candle', 'Veil', 'Cord', 'Bible Bearer', 'Ring Bearer', 'Coin Bearer', 'Flower Girl'];
+                              
+                              // Check if we have both Best Man and Matron of Honor
+                              const hasBestMan = roles.includes('Best Man');
+                              const hasMatronOfHonor = roles.includes('Matron of Honor');
+                              
+                              // Check for bearers
+                              const hasBibleBearer = roles.includes('Bible Bearer');
+                              const hasRingBearer = roles.includes('Ring Bearer');
+                              const hasCoinBearer = roles.includes('Coin Bearer');
+                              
+                              // Filter out Best Man, Matron of Honor, and Bearers from individual rendering
+                              const filteredRoles = roles.filter(r => 
+                                r !== 'Best Man' && 
+                                r !== 'Matron of Honor' && 
+                                r !== 'Bible Bearer' && 
+                                r !== 'Ring Bearer' && 
+                                r !== 'Coin Bearer'
+                              );
+                              
+                              const sortedRoles = filteredRoles.sort((a, b) => {
+                                const indexA = roleOrder.indexOf(a);
+                                const indexB = roleOrder.indexOf(b);
+                                if (indexA === -1 && indexB === -1) return 0;
+                                if (indexA === -1) return 1;
+                                if (indexB === -1) return -1;
+                                return indexA - indexB;
+                              });
+                              
+                              const elements = [];
+                              
+                              // 1. Render Best Man and Matron of Honor together in one row if both exist
+                              if (hasBestMan || hasMatronOfHonor) {
+                                const bestManMember = others.find(m => extractRole(m.role) === 'Best Man');
+                                const matronMember = others.find(m => extractRole(m.role) === 'Matron of Honor');
+                                
+                                elements.push(
+                                  <div key="best-man-matron" className="space-y-4">
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                      {/* Best Man */}
+                                      {bestManMember && (
+                                        <div className="text-center space-y-3">
+                                          <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                            Best Man
+                                          </h5>
+                                          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                          <div>
+                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              {bestManMember.name}
+                                            </p>
+                                            {bestManMember.description && (
+                                              <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                {bestManMember.description}
+                                              </p>
+                                            )}
+                                          </div>
+                                        </div>
+                                      )}
+                                      
+                                      {/* Matron of Honor */}
+                                      {matronMember && (
+                                        <div className="text-center space-y-3">
+                                          <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                            Matron of Honor
+                                          </h5>
+                                          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                          <div>
+                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              {matronMember.name}
+                                            </p>
+                                            {matronMember.description && (
+                                              <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                {matronMember.description}
+                                              </p>
+                                            )}
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                              
+                              // 2. Render other roles (Candle, Veil, Cord) - before bearers
+                              sortedRoles.forEach((role, roleIndex) => {
+                                const membersInRole = others.filter(m => extractRole(m.role) === role);
+                                
+                                // Improved gender detection
+                                const males = membersInRole.filter(m => {
+                                  const roleStr = m.role.toLowerCase();
+                                  return m.side === 'male' || 
+                                         roleStr.includes('groom') || 
+                                         roleStr.includes('best man') ||
+                                         (roleStr.includes('bearer') && !roleStr.includes('flower'));
+                                });
+                                
+                                const females = membersInRole.filter(m => {
+                                  const roleStr = m.role.toLowerCase();
+                                  return m.side === 'female' || 
+                                         roleStr.includes('bride') || 
+                                         roleStr.includes('matron') ||
+                                         roleStr.includes('flower girl');
+                                });
+                                
+                                // Skip if no members
+                                if (males.length === 0 && females.length === 0) return;
+                                
+                                // Skip Flower Girls here, they come after bearers
+                                if (role === 'Flower Girl') return;
+                                
+                                // Check if it's all-female role (but not Flower Girls)
+                                const isAllFemaleRole = males.length === 0 && females.length > 0;
+                                const shouldCenter = isAllFemaleRole;
+                                
+                                elements.push(
+                                  <div key={roleIndex} className="space-y-4">
+                                    {/* Role Title */}
+                                    <div className="text-center mb-4">
+                                      <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                        {role}
+                                      </h5>
+                                      <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mt-2"></div>
+                                    </div>
+                                    
+                                    {/* Names Layout */}
+                                    {shouldCenter ? (
+                                      <div className="flex justify-center">
+                                        <div className="space-y-2">
+                                          {[...males, ...females].map(member => (
+                                            <div key={member.id} className="text-center">
+                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                                {member.name}
+                                              </p>
+                                              {member.description && (
+                                                <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                  {member.description}
+                                                </p>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div className="grid md:grid-cols-2 gap-8">
+                                        {/* Male Side */}
+                                        <div className="space-y-2">
+                                          {males.map(member => (
+                                            <div key={member.id} className="text-center">
+                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                                {member.name}
+                                              </p>
+                                              {member.description && (
+                                                <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                  {member.description}
+                                                </p>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
+                                        
+                                        {/* Female Side */}
+                                        <div className="space-y-2">
+                                          {females.map(member => (
+                                            <div key={member.id} className="text-center">
+                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                                {member.name}
+                                              </p>
+                                              {member.description && (
+                                                <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                  {member.description}
+                                                </p>
+                                              )}
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                )
+                              });
+                              
+                              // 3. Render Bearers in triangle layout if any exist
+                              if (hasBibleBearer || hasRingBearer || hasCoinBearer) {
+                                const bibleBearerMember = others.find(m => extractRole(m.role) === 'Bible Bearer');
+                                const ringBearerMember = others.find(m => extractRole(m.role) === 'Ring Bearer');
+                                const coinBearerMember = others.find(m => extractRole(m.role) === 'Coin Bearer');
+                                
+                                elements.push(
+                                  <div key="bearers" className="space-y-6">
+                                    {/* Bible Bearer - Top center */}
+                                    {bibleBearerMember && (
+                                      <div className="flex justify-center">
+                                        <div className="text-center space-y-3">
+                                          <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                            Bible Bearer
+                                          </h5>
+                                          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                          <div>
+                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              {bibleBearerMember.name}
+                                            </p>
+                                            {bibleBearerMember.description && (
+                                              <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                {bibleBearerMember.description}
+                                              </p>
+                                            )}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
+                                    
+                                    {/* Ring Bearer and Coin Bearer - Bottom row */}
+                                    {(ringBearerMember || coinBearerMember) && (
+                                      <div className="grid md:grid-cols-2 gap-8">
+                                        {/* Ring Bearer */}
+                                        {ringBearerMember && (
+                                          <div className="text-center space-y-3">
+                                            <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                              Ring Bearer
+                                            </h5>
+                                            <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                            <div>
+                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                                {ringBearerMember.name}
+                                              </p>
+                                              {ringBearerMember.description && (
+                                                <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                  {ringBearerMember.description}
+                                                </p>
+                                              )}
+                                            </div>
+                                          </div>
+                                        )}
+                                        
+                                        {/* Coin Bearer */}
+                                        {coinBearerMember && (
+                                          <div className="text-center space-y-3">
+                                            <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                              Coin Bearer
+                                            </h5>
+                                            <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
+                                            <div>
+                                              <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                                {coinBearerMember.name}
+                                              </p>
+                                              {coinBearerMember.description && (
+                                                <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                  {coinBearerMember.description}
+                                                </p>
+                                              )}
+                                            </div>
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              }
+                              
+                              // 4. Render Flower Girls last (if they exist)
+                              const flowerGirlMembers = others.filter(m => extractRole(m.role) === 'Flower Girl');
+                              if (flowerGirlMembers.length > 0) {
+                                elements.push(
+                                  <div key="flower-girls" className="space-y-4">
+                                    {/* Role Title */}
+                                    <div className="text-center mb-4">
+                                      <h5 className="text-2xl font-script text-gray-700 tracking-wide">
+                                        Flower Girls
+                                      </h5>
+                                      <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mt-2"></div>
+                                    </div>
+                                    
+                                    {/* Centered Names */}
+                                    <div className="flex justify-center">
+                                      <div className="space-y-2">
+                                        {flowerGirlMembers.map(member => (
+                                          <div key={member.id} className="text-center">
+                                            <p className="text-gray-800 font-semibold text-lg font-proxima-regular">
+                                              {member.name}
+                                            </p>
+                                            {member.description && (
+                                              <p className="text-gray-600 text-sm italic font-proxima-regular">
+                                                {member.description}
+                                              </p>
+                                            )}
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                              
+                              return elements;
+                            })()}
                           </div>
                         </div>
                       )}
