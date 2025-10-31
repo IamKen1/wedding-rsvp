@@ -98,7 +98,7 @@ export default function Locations() {
           <h2 className="text-2xl md:text-4xl font-script text-gray-800 mb-4 font-light tracking-wide">
             Wedding Locations
           </h2>
-          <div className="w-24 h-1 bg-[#C9A87C] mx-auto mb-6 rounded-full"></div>
+          <div className="w-24 h-1 bg-[#9E5E40] mx-auto mb-6 rounded-full"></div>
           <p className="text-gray-700 font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
             Important venue information and directions for our special day
           </p>
@@ -126,7 +126,7 @@ export default function Locations() {
             className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 w-full max-w-sm"
           >
             <div className="text-center mb-6">
-              <div className="w-12 h-12 bg-[#C9A87C] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 bg-[#9E5E40] rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaMapMarkerAlt className="text-white text-lg" />
               </div>
               <h3 className="text-xl font-bold font-proxima-regular text-gray-800 mb-2">{location.name}</h3>
@@ -144,13 +144,13 @@ export default function Locations() {
             <h4 className="text-sm font-semibold text-gray-800 mb-2 font-proxima-regular">Contact Information</h4>
             {location.contactPhone && (
               <div className="flex items-center gap-2 mb-1">
-                <FaPhone className="text-[#C9A87C] text-xs" />
+                <FaPhone className="text-[#9E5E40] text-xs" />
                 <span className="text-sm text-gray-700 font-proxima-regular">{location.contactPhone}</span>
               </div>
             )}
             {location.contactEmail && (
               <div className="flex items-center gap-2">
-                <FaEnvelope className="text-[#C9A87C] text-xs" />
+                <FaEnvelope className="text-[#9E5E40] text-xs" />
                 <span className="text-sm text-gray-700 font-proxima-regular">{location.contactEmail}</span>
               </div>
             )}
@@ -165,7 +165,7 @@ export default function Locations() {
               Map & Directions
             </h4>
             <div 
-              className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-[#C9A87C] transition-colors"
+              className="aspect-video rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-[#9E5E40] transition-colors"
               onClick={() => setSelectedPhoto(location.mapPhoto!)}
             >
               <img 
@@ -203,7 +203,7 @@ export default function Locations() {
               href={location.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A87C] 
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#9E5E40] 
                  text-white rounded-lg hover:bg-[#B89870] transition-all duration-200 
                  text-sm font-medium font-proxima-regular"
             >

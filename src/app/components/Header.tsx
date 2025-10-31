@@ -85,7 +85,7 @@ export default function Header() {
             <MotionDiv
             variants={fadeInUp}
             >
-            <h1 className="text-[clamp(3rem,12vw,9rem)] font-something text-white font-normal
+            <h1 className="text-[clamp(2rem,10vw,7rem)] font-something text-white
               tracking-wide leading-tight mb-0.5
               [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
               drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
@@ -98,10 +98,14 @@ export default function Header() {
             variants={fadeInUp}
             className="mb-1"
             >
-            <p className="text-[clamp(1.125rem,3vw,1.75rem)] text-white tracking-wide
+            <p className="text-[clamp(1.125rem,3vw,1.75rem)] text-white tracking-wide flex items-center justify-center gap-2
               [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
               drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
-              JANUARY 24, 2026 * SATURDAY * 1:30 P.M.
+              <span>JANUARY 24, 2026</span>
+              <span className="w-1 h-1 bg-white/60 rounded-full" />
+              <span>SATURDAY</span>
+              <span className="w-1 h-1 bg-white/60 rounded-full" />
+              <span>1:30 P.M.</span>
             </p>
             </MotionDiv>
 

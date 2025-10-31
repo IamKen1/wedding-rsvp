@@ -124,7 +124,7 @@ export default function Navigation() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 
-                            bg-[#C9A87C] rounded-full"
+                            bg-[#9E5E40] rounded-full"
                         />
                       )}
                     </button>
@@ -161,14 +161,14 @@ export default function Navigation() {
                   <MotionDiv
                     layoutId="activeTab"
                     className="absolute top-0 left-0 right-0 mx-auto w-10 h-1 
-                      bg-[#C9A87C] rounded-full"
+                      bg-[#9E5E40] rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
                 
                 <link.icon 
                   className={`text-xl transition-all duration-300
-                    ${isActive ? 'text-[#C9A87C] scale-110' : 'text-gray-500'}`} 
+                    ${isActive ? 'text-[#9E5E40] scale-110' : 'text-gray-500'}`} 
                 />
                 
                 <span 

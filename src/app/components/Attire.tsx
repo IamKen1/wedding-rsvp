@@ -76,7 +76,7 @@ export default function Attire() {
           </div>
           <div className="flex items-center justify-center gap-3 mt-3">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#E6D5BE]" />
-            <FaPalette className="text-[#C9A87C] text-lg" />
+            <FaPalette className="text-[#9E5E40] text-lg" />
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#E6D5BE]" />
           </div>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-sm md:text-base">
@@ -117,7 +117,7 @@ export default function Attire() {
                       </div>
                     </div>
                     {/* Subtle top accent bar */}
-                    <div className="h-1 bg-gradient-to-r from-[#F5EEE6] via-[#C9A87C] to-[#F5EEE6]" />
+                    <div className="h-1 bg-gradient-to-r from-[#F5EEE6] via-[#9E5E40] to-[#F5EEE6]" />
                   </div>
                 </MotionDiv>
               ))

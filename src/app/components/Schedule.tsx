@@ -272,8 +272,8 @@ export default function Schedule() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all duration-300 cursor-pointer font-proxima-regular text-sm md:text-base ${
                   activeTab === tab.id
-                    ? 'bg-mint-500 text-white shadow-lg transform scale-105'
-                    : 'bg-white/80 text-forest-700 hover:bg-mint-100 hover:shadow-md'
+                    ? 'bg-[#9E5E40] text-white shadow-lg transform scale-105'
+                    : 'bg-white/80 text-[#9E5E40] hover:bg-mint-100 hover:shadow-md'
                 }`}
               >
                 <tab.icon className="text-sm" />
@@ -298,7 +298,7 @@ export default function Schedule() {
               <div className="text-center py-16">
               <FaInfoCircle className="text-red-500 text-4xl mx-auto mb-4" />
               <p className="text-red-600 text-lg mb-2 font-proxima-regular font-semibold">Error loading schedule</p>
-              <p className="text-forest-600 font-proxima-regular">{error}</p>
+              <p className="text-[#9E5E40] font-proxima-regular">{error}</p>
               </div>
             ) : scheduleEvents.length > 0 ? (
               <div className="flex flex-wrap justify-center gap-8 mb-16">
@@ -316,38 +316,38 @@ export default function Schedule() {
               shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/50
               ${hoveredEvent === index ? 'scale-105 -translate-y-2' : ''}`}
               >
-              {/* Background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} 
-                opacity-0 group-hover:opacity-10 rounded-3xl transition-opacity duration-500`} />
-              
-              {/* Time badge */}
-              <div className="absolute -top-4 left-8">
-                <div className={`bg-gradient-to-r ${gradientClass} text-white px-4 py-2 
-                rounded-full text-sm font-bold shadow-lg flex items-center gap-2`}>
+                {/* Background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#9E5E40]/5 to-[#9E5E40]/10 
+                opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500" />
+                
+                {/* Time badge */}
+                <div className="absolute -top-4 left-8">
+                <div className="bg-gradient-to-r from-[#9E5E40] to-[#7d4a33] text-white px-4 py-2 
+                rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
                 <FaClock className="text-xs" />
                 {formatTime(event.eventTime)}
                 </div>
-              </div>
+                </div>
 
               {/* Icon */}
-              <div className="flex justify-center mb-6 mt-4">
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${gradientClass} 
+                <div className="flex justify-center mb-6 mt-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#9E5E40] to-[#7d4a33] 
                 flex items-center justify-center shadow-lg group-hover:scale-110 
-                transition-transform duration-300`}>
+                transition-transform duration-300">
                 <IconComponent className="text-white text-2xl" />
                 </div>
-              </div>
+                </div>
 
               {/* Content */}
               <div className="text-center">
-                <h4 className="text-xl font-bold font-proxima-regular text-forest-700 mb-2">
+                <h4 className="text-xl font-bold font-proxima-regular text-[#9E5E40] mb-2">
                 {event.eventName}
                 </h4>
-                <p className="text-forest-500 mb-3 text-sm leading-relaxed font-proxima-regular">
+                <p className="text-[#9E5E40] mb-3 text-sm leading-relaxed font-proxima-regular">
                 {event.description || 'Wedding celebration event'}
                 </p>
                 {event.location && (
-                <div className="flex items-center justify-center gap-2 text-mint-600">
+                <div className="flex items-center justify-center gap-2 text-[#9E5E40]">
                 <FaMapMarkerAlt className="text-xs" />
                 <span className="text-sm font-medium font-proxima-regular">{event.location}</span>
                 </div>
@@ -366,8 +366,8 @@ export default function Schedule() {
               </div>
             ) : (
               <div className="text-center py-16">
-              <FaCalendarAlt className="text-forest-400 text-4xl mx-auto mb-4" />
-              <p className="text-forest-600 text-lg font-proxima-regular">No events scheduled at this time.</p>
+              <FaCalendarAlt className="text-[#9E5E40] text-4xl mx-auto mb-4" />
+              <p className="text-[#9E5E40] text-lg font-proxima-regular">No events scheduled at this time.</p>
               </div>
             )}
             </MotionDiv>
@@ -391,8 +391,8 @@ export default function Schedule() {
                 rounded-tr-[100px]" />
 
               <div className="text-center mb-8">
-               
-                <h4 className="text-3xl font-bold font-script text-forest-700 mb-4">Dress Code</h4>
+
+                <h4 className="text-3xl font-bold font-script text-[#9E5E40] mb-4">Dress Code</h4>
                 {/* <p className="text-lg text-forest-600 font-medium">Formal / Semi-formal Attire</p> */}
               </div>
 
@@ -486,16 +486,16 @@ export default function Schedule() {
                       {/* Parents Section */}
                       {parents.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-rose-200/50">
-                          <h4 className="text-2xl font-bold font-script text-center text-rose-700 mb-6">Parents</h4>
+                          <h4 className="text-2xl font-bold font-script text-center text-[#9E5E40] mb-6">Parents</h4>
                           <div className="grid md:grid-cols-2 gap-6">
                             {brideParents.length > 0 && (
                               <div>
-                                <h5 className="text-lg font-semibold text-rose-600 text-center mb-4 font-script">Bride&apos;s Parents</h5>
+                                <h5 className="text-lg font-semibold text-[#9E5E40] text-center mb-4 font-script">Bride&apos;s Parents</h5>
                                 <div className="space-y-4">
                                   {brideParents.map(member => (
                                     <div key={member.id} className="bg-gradient-to-br from-rose-50 to-pink-50 p-4 rounded-xl border border-rose-200 shadow-sm hover:shadow-md transition-all">
-                                      <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
-                                      <p className="text-sm text-rose-600 text-center font-medium font-proxima-regular">{member.role}</p>
+                                      <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
+                                      <p className="text-sm text-[#9E5E40] text-center font-medium font-proxima-regular">{member.role}</p>
                                       {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                                     </div>
                                   ))}
@@ -508,8 +508,8 @@ export default function Schedule() {
                                 <div className="space-y-4">
                                   {groomParents.map(member => (
                                     <div key={member.id} className="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-xl border border-purple-200 shadow-sm hover:shadow-md transition-all">
-                                      <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
-                                      <p className="text-sm text-purple-600 text-center font-medium font-proxima-regular">{member.role}</p>
+                                      <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
+                                      <p className="text-sm text-[#9E5E40] text-center font-medium font-proxima-regular">{member.role}</p>
                                       {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                                     </div>
                                   ))}
@@ -523,7 +523,7 @@ export default function Schedule() {
                       {/* Sponsors Section */}
                       {sponsors.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-mint-200/50">
-                          <h4 className="text-2xl font-bold font-script text-center text-mint-700 mb-6">Principal Sponsors</h4>
+                          <h4 className="text-2xl font-bold font-script text-center text-[#9E5E40] mb-6">Principal Sponsors</h4>
                           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {sponsors.map(member => {
                               const isNinong = member.side === 'male';
@@ -532,7 +532,7 @@ export default function Schedule() {
                                   key={member.id} 
                                   className={`bg-gradient-to-br ${isNinong ? 'from-blue-50 to-cyan-50 border-blue-200' : 'from-pink-50 to-rose-50 border-pink-200'} p-4 rounded-xl border shadow-sm hover:shadow-md transition-all`}
                                 >
-                                  <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
+                                  <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
                                   <p className={`text-sm ${isNinong ? 'text-blue-600' : 'text-pink-600'} text-center font-medium font-proxima-regular`}>
                                     {member.role}
                                   </p>
@@ -547,12 +547,12 @@ export default function Schedule() {
                       {/* Other Members Section */}
                       {others.length > 0 && (
                         <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-sage-200/50">
-                          <h4 className="text-2xl font-bold font-script text-center text-sage-700 mb-6">Wedding Party</h4>
+                          <h4 className="text-2xl font-bold font-script text-center text-[9E5E40] mb-6">Wedding Party</h4>
                           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {others.map(member => (
                               <div key={member.id} className="bg-gradient-to-br from-sage-50 to-mint-50 p-4 rounded-xl border border-sage-200 shadow-sm hover:shadow-md transition-all">
-                                <h6 className="font-bold text-forest-700 text-center font-proxima-regular">{member.name}</h6>
-                                <p className="text-sm text-sage-600 text-center font-medium font-proxima-regular">{member.role}</p>
+                                <h6 className="font-bold text-[#9E5E40] text-center font-proxima-regular">{member.name}</h6>
+                                <p className="text-sm text-[#9E5E40] text-center font-medium font-proxima-regular">{member.role}</p>
                                 {member.description && <p className="text-xs text-gray-600 mt-2 text-center font-proxima-regular">{member.description}</p>}
                               </div>
                             ))}
@@ -584,12 +584,12 @@ export default function Schedule() {
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blush-100/20 to-transparent 
                 rounded-tr-[100px]" />
 
-              <FaGift className="text-mint-500 text-5xl mx-auto mb-6" />
-              <h4 className="text-3xl font-bold font-proxima-regular text-forest-700 mb-6">Gift Information</h4>
-              
-                <div className="space-y-6 text-lg text-forest-600 leading-relaxed font-proxima-regular">
-                <p className="text-xl font-semibold text-forest-700">
-                  Your presence is the greatest gift of all! 
+              <FaGift className="text-[#9E5E40] text-5xl mx-auto mb-6" />
+              <h4 className="text-3xl font-bold font-proxima-regular text-[#9E5E40] mb-6">Gift Information</h4>
+
+                <div className="space-y-6 text-lg text-[#9E5E40] leading-relaxed font-proxima-regular">
+                <p className="text-xl font-semibold text-[#9E5E40]">
+                  Your presence is the greatest gift of all!
                 </p>
                 <p>
                   However, if you wish to honor us with a gift, monetary contributions are greatly appreciated 
@@ -598,7 +598,7 @@ export default function Schedule() {
                 
                 <div className="bg-gradient-to-r from-sage-50 to-mint-50 p-6 rounded-xl 
                   border border-mint-200 shadow-inner">
-                  <p className="text-forest-600 font-medium">
+                  <p className="text-[#9E5E40] font-medium">
                     Your love, laughter, and presence as we exchange vows is all we truly need to make our day perfect.
                   </p>
                 </div>

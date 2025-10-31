@@ -56,14 +56,14 @@ export default function Hero() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-display text-gray-800 leading-tight font-light tracking-wide">
                 Wedding Celebration
               </h2>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-[#F5EEE6] via-[#C9A87C] to-[#F5EEE6] rounded-full" />
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-[#F5EEE6] via-[#9E5E40] to-[#F5EEE6] rounded-full" />
             </div>
             
             {/* Elegant separator */}
             <div className="flex items-center justify-center gap-4">
               <div className="w-8 h-px bg-gradient-to-r from-transparent via-[#E6D5BE] to-transparent" />
-              <div className="w-2 h-2 bg-[#C9A87C] rounded-full animate-pulse-slow" />
-              <div className="w-12 h-px bg-gradient-to-r from-[#E6D5BE] via-[#C9A87C] to-[#E6D5BE]" />
+              <div className="w-2 h-2 bg-[#9E5E40] rounded-full animate-pulse-slow" />
+              <div className="w-12 h-px bg-gradient-to-r from-[#E6D5BE] via-[#9E5E40] to-[#E6D5BE]" />
               <div className="w-2 h-2 bg-[#E6D5BE] rounded-full animate-pulse-slow" style={{ animationDelay: '1s' }} />
               <div className="w-8 h-px bg-gradient-to-r from-transparent via-[#E6D5BE] to-transparent" />
             </div>
@@ -81,7 +81,7 @@ export default function Hero() {
               <p className="relative text-5xl md:text-6xl lg:text-7xl font-display text-gray-800 font-light
                 px-6 md:px-12 py-4 md:py-6 bg-white/90 backdrop-blur-sm rounded-2xl border-2 border-[#E6D5BE]/40
                 shadow-md hover:shadow-lg transition-all duration-300 tracking-wide">
-                Kenneth <span className="text-[#C9A87C] font-proxima-regular">&</span> Jenna
+                Kenneth <span className="text-[#9E5E40] font-proxima-regular">&</span> Jenna
               </p>
             </div>
 
@@ -118,13 +118,13 @@ export default function Hero() {
             transition={{ duration: 1, delay: 1.5 }}
             className="mt-10 md:mt-14 flex items-center justify-center gap-6"
           >
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#C9A87C] to-transparent" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#9E5E40] to-transparent" />
             <div className="flex items-center space-x-2">
               {[...Array(5)].map((_, i) => (
                 <div 
                   key={i}
                   className={`rounded-full animate-pulse ${
-                    i === 2 ? 'w-3 h-3 bg-[#C9A87C]' : 'w-1.5 h-1.5 bg-[#E6D5BE]'
+                    i === 2 ? 'w-3 h-3 bg-[#9E5E40]' : 'w-1.5 h-1.5 bg-[#E6D5BE]'
                   }`}
                   style={{
                     animation: `pulse 3s ${i * 0.4}s infinite`
@@ -132,7 +132,7 @@ export default function Hero() {
                 />
               ))}
             </div>
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#C9A87C] to-transparent" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#9E5E40] to-transparent" />
           </MotionDiv>
         </div>
       </MotionDiv>

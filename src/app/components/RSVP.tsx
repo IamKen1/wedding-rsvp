@@ -225,7 +225,7 @@ export default function RSVP() {
     return (
       <section id="rsvp" className="py-16 bg-gradient-to-br from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] relative">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-warm from-[#E6D5BE]/30 via-transparent to-[#C9A87C]/20" />
+          <div className="absolute inset-0 bg-gradient-warm from-[#E6D5BE]/30 via-transparent to-[#9E5E40]/20" />
         </div>
 
         <MotionDiv
@@ -234,8 +234,8 @@ export default function RSVP() {
           transition={{ duration: 0.6 }}
           className="max-w-[700px] mx-auto px-6 text-center relative z-10"
         >
-          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border-2 border-[#C9A87C]/50">
-            <div className="w-14 h-14 bg-gradient-to-br from-[#C9A87C] to-[#8B6F47] rounded-full 
+          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border-2 border-[#9E5E40]/50">
+            <div className="w-14 h-14 bg-gradient-to-br from-[#9E5E40] to-[#8B6F47] rounded-full 
               flex items-center justify-center mx-auto mb-5">
               <FaCheckCircle className="text-white text-xl" />
             </div>
@@ -250,13 +250,13 @@ export default function RSVP() {
             </p>
 
             <div className="flex justify-center gap-2 mb-5">
-              <FaHeart className="text-[#C9A87C] text-base animate-pulse" />
+              <FaHeart className="text-[#9E5E40] text-base animate-pulse" />
               <FaHeart className="text-[#8B6F47] text-lg animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <FaHeart className="text-[#C9A87C] text-base animate-pulse" style={{ animationDelay: '1s' }} />
+              <FaHeart className="text-[#9E5E40] text-base animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
             
             {/* Wedding Hashtag */}
-            <div className="pt-4 border-t border-[#C9A87C]/30">
+            <div className="pt-4 border-t border-[#9E5E40]/30">
               <p className="text-base font-proxima-regular text-[#8B6F47] tracking-wider">
                 Share your photos with #TheJenuineKennection
               </p>
@@ -272,7 +272,7 @@ export default function RSVP() {
     return (
       <section id="rsvp" className="py-16 bg-gradient-to-br from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] relative">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-warm from-[#E6D5BE]/30 via-transparent to-[#C9A87C]/20" />
+          <div className="absolute inset-0 bg-gradient-warm from-[#E6D5BE]/30 via-transparent to-[#9E5E40]/20" />
         </div>
 
         <MotionDiv
@@ -281,8 +281,8 @@ export default function RSVP() {
           transition={{ duration: 0.6 }}
           className="max-w-[700px] mx-auto px-6 text-center relative z-10"
         >
-          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border-2 border-[#C9A87C]/50">
-            <div className="w-14 h-14 bg-gradient-to-br from-[#8B6F47] to-[#C9A87C] rounded-full 
+          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border-2 border-[#9E5E40]/50">
+            <div className="w-14 h-14 bg-gradient-to-br from-[#8B6F47] to-[#9E5E40] rounded-full 
               flex items-center justify-center mx-auto mb-5">
               <FaCheckCircle className="text-white text-xl" />
             </div>
@@ -295,7 +295,7 @@ export default function RSVP() {
               Thank you! You have already submitted your RSVP for our wedding. Here are the details you provided:
             </p>
 
-            <div className="bg-[#F5EEE6] rounded-xl p-5 mb-5 text-left max-w-md mx-auto border border-[#C9A87C]/30">
+            <div className="bg-[#F5EEE6] rounded-xl p-5 mb-5 text-left max-w-md mx-auto border border-[#9E5E40]/30">
               <div className="space-y-2.5 font-proxima-regular text-sm">
                 <div className="flex justify-between">
                   <span className="font-medium text-[#6B5D4F]">Name:</span>
@@ -326,12 +326,12 @@ export default function RSVP() {
                   </div>
                 )}
                 {existingRSVP.message && (
-                  <div className="pt-2 border-t border-[#C9A87C]/30">
+                  <div className="pt-2 border-t border-[#9E5E40]/30">
                     <span className="font-medium text-[#6B5D4F]">Message:</span>
                     <p className="text-[#4A3C2E] text-xs mt-1">{existingRSVP.message}</p>
                   </div>
                 )}
-                <div className="text-xs text-[#8B6F47] pt-2 border-t border-[#C9A87C]/30">
+                <div className="text-xs text-[#8B6F47] pt-2 border-t border-[#9E5E40]/30">
                   Submitted: {new Date(existingRSVP.timestamp).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -348,9 +348,9 @@ export default function RSVP() {
             </p>
 
             <div className="flex justify-center gap-2 mt-5">
-              <FaHeart className="text-[#C9A87C] text-base animate-pulse" />
+              <FaHeart className="text-[#9E5E40] text-base animate-pulse" />
               <FaHeart className="text-[#8B6F47] text-lg animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <FaHeart className="text-[#C9A87C] text-base animate-pulse" style={{ animationDelay: '1s' }} />
+              <FaHeart className="text-[#9E5E40] text-base animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
           </div>
         </MotionDiv>
@@ -363,7 +363,7 @@ export default function RSVP() {
     return (
       <section id="rsvp" className="py-16 bg-gradient-to-br from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] relative">
         <div className="max-w-[700px] mx-auto px-6 relative z-10">
-          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border-2 border-[#C9A87C]/50">
+          <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl border-2 border-[#9E5E40]/50">
             <SkeletonLoader type="form" count={1} />
           </div>
         </div>
@@ -376,7 +376,7 @@ export default function RSVP() {
     return (
       <section id="rsvp" className="py-16 bg-gradient-to-br from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] relative">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-warm from-[#E6D5BE]/30 via-transparent to-[#C9A87C]/20" />
+          <div className="absolute inset-0 bg-gradient-warm from-[#E6D5BE]/30 via-transparent to-[#9E5E40]/20" />
         </div>
 
         <MotionDiv
@@ -404,7 +404,7 @@ export default function RSVP() {
               please contact us directly and we'll do our best to accommodate you.
             </p>
 
-            <div className="bg-[#F5EEE6] rounded-xl p-6 mb-6 border border-[#C9A87C]/30">
+            <div className="bg-[#F5EEE6] rounded-xl p-6 mb-6 border border-[#9E5E40]/30">
               <p className="text-[#4A3C2E] font-medium mb-2">Contact Information:</p>
               <p className="text-[#6B5D4F] text-sm">
                 Email us or reach out through our wedding hashtag
@@ -415,9 +415,9 @@ export default function RSVP() {
             </div>
 
             <div className="flex justify-center gap-2">
-              <FaHeart className="text-[#C9A87C] text-lg animate-pulse" />
+              <FaHeart className="text-[#9E5E40] text-lg animate-pulse" />
               <FaHeart className="text-[#8B6F47] text-xl animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <FaHeart className="text-[#C9A87C] text-lg animate-pulse" style={{ animationDelay: '1s' }} />
+              <FaHeart className="text-[#9E5E40] text-lg animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
           </div>
         </MotionDiv>
@@ -451,7 +451,7 @@ export default function RSVP() {
         <div className="text-center mb-10">
           {isLoadingGuest && invitationId ? (
             <div className="flex flex-col items-center">
-              <FaSpinner className="animate-spin text-2xl text-[#C9A87C] mb-4" />
+              <FaSpinner className="animate-spin text-2xl text-[#9E5E40] mb-4" />
               <p className="text-gray-600 text-sm">Loading your invitation details...</p>
             </div>
           ) : guestError ? (
@@ -488,7 +488,7 @@ export default function RSVP() {
               </p>
               
               {/* Countdown Timer */}
-              <div className="bg-gradient-to-r from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] rounded-2xl p-4 md:p-6 mb-6 max-w-2xl mx-auto border-2 border-[#C9A87C]/50 shadow-lg">
+              <div className="bg-gradient-to-r from-[#F5EEE6] via-[#E6D5BE] to-[#F5EEE6] rounded-2xl p-4 md:p-6 mb-6 max-w-2xl mx-auto border-2 border-[#9E5E40]/50 shadow-lg">
                 <div className="flex items-center justify-center gap-2 mb-3">
                   <FaClock className="text-[#8B6F47] text-lg md:text-xl" />
                   <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-proxima-regular">
@@ -497,25 +497,25 @@ export default function RSVP() {
                 </div>
                 
                 <div className="grid grid-cols-4 gap-2 md:gap-3 max-w-md mx-auto">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#9E5E40]/30 shadow-md">
                     <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.days}
                     </div>
                     <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Days</div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#9E5E40]/30 shadow-md">
                     <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.hours}
                     </div>
                     <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Hours</div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#9E5E40]/30 shadow-md">
                     <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.minutes}
                     </div>
                     <div className="text-[10px] md:text-xs text-[#6B5D4F] font-proxima-regular mt-1">Minutes</div>
                   </div>
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#C9A87C]/30 shadow-md">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 md:p-3 text-center border-2 border-[#9E5E40]/30 shadow-md">
                     <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[#8B6F47] font-proxima-regular">
                       {timeLeft.seconds}
                     </div>
@@ -530,11 +530,11 @@ export default function RSVP() {
               
               {/* Wedding Hashtag */}
               <div className="mt-6 flex items-center justify-center gap-3">
-                <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A87C]"></div>
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#9E5E40]"></div>
                 <p className="text-xl md:text-2xl font-proxima-regular text-[#8B6F47] tracking-wider">
                   #TheJenuineKennection
                 </p>
-                <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#C9A87C]"></div>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#9E5E40]"></div>
               </div>
             </>
           )}
@@ -542,10 +542,10 @@ export default function RSVP() {
 
         {/* Form - Enhanced prominence */}
         {!isLoadingGuest && (
-          <div className="bg-white/98 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-[#C9A87C]/60 p-8 md:p-10 relative overflow-hidden">
+          <div className="bg-white/98 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-[#9E5E40]/60 p-8 md:p-10 relative overflow-hidden">
             {/* Decorative corner elements */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#E6D5BE]/40 to-transparent rounded-bl-[80px]" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#C9A87C]/30 to-transparent rounded-tr-[80px]" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#9E5E40]/30 to-transparent rounded-tr-[80px]" />
             
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
             {/* Basic Info Row */}
@@ -563,8 +563,8 @@ export default function RSVP() {
                   className={`w-full px-4 py-2.5 rounded-xl border-2 transition-all duration-300 font-proxima-regular text-sm
                     ${errors.name 
                       ? 'border-red-400 bg-red-50' 
-                      : 'border-[#C9A87C]/40 focus:border-[#8B6F47] bg-white'
-                    } focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30`}
+                      : 'border-[#9E5E40]/40 focus:border-[#8B6F47] bg-white'
+                    } focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30`}
                   placeholder="Enter your full name"
                 />
                 {errors.name && <p className="text-red-600 text-xs mt-1 font-proxima-regular">{errors.name}</p>}
@@ -583,8 +583,8 @@ export default function RSVP() {
                   className={`w-full px-4 py-2.5 rounded-xl border-2 transition-all duration-300 font-proxima-regular text-sm
                     ${errors.email 
                       ? 'border-red-400 bg-red-50' 
-                      : 'border-[#C9A87C]/40 focus:border-[#8B6F47] bg-white'
-                    } focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30`}
+                      : 'border-[#9E5E40]/40 focus:border-[#8B6F47] bg-white'
+                    } focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30`}
                   placeholder="your.email@example.com"
                 />
                 {errors.email && <p className="text-red-600 text-xs mt-1 font-proxima-regular">{errors.email}</p>}
@@ -601,8 +601,8 @@ export default function RSVP() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#C9A87C]/40 focus:border-[#8B6F47] 
-                  bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 font-proxima-regular text-sm"
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#9E5E40]/40 focus:border-[#8B6F47] 
+                  bg-white focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30 transition-all duration-300 font-proxima-regular text-sm"
                 placeholder="Your phone number"
               />
             </div>
@@ -610,7 +610,7 @@ export default function RSVP() {
             {/* Attendance */}
             <div>
               <label className="block text-[#4A3C2E] font-semibold mb-3 font-proxima-regular text-sm">
-                <FaHeart className="inline mr-2 text-[#C9A87C] text-xs" />
+                <FaHeart className="inline mr-2 text-[#9E5E40] text-xs" />
                 Will you be able to attend? *
               </label>
               <div className="grid md:grid-cols-2 gap-4">
@@ -620,7 +620,7 @@ export default function RSVP() {
                   className={`p-4 rounded-xl border-2 transition-all duration-300 text-center cursor-pointer font-proxima-regular
                     ${formData.willAttend === 'yes'
                       ? 'border-[#8B6F47] bg-[#F5EEE6] text-[#4A3C2E]'
-                      : 'border-[#C9A87C]/30 bg-white text-[#6B5D4F] hover:border-[#C9A87C]'
+                      : 'border-[#9E5E40]/30 bg-white text-[#6B5D4F] hover:border-[#9E5E40]'
                     }`}
                 >
                   <FaCheckCircle className="mx-auto text-xl mb-2" />
@@ -633,7 +633,7 @@ export default function RSVP() {
                   className={`p-4 rounded-xl border-2 transition-all duration-300 text-center cursor-pointer font-proxima-regular
                     ${formData.willAttend === 'no'
                       ? 'border-[#8B6F47] bg-[#F5EEE6] text-[#4A3C2E]'
-                      : 'border-[#C9A87C]/30 bg-white text-[#6B5D4F] hover:border-[#C9A87C]'
+                      : 'border-[#9E5E40]/30 bg-white text-[#6B5D4F] hover:border-[#9E5E40]'
                     }`}
                 >
                   <FaHeart className="mx-auto text-xl mb-2" />
@@ -659,8 +659,8 @@ export default function RSVP() {
                 <select
                   value={formData.guestCount}
                   onChange={(e) => handleInputChange('guestCount', parseInt(e.target.value))}
-                  className="w-full px-4 py-2.5 rounded-xl border-2 border-[#C9A87C]/40 focus:border-[#8B6F47] 
-                    bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 cursor-pointer font-proxima-regular text-sm"
+                  className="w-full px-4 py-2.5 rounded-xl border-2 border-[#9E5E40]/40 focus:border-[#8B6F47] 
+                    bg-white focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30 transition-all duration-300 cursor-pointer font-proxima-regular text-sm"
                 >
                   {Array.from({ length: guestInfo?.allocatedSeats || 6 }, (_, i) => i + 1).map(num => (
                     <option key={num} value={num}>{num} Guest{num > 1 ? 's' : ''}</option>
@@ -679,23 +679,23 @@ export default function RSVP() {
               <textarea
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#C9A87C]/40 focus:border-[#8B6F47] 
-                  bg-white focus:outline-none focus:ring-2 focus:ring-[#C9A87C]/30 transition-all duration-300 font-proxima-regular text-sm"
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-[#9E5E40]/40 focus:border-[#8B6F47] 
+                  bg-white focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30 transition-all duration-300 font-proxima-regular text-sm"
                 rows={4}
                 placeholder="Share your love, wishes, or any special message for Kenneth & Jenna..."
               />
             </div>
 
             {/* Submit Button - Enhanced */}
-            <div className="text-center pt-6 border-t border-[#C9A87C]/30">
+            <div className="text-center pt-6 border-t border-[#9E5E40]/30">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="relative bg-gradient-to-r from-[#C9A87C] via-[#8B6F47] to-[#C9A87C] text-white px-12 py-4 
+                className="relative bg-gradient-to-r from-[#9E5E40] via-[#8B6F47] to-[#9E5E40] text-white px-12 py-4 
                   rounded-2xl font-bold text-base shadow-2xl hover:shadow-3xl 
                   transform hover:scale-105 transition-all duration-300 
                   disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer
-                  focus:outline-none focus:ring-4 focus:ring-[#C9A87C]/40 font-something
+                  focus:outline-none focus:ring-4 focus:ring-[#9E5E40]/40 font-something
                   overflow-hidden group"
               >
                 <span className="relative z-10">
