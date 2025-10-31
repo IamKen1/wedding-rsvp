@@ -98,7 +98,7 @@ export default function Header() {
             variants={fadeInUp}
             className="mb-1"
             >
-            <p className="text-[clamp(1.125rem,3vw,1.75rem)] text-white tracking-wide flex items-center justify-center gap-2
+            <p className="text-[clamp(0.875rem,2vw,1.25rem)] text-white tracking-wide flex items-center justify-center gap-2
               [text-shadow:_0_0_40px_rgba(0,0,0,0.9),_0_4px_30px_rgba(0,0,0,0.8),_0_2px_15px_rgba(0,0,0,0.7),_0_1px_5px_rgba(0,0,0,0.9)]
               drop-shadow-[0_0_50px_rgba(0,0,0,1)]">
               <span>JANUARY 24, 2026</span>

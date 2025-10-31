@@ -484,7 +484,7 @@ export default function RSVP() {
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
               <p className="text-base md:text-lg text-gray-800 max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
-                We would be honored to have you join us for our adult reception.
+                We would be honored to have you join us for our special day.
               </p>
               
               {/* Countdown Timer */}
