@@ -119,7 +119,8 @@ export default function RSVP() {
                 ...prev,
                 name: guestData.guest.name,
                 email: guestData.guest.email || '',
-                guestCount: Math.min(1, guestData.guest.allocatedSeats)
+                // If allocated seats is 1, automatically set guest count to 1
+                guestCount: guestData.guest.allocatedSeats === 1 ? 1 : Math.min(1, guestData.guest.allocatedSeats)
               }));
             }
             setGuestError(null);
@@ -656,16 +657,24 @@ export default function RSVP() {
                     </span>
                   )}
                 </label>
-                <select
-                  value={formData.guestCount}
-                  onChange={(e) => handleInputChange('guestCount', parseInt(e.target.value))}
-                  className="w-full px-4 py-2.5 rounded-xl border-2 border-[#9E5E40]/40 focus:border-[#8B6F47] 
-                    bg-white focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30 transition-all duration-300 cursor-pointer font-proxima-regular text-sm"
-                >
-                  {Array.from({ length: guestInfo?.allocatedSeats || 6 }, (_, i) => i + 1).map(num => (
-                    <option key={num} value={num}>{num} Guest{num > 1 ? 's' : ''}</option>
-                  ))}
-                </select>
+                {guestInfo?.allocatedSeats === 1 ? (
+                  <div className="w-full px-4 py-2.5 rounded-xl border-2 border-[#9E5E40]/40 
+                    bg-[#F5EEE6]/50 flex items-center justify-between font-proxima-regular text-sm">
+                    <span className="text-[#4A3C2E] font-semibold">1 Guest</span>
+                    <span className="text-xs text-[#8B6F47] italic">(Automatically set)</span>
+                  </div>
+                ) : (
+                  <select
+                    value={formData.guestCount}
+                    onChange={(e) => handleInputChange('guestCount', parseInt(e.target.value))}
+                    className="w-full px-4 py-2.5 rounded-xl border-2 border-[#9E5E40]/40 focus:border-[#8B6F47] 
+                      bg-white focus:outline-none focus:ring-2 focus:ring-[#9E5E40]/30 transition-all duration-300 cursor-pointer font-proxima-regular text-sm"
+                  >
+                    {Array.from({ length: guestInfo?.allocatedSeats || 6 }, (_, i) => i + 1).map(num => (
+                      <option key={num} value={num}>{num} Guest{num > 1 ? 's' : ''}</option>
+                    ))}
+                  </select>
+                )}
                 {errors.guestCount && <p className="text-red-600 text-xs mt-1 font-proxima-regular">{errors.guestCount}</p>}
               </div>
             )}
