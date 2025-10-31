@@ -466,13 +466,13 @@ export default function RSVP() {
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-something text-[#9E5E40] mb-4 font-medium tracking-tight">
                 Hello, {guestInfo.name}! 💕
               </h3>
-              <p className="text-lg md:text-xl text-[#9E5E40] mb-3 font-proxima-regular">
+              <p className="text-lg md:text-xl text-gray-800 mb-3 font-proxima-regular">
                 We're so excited to celebrate with you!
               </p>
-                <p className="text-[#9E5E40] font-semibold font-proxima-regular text-base md:text-lg">
+                <p className="text-gray-800 font-semibold font-proxima-regular text-base md:text-lg">
                 Your invitation includes <span className="font-bold">{guestInfo.allocatedSeats}</span> seat{guestInfo.allocatedSeats > 1 ? 's' : ''}
                 {guestInfo.notes && (
-                  <span className="text-[#9E5E40] font-normal"> • {guestInfo.notes}</span>
+                  <span className="text-gray-800 font-normal"> • {guestInfo.notes}</span>
                 )}
                 </p>
             </div>
@@ -483,7 +483,7 @@ export default function RSVP() {
               <h3 className="text-3xl md:text-4xl font-something text-[#9E5E40] mb-4 font-semibold tracking-tight">
                 {guestInfo ? 'Confirm Your Attendance' : 'Will You Celebrate With Us?'}
               </h3>
-              <p className="text-base md:text-lg text-[#9E5E40] max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
+              <p className="text-base md:text-lg text-gray-800 max-w-2xl mx-auto leading-relaxed font-proxima-regular mb-4">
                 We would be honored to have you join us on our special day.
               </p>
               
@@ -531,7 +531,7 @@ export default function RSVP() {
               {/* Wedding Hashtag */}
               <div className="mt-6 flex items-center justify-center gap-3">
                 <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#9E5E40]"></div>
-                <p className="text-xl md:text-2xl font-proxima-regular text-[#8B6F47] tracking-wider">
+                <p className="text-xl md:text-2xl font-proxima-regular text-[#9E5E40] tracking-wider">
                   #TheJenuineKennection
                 </p>
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#9E5E40]"></div>

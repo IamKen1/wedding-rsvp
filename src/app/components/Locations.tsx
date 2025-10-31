@@ -99,7 +99,7 @@ export default function Locations() {
             Wedding Locations
           </h2>
           <div className="w-24 h-1 bg-[#9E5E40] mx-auto mb-6 rounded-full"></div>
-          <p className="text-[#9E5E40] font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
+          <p className="text-gray-800 font-proxima-regular text-lg max-w-2xl mx-auto font-normal">
             Important venue information and directions for our special day
           </p>
         </MotionDiv>
