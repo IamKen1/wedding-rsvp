@@ -112,7 +112,7 @@ export default function Footer() {
               </div>
               <p className="text-gray-200 leading-relaxed font-proxima-regular">
                 Liam and Belle Resort and Pavillion<br />
-                Sta Maria, Bulacan
+                Santa Maria, Bulacan
               </p>
             </div>
           </MotionDiv>
