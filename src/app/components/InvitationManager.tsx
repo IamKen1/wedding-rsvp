@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getAllGuests, addGuest, deleteGuest, GuestInvitation } from '@/data/rsvp';
-import { FaUsers, FaCopy, FaEnvelope, FaEdit, FaTrash, FaPlus, FaDownload, FaFileExcel, FaSearch, FaTimes } from 'react-icons/fa';
+import { FaUsers, FaCopy, FaEnvelope, FaEdit, FaTrash, FaPlus, FaDownload, FaFileExcel, FaSearch, FaTimes, FaFacebook } from 'react-icons/fa';
 import AddInvitationModal from './AddInvitationModal';
 import SuccessNotification from './SuccessNotification';
 import LoadingOverlay from './LoadingOverlay';
@@ -10,7 +10,7 @@ import ExcelUpload from './ExcelUpload';
 import ConfirmationModal from './ConfirmationModal';
 
 const generateInvitationUrl = (baseUrl: string, invitationCode: string) => {
-  return `${baseUrl}?invitation=${invitationCode}`;
+  return `${baseUrl}/?invitation=${invitationCode}`;
 };
 
 export default function InvitationManager() {
@@ -18,6 +18,7 @@ export default function InvitationManager() {
   const [loading, setLoading] = useState(true);
   const [uploadingExcel, setUploadingExcel] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [copiedSocialId, setCopiedSocialId] = useState<string | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showExcelUpload, setShowExcelUpload] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
@@ -84,6 +85,41 @@ export default function InvitationManager() {
         message: `Invitation URL copied to clipboard for ${guestName}!`
       });
       setTimeout(() => setCopiedId(null), 2000);
+    }
+  };
+
+  const copySocialMediaMessage = async (guestId: string) => {
+    const url = generateInvitationUrl(baseUrl, guestId);
+    const guestName = guests.find(g => g.invitationCode === guestId)?.name || 'guest';
+    
+    const message = `Hi there! We are excited to celebrate our wedding on January 24, 2026. Kindly confirm your attendance via the link on or before December 24. We hope you can join us!
+
+${url}
+`;
+    
+    try {
+      await navigator.clipboard.writeText(message);
+      setCopiedSocialId(guestId);
+      setNotification({
+        isVisible: true,
+        message: `Social media message copied to clipboard for ${guestName}! Ready to share on Facebook.`
+      });
+      setTimeout(() => setCopiedSocialId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy message:', err);
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = message;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopiedSocialId(guestId);
+      setNotification({
+        isVisible: true,
+        message: `Social media message copied to clipboard for ${guestName}! Ready to share on Facebook.`
+      });
+      setTimeout(() => setCopiedSocialId(null), 2000);
     }
   };
 
@@ -398,26 +434,26 @@ export default function InvitationManager() {
 
         {/* Guest List */}
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="px-6 py-4 bg-forest-50 border-b border-forest-100">
-            <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="px-4 md:px-6 py-4 bg-forest-50 border-b border-forest-100">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <h2 className="text-lg font-semibold font-proxima-regular text-forest-700 flex items-center gap-2">
                   <FaUsers /> Guest Invitations
                 </h2>
                 {searchQuery && (
                   <span className="text-sm font-proxima-regular text-gray-600">
-                    ({filteredGuests.length} of {guests.length} shown)
+                    ({filteredGuests.length} of {guests.length})
                   </span>
                 )}
               </div>
-              <div className="relative flex-1 max-w-md">
+              <div className="relative w-full md:flex-1 md:max-w-md">
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by name, email or code..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forest-500 focus:border-transparent font-proxima-regular text-sm"
+                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forest-500 focus:border-transparent font-proxima-regular text-sm"
                 />
                 {searchQuery && (
                   <button
@@ -432,7 +468,8 @@ export default function InvitationManager() {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Desktop Table View */}
+          <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -490,27 +527,38 @@ export default function InvitationManager() {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
-                          {`${baseUrl}?invitation=${guest.invitationCode}`.substring(0, 50)}...
-                        </code>
-                        <button
-                          onClick={() => copyInvitationUrl(guest.invitationCode)}
-                          className={`p-2 rounded-lg transition-colors duration-300 cursor-pointer ${
-                            copiedId === guest.invitationCode
-                              ? 'bg-green-100 text-green-600'
-                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                          }`}
-                          title="Copy invitation URL"
-                        >
-                          <FaCopy className="text-sm" />
-                        </button>
-                      </div>
-                      {copiedId === guest.invitationCode && (
-                        <div className="text-xs font-proxima-regular text-green-600 mt-1">
-                          ✓ Copied to clipboard!
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                          <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
+                            {`${baseUrl}?invitation=${guest.invitationCode}`.substring(0, 50)}...
+                          </code>
+                          <button
+                            onClick={() => copyInvitationUrl(guest.invitationCode)}
+                            className={`p-2 rounded-lg transition-colors duration-300 cursor-pointer ${
+                              copiedId === guest.invitationCode
+                                ? 'bg-green-100 text-green-600'
+                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            }`}
+                            title="Copy invitation URL only"
+                          >
+                            <FaCopy className="text-sm" />
+                          </button>
                         </div>
-                      )}
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => copySocialMediaMessage(guest.invitationCode)}
+                            className={`px-3 py-1.5 rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2 text-xs font-proxima-regular ${
+                              copiedSocialId === guest.invitationCode
+                                ? 'bg-green-100 text-green-700 border border-green-300'
+                                : 'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100'
+                            }`}
+                            title="Copy Facebook-ready message"
+                          >
+                            <FaFacebook className="text-sm" />
+                            {copiedSocialId === guest.invitationCode ? '✓ Copied for Facebook!' : 'Copy for Facebook'}
+                          </button>
+                        </div>
+                      </div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
@@ -535,6 +583,94 @@ export default function InvitationManager() {
                 )}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="lg:hidden divide-y divide-gray-200">
+            {filteredGuests.length === 0 ? (
+              <div className="px-4 py-8 text-center text-gray-500 font-proxima-regular">
+                {searchQuery ? `No invitations found matching "${searchQuery}"` : 'No invitations yet'}
+              </div>
+            ) : (
+              filteredGuests.map((guest) => (
+                <div key={guest.invitationCode} className="p-4 hover:bg-gray-50">
+                  {/* Guest Info */}
+                  <div className="mb-3">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div className="flex-1">
+                        <h3 className="font-medium font-proxima-regular text-base text-gray-900">{guest.name}</h3>
+                        {guest.notes && (
+                          <p className="text-sm font-proxima-regular text-gray-600 mt-1">{guest.notes}</p>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1 bg-mint-50 px-2 py-1 rounded">
+                        <FaUsers className="text-mint-600 text-xs" />
+                        <span className="font-medium font-proxima-regular text-sm text-mint-700">{guest.allocatedSeats}</span>
+                      </div>
+                    </div>
+                    
+                    {guest.email && (
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <FaEnvelope className="text-gray-400 text-xs" />
+                        <span className="font-proxima-regular truncate">{guest.email}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Invitation Code */}
+                  <div className="mb-3">
+                    <div className="text-xs font-proxima-regular text-gray-500 mb-1">Invitation Code</div>
+                    <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded block break-all">
+                      {guest.invitationCode}
+                    </code>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="space-y-2">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => copyInvitationUrl(guest.invitationCode)}
+                        className={`flex-1 px-3 py-2 rounded-lg transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2 text-sm font-proxima-regular ${
+                          copiedId === guest.invitationCode
+                            ? 'bg-green-100 text-green-700 border border-green-300'
+                            : 'bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200'
+                        }`}
+                      >
+                        <FaCopy className="text-xs" />
+                        {copiedId === guest.invitationCode ? 'Copied!' : 'Copy URL'}
+                      </button>
+                      <button
+                        onClick={() => copySocialMediaMessage(guest.invitationCode)}
+                        className={`flex-1 px-3 py-2 rounded-lg transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2 text-sm font-proxima-regular ${
+                          copiedSocialId === guest.invitationCode
+                            ? 'bg-green-100 text-green-700 border border-green-300'
+                            : 'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100'
+                        }`}
+                      >
+                        <FaFacebook className="text-xs" />
+                        {copiedSocialId === guest.invitationCode ? 'Copied!' : 'Facebook'}
+                      </button>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleEditGuest(guest)}
+                        className="flex-1 px-3 py-2 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2 text-sm font-proxima-regular"
+                      >
+                        <FaEdit className="text-xs" />
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteGuest(guest.invitationCode, guest.name)}
+                        className="flex-1 px-3 py-2 bg-red-50 text-red-700 border border-red-200 rounded-lg hover:bg-red-100 transition-colors duration-300 cursor-pointer flex items-center justify-center gap-2 text-sm font-proxima-regular"
+                      >
+                        <FaTrash className="text-xs" />
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
 

@@ -376,66 +376,95 @@ export default function AdminPage() {
               {/* Mobile Card View - Visible on Mobile Only */}
               <div className="md:hidden divide-y divide-gray-200">
                 {rsvps.map((rsvp) => (
-                  <div key={rsvp.id} className="p-4 hover:bg-gray-50">
-                    {/* Name and Status */}
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="font-medium font-sans text-base text-gray-900">{rsvp.name}</div>
-                      <span className={`inline-flex px-2 py-1 text-xs font-semibold font-sans rounded-full ${
+                  <div key={rsvp.id} className="p-4 hover:bg-gray-50 transition-colors">
+                    {/* Header: Name and Status Badge */}
+                    <div className="flex justify-between items-start gap-2 mb-3">
+                      <h3 className="font-semibold font-sans text-base text-gray-900 flex-1">
+                        {rsvp.name}
+                      </h3>
+                      <span className={`inline-flex px-3 py-1 text-xs font-semibold font-sans rounded-full whitespace-nowrap ${
                         rsvp.willAttend === 'yes' 
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-red-100 text-red-800'
                       }`}>
-                        {rsvp.willAttend === 'yes' ? 'Attending' : 'Not Attending'}
+                        {rsvp.willAttend === 'yes' ? '✓ Attending' : '✗ Declined'}
                       </span>
                     </div>
 
-                    {/* Invitation ID */}
-                    {rsvp.invitationId && (
-                      <div className="mb-2">
-                        <span className="text-xs font-sans text-gray-500">Invitation ID: </span>
-                        <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">
-                          {rsvp.invitationId}
-                        </code>
-                      </div>
-                    )}
+                    {/* Info Grid */}
+                    <div className="space-y-2 mb-3">
+                      {/* Invitation ID */}
+                      {rsvp.invitationId && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-sans text-gray-500 min-w-[80px]">Invitation:</span>
+                          <code className="text-xs font-mono bg-gray-100 px-2 py-1 rounded flex-1">
+                            {rsvp.invitationId}
+                          </code>
+                        </div>
+                      )}
 
-                    {/* Guests Count */}
-                    <div className="mb-2">
-                      <span className="text-xs font-sans text-gray-500">Guests: </span>
-                      <span className="text-sm font-sans text-gray-900">{rsvp.numberOfGuests}</span>
+                      {/* Guests Count with Icon */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-sans text-gray-500 min-w-[80px]">Guests:</span>
+                        <div className="flex items-center gap-1 bg-blue-50 px-2 py-1 rounded">
+                          <FaUsers className="text-blue-600 text-xs" />
+                          <span className="text-sm font-semibold font-sans text-blue-700">
+                            {rsvp.numberOfGuests}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Date */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-sans text-gray-500 min-w-[80px]">Submitted:</span>
+                        <span className="text-sm font-sans text-gray-700">
+                          {new Date(rsvp.createdAt).toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric', 
+                            year: 'numeric' 
+                          })}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Contact Info */}
-                    <div className="mb-2">
-                      <div className="text-sm font-sans text-gray-900">{rsvp.email}</div>
-                      {rsvp.phone && <div className="text-sm font-sans text-gray-600">{rsvp.phone}</div>}
+                    <div className="bg-gray-50 rounded-lg p-3 mb-3">
+                      <div className="text-xs font-sans font-semibold text-gray-600 mb-2">Contact Info</div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <FaEnvelope className="text-gray-400 text-xs" />
+                          <span className="text-sm font-sans text-gray-900 break-all">{rsvp.email}</span>
+                        </div>
+                        {rsvp.phone && (
+                          <div className="text-sm font-sans text-gray-700">📞 {rsvp.phone}</div>
+                        )}
+                      </div>
                     </div>
 
-                    {/* Additional Info */}
+                    {/* Additional Info - Only show if exists */}
                     {(rsvp.dietaryRequirements || rsvp.songRequest || rsvp.message) && (
-                      <div className="mt-3 pt-3 border-t border-gray-100">
+                      <div className="bg-mint-50 rounded-lg p-3 space-y-2">
+                        <div className="text-xs font-sans font-semibold text-forest-700 mb-2">Additional Details</div>
                         {rsvp.dietaryRequirements && (
-                          <div className="text-sm font-sans text-gray-900 mb-1">
-                            <strong>Dietary:</strong> {rsvp.dietaryRequirements}
+                          <div className="text-sm font-sans">
+                            <span className="font-semibold text-gray-700">🍽️ Dietary:</span>
+                            <span className="text-gray-900 ml-1">{rsvp.dietaryRequirements}</span>
                           </div>
                         )}
                         {rsvp.songRequest && (
-                          <div className="text-sm font-sans text-gray-900 mb-1">
-                            <strong>Song:</strong> {rsvp.songRequest}
+                          <div className="text-sm font-sans">
+                            <span className="font-semibold text-gray-700">🎵 Song:</span>
+                            <span className="text-gray-900 ml-1">{rsvp.songRequest}</span>
                           </div>
                         )}
                         {rsvp.message && (
-                          <div className="text-sm font-sans text-gray-600">
-                            <strong>Message:</strong> {rsvp.message}
+                          <div className="text-sm font-sans">
+                            <span className="font-semibold text-gray-700">💬 Message:</span>
+                            <p className="text-gray-900 mt-1 italic">{rsvp.message}</p>
                           </div>
                         )}
                       </div>
                     )}
-
-                    {/* Date */}
-                    <div className="mt-2 text-xs font-sans text-gray-500">
-                      {new Date(rsvp.createdAt).toLocaleDateString()}
-                    </div>
                   </div>
                 ))}
               </div>
