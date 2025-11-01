@@ -37,7 +37,11 @@ export default function InvitationManager() {
     try {
       setLoading(true);
       const guestList = await getAllGuests();
-      setGuests(guestList);
+      // Sort guests by name in ascending order
+      const sortedGuests = guestList.sort((a, b) => 
+        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+      );
+      setGuests(sortedGuests);
     } catch (error) {
       console.error('Error loading guests:', error);
       setNotification({
