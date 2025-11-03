@@ -574,22 +574,6 @@ export default function AdminPage() {
           </>
         ) : activeTab === TabType.PENDING ? (
           <>
-            {/* Pending RSVPs Info Banner */}
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-              <div className="flex items-start gap-3">
-                <FaClock className="text-amber-600 text-xl mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold font-sans text-gray-900 mb-1">
-                    Guests with Generated Invitations
-                  </h3>
-                  <p className="text-sm font-sans text-gray-700">
-                    This list shows all guests who have invitation codes but haven't responded yet. 
-                    Note: An invitation code doesn't mean the invitation was sent—these guests may or may not have received their invitations.
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Pending Count Card */}
             <div className="bg-white rounded-lg shadow p-6 mb-6">
               <div className="flex items-center gap-3">
