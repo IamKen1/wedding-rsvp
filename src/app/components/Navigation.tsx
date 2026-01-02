@@ -137,7 +137,7 @@ export default function Navigation() {
         </div>
       </MotionNav>
 
-      {/* Mobile Bottom Tab Bar - Native App Style */}
+      {/* Mobile Bottom Tab Bar */}
       <MotionDiv
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

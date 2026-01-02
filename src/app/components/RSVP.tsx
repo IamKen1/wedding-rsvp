@@ -65,8 +65,8 @@ export default function RSVP() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isPastDeadline, setIsPastDeadline] = useState(false);
 
-  // RSVP deadline: December 24, 2025 at 23:59:59
-  const deadline = new Date('2025-12-24T23:59:59');
+  // RSVP deadline: December 24, 2026 at 23:59:59
+  const deadline = new Date('2026-01-10T23:59:59');
 
   // Countdown timer effect
   useEffect(() => {
@@ -493,7 +493,7 @@ export default function RSVP() {
                       <div className="flex items-center justify-center gap-2 mb-3">
                         <FaClock className="text-[#9E5E40] text-lg md:text-xl" />
                         <p className="text-sm md:text-base text-[#4A3C2E] font-semibold font-proxima-regular">
-                        RSVP Deadline: December 24, 2025
+                        RSVP Deadline: January 10, 2026
                         </p>
                       </div>
                 
