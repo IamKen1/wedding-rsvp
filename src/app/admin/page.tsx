@@ -177,7 +177,7 @@ export default function AdminPage() {
       const query = searchQuery.toLowerCase();
       return (
         rsvp.name.toLowerCase().includes(query) ||
-        rsvp.email.toLowerCase().includes(query) ||
+        (rsvp.email && rsvp.email.toLowerCase().includes(query)) ||
         (rsvp.phone && rsvp.phone.toLowerCase().includes(query)) ||
         (rsvp.invitationId && rsvp.invitationId.toLowerCase().includes(query))
       );
@@ -482,7 +482,7 @@ export default function AdminPage() {
                       <h3 className="font-semibold font-sans text-base text-gray-900 flex-1">
                         {rsvp.name}
                       </h3>
-                      <span className={`inline-flex px-3 py-1 text-xs font-semibold font-sans rounded-full whitespace-nowrap ${
+                      <span className={`inline-flex px-3 py-1 text-xs font-semibold font-sans rounded-full ${
                         rsvp.willAttend === 'yes' 
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-red-100 text-red-800'
